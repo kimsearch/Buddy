@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F8F9FB"
+    android:padding="16dp">
+
+    <!-- 상단 바: 설정 버튼 포함 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/mypage_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="마이페이지"33
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#2A3D45" />
+
+        <ImageButton
+            android:id="@+id/settings_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_settings"
+            android:background="@null"
+            android:tint="#2A3D45" />
+    </LinearLayout>
+
+    <!-- 프로필 사진 -->
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_profile"
+        android:background="@null"
+        android:layout_marginTop="16dp" />
+
+    <!-- 사용자 닉네임 -->
+    <TextView
+        android:id="@+id/user_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="사용자 닉네임"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#2A3D45"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp" />
+
+    <!-- 획득한 뱃지 -->
+    <TextView
+        android:id="@+id/badge_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="획득한 뱃지"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#2A3D45"
+        android:layout_marginTop="16dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#FFFFFF">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!-- 뱃지 아이콘 리스트 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="꾸준한 다이어터"
+                    android:textSize="14sp"
+                    android:textColor="#2A3D45"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="모범생"
+                    android:textSize="14sp"
+                    android:textColor="#2A3D45"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 성장 그래프 -->
+    <TextView
+        android:id="@+id/growth_graph_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="성장 그래프"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#2A3D45"
+        android:layout_marginTop="16dp" />
+
+    <ImageView
+        android:id="@+id/growth_graph"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="#D0F4DE"
+        android:layout_marginBottom="16dp" />
+
+    <!-- 하단 네비게이션 바 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#D0F4DE"
+        android:padding="8dp">
+
+        <ImageButton
+            android:id="@+id/nav_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            android:background="@null"
+            android:tint="#2A3D45" />
+
+        <ImageButton
+            android:id="@+id/nav_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_group"
+            android:background="@null"
+            android:tint="#2A3D45" />
+
+        <ImageButton
+            android:id="@+id/nav_alarm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_alarm"
+            android:background="@null"
+            android:tint="#2A3D45" />
+
+        <ImageButton
+            android:id="@+id/nav_mypage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_mypage"
+            android:background="@null"
+            android:tint="#2A3D45" />
+    </LinearLayout>
+</LinearLayout>

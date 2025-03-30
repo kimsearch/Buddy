@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F8F9FB"
+    android:padding="16dp">
+
+    <!-- 상단 바: 알림 제목과 리롤 버튼 포함 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/alarm_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="알림"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#2A3D45" />
+
+        <ImageButton
+            android:id="@+id/roll_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_roll"
+            android:background="@null"
+            android:tint="#2A3D45" />
+    </LinearLayout>
+
+    <!-- 새로운 알림 표시 -->
+    <TextView
+        android:id="@+id/new_alarm_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="새로운 알림"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#2A3D45"
+        android:layout_marginBottom="8dp" />
+
+    <!-- 알림 리스트 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 개별 알림 항목 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/alarm_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="새로운 그룹 초대가 도착했습니다."
+                    android:textSize="16sp"
+                    android:textColor="#2A3D45" />
+
+                <TextView
+                    android:id="@+id/alarm_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5분 전"
+                    android:textSize="14sp"
+                    android:textColor="#808080"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 하단 네비게이션 바 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#D0F4DE"
+        android:padding="8dp">
+
+        <ImageButton
+            android:id="@+id/nav_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            android:background="@null"
+            android:tint="#2A3D45" />
+
+        <ImageButton
+            android:id="@+id/nav_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_group"
+            android:background="@null"
+            android:tint="#2A3D45" />
+
+        <ImageButton
+            android:id="@+id/nav_alarm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_alarm"
+            android:background="@null"
+            android:tint="#2A3D45" />
+
+        <ImageButton
+            android:id="@+id/nav_mypage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_mypage"
+            android:background="@null"
+            android:tint="#2A3D45" />
+    </LinearLayout>
+</LinearLayout>

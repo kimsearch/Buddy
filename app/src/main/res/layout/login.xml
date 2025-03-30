@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="top|center_horizontal"
+    android:background="#D0F4DE">
+
+    <!-- Large Logo Image -->
+
+
+    <!-- Subtitle -->
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_width="200dp"
+        android:layout_height="195dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/buddyquest" />
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:text="즐겁게 경쟁하고, 같이 성장하는 미션 라이프!"
+        android:textColor="#2A3D45"
+        android:textSize="18sp" />
+
+    <!-- 이메일 입력 및 중복 확인 필드 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/email_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/white"
+            android:hint="아이디"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <!-- 비밀번호 입력 필드 -->
+    <EditText
+        android:id="@+id/password_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:background="@android:color/white"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="24dp" />
+
+    <!-- 로그인 버튼 -->
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="로그인"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#80FFFFFF"
+        android:textColor="@android:color/black"
+        android:padding="12dp" />
+
+    <!-- 회원가입 버튼 -->
+    <Button
+        android:id="@+id/signup_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="회원가입"
+        android:backgroundTint="#80FFFFFF"
+        android:textColor="@android:color/black"
+        android:padding="12dp" />
+
+</LinearLayout>

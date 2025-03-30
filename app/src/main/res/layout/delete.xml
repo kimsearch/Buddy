@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F8F9FB"
+    android:padding="16dp">
+
+    <!-- 상단 제목 -->
+    <TextView
+        android:id="@+id/delete_account_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원 탈퇴"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#2A3D45"
+        android:layout_marginBottom="16dp" />
+
+    <!-- 안내 문구 -->
+    <TextView
+        android:id="@+id/delete_account_warning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="회원 탈퇴 시 모든 데이터가 삭제됩니다. 정말 탈퇴하시겠습니까?"
+        android:textSize="16sp"
+        android:textColor="#2A3D45"
+        android:layout_marginBottom="16dp" />
+
+    <!-- 비밀번호 입력 필드 -->
+    <EditText
+        android:id="@+id/password_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="비밀번호 입력"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:background="@android:color/white"
+        android:textColor="#2A3D45"
+        android:layout_marginBottom="16dp" />
+
+    <!-- 회원 탈퇴 확인 버튼 -->
+    <Button
+        android:id="@+id/confirm_delete_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="회원 탈퇴"
+        android:backgroundTint="#FDFFB6"
+        android:textColor="#2A3D45"
+        android:padding="12dp" />
+</LinearLayout>
