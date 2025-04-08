@@ -68,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/my_goal_status"
+                android:fontFamily="@font/bmjua"
                 android:textSize="20sp"
                 android:textColor="#2A3D45"
                 android:layout_marginEnd="12dp"/>
@@ -117,6 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/group_goals"
+                    android:fontFamily="@font/bmjua"
                     android:textSize="20sp"
                     android:textColor="#2A3D45" />
 
@@ -210,6 +212,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/personal_goals"
+                    android:fontFamily="@font/bmjua"
                     android:textSize="20sp"
                     android:textColor="#2A3D45" />
 

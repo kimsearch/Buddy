@@ -67,7 +67,7 @@ public class SampleLayoutActivity extends AppCompatActivity {
         });
 
         navMypage.setOnClickListener(view -> {
-            Intent intent = new Intent(SampleLayoutActivity.this, MyPageActivity.class);
+            Intent intent = new Intent(SampleLayoutActivity.this, MyPageMainActivity.class);
             startActivity(intent);
         });
     }

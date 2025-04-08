@@ -2,63 +2,72 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 
 public class GroupPageActivity extends AppCompatActivity {
 
+    // UI 요소들 선언
+    private AppCompatImageButton notificationBtn, deleteGoal1Btn, editGoal2Btn, editGoal3Btn;
+    private AppCompatImageButton navHome, navGroup, navSearch, navMyPage;
+    private Button goal1Btn, goal2Btn, goal3Btn, createRoomBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_page);
 
-        // 1. 알림 버튼 → alarm_page.xml
-        AppCompatImageButton notificationBtn = findViewById(R.id.notification_button);
-        notificationBtn.setOnClickListener(v -> startActivity(new Intent(this, AlarmPageActivity.class)));
+        initViews();       // 뷰 초기화
+        setupListeners();  // 리스너 설정
+    }
 
-        // 2. 그룹 목표 1 - '하루 만보 걷기 챌린지' 버튼 → group_main.xml
-        Button goal1Btn = findViewById(R.id.group_goal_button_1); // 버튼에 id 설정 필요
-        goal1Btn.setOnClickListener(v -> startActivity(new Intent(this, GroupMainActivity.class)));
+    // 1. View 요소 초기화
+    private void initViews() {
+        notificationBtn = findViewById(R.id.notification_button);
+        deleteGoal1Btn = findViewById(R.id.delete_group_goals_button);
+        editGoal2Btn = findViewById(R.id.edit_group_goals_button_1);
+        editGoal3Btn = findViewById(R.id.edit_group_goals_button_2);
 
-        // 3. 그룹 목표 1 - ic_delete 버튼 → group_delete.xml
-        AppCompatImageButton deleteGoal1Btn = findViewById(R.id.delete_group_goals_button);
-        deleteGoal1Btn.setOnClickListener(v -> startActivity(new Intent(this, GroupDeleteActivity.class)));
+        goal1Btn = findViewById(R.id.group_goal_button_1);
+        goal2Btn = findViewById(R.id.group_goal_button_2);
+        goal3Btn = findViewById(R.id.group_goal_3);
+        createRoomBtn = findViewById(R.id.create_room_button);
 
-        // 4. 그룹 목표 2 - '같이 다이어트 해요' 버튼 → group_main.xml
-        Button goal2Btn = findViewById(R.id.group_goal_button_2); // 버튼에 id 설정 필요
-        goal2Btn.setOnClickListener(v -> startActivity(new Intent(this, GroupMainActivity.class)));
+        navHome = findViewById(R.id.nav_home);
+        navGroup = findViewById(R.id.nav_group);
+        navSearch = findViewById(R.id.nav_search);
+        navMyPage = findViewById(R.id.nav_mypage);
+    }
 
-        // 5. 그룹 목표 2 - ic_edit 버튼 → group_exit.xml
-        AppCompatImageButton editGoal2Btn = findViewById(R.id.edit_group_goals_button_1);
-        editGoal2Btn.setOnClickListener(v -> startActivity(new Intent(this, GroupExitActivity.class)));
+    // 2. 리스너 연결
+    private void setupListeners() {
 
-        // 6. 그룹 목표 3 - '관리 할 사람이' 버튼 → group_main.xml
-        Button goal3Btn = findViewById(R.id.group_goal_3); // 버튼에 id 설정 필요
-        goal3Btn.setOnClickListener(v -> startActivity(new Intent(this, GroupMainActivity.class)));
+        // 상단 버튼들
+        notificationBtn.setOnClickListener(v -> navigateTo(AlarmPageActivity.class));
 
-        // 7. 그룹 목표 3 - ic_edit 버튼 → group_exit.xml
-        AppCompatImageButton editGoal3Btn = findViewById(R.id.edit_group_goals_button_2);
-        editGoal3Btn.setOnClickListener(v -> startActivity(new Intent(this, GroupExitActivity.class)));
+        // 그룹 목표 버튼들
+        goal1Btn.setOnClickListener(v -> navigateTo(GroupMainActivity.class));
+        deleteGoal1Btn.setOnClickListener(v -> navigateTo(GroupDeleteActivity.class));
 
-        // 8. '그룹 만들기' 버튼 → group_make.xml
-        Button createRoomBtn = findViewById(R.id.create_room_button);
-        createRoomBtn.setOnClickListener(v -> startActivity(new Intent(this, GroupMakeActivity.class)));
+        goal2Btn.setOnClickListener(v -> navigateTo(GroupMainActivity.class));
+        editGoal2Btn.setOnClickListener(v -> navigateTo(GroupExitActivity.class));
 
-        // 9. 하단 네비게이션 - 홈 → activity_main.xml
-        AppCompatImageButton navHome = findViewById(R.id.nav_home);
-        navHome.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
+        goal3Btn.setOnClickListener(v -> navigateTo(GroupMainActivity.class));
+        editGoal3Btn.setOnClickListener(v -> navigateTo(GroupExitActivity.class));
 
-        // 10. 하단 네비게이션 - 그룹 → group_page.xml (자기 자신)
-        AppCompatImageButton navGroup = findViewById(R.id.nav_group);
-        navGroup.setOnClickListener(v -> {
-            // 현재 페이지라서 굳이 이동 안 해도 되지만, 원하면 refresh 가능
-            recreate();
-        });
+        // 그룹 만들기
+        createRoomBtn.setOnClickListener(v -> navigateTo(GroupMakeActivity.class));
 
-        // 11. 하단 네비게이션 - 진행 상황 → sample_layout.xml
-        AppCompatImageButton navProgress = findViewById(R.id.nav_search);
-        navProgress.setOnClickListener(v -> startActivity(new Intent(this, SampleLayoutActivity.class)));
+        // 하단 내비게이션
+        navHome.setOnClickListener(v -> navigateTo(MainActivity.class));
+        navGroup.setOnClickListener(v -> recreate()); // 현재 페이지 → 새로고침
+        navSearch.setOnClickListener(v -> navigateTo(SampleLayoutActivity.class));
+        navMyPage.setOnClickListener(v -> navigateTo(MyPageMainActivity.class));
+    }
+
+    // 공통 인텐트 이동 함수
+    private void navigateTo(Class<?> targetActivity) {
+        startActivity(new Intent(this, targetActivity));
     }
 }

@@ -18,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageButton alarmButton, calendarButton, moreVertButton;
     private Button goal1Button, goal2Button;
-    private ImageButton navHome, navGroup;
+    private ImageButton navHome, navGroup, navMyPage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         goal2Button = findViewById(R.id.btnDiet);  // 같이 다이어트 해요
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
+        navMyPage = findViewById(R.id.nav_mypage);
+
 
 
         // 터치 효과 공통 함수
@@ -83,6 +86,11 @@ public class MainActivity extends AppCompatActivity {
 
         navGroup.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, GroupPageActivity.class);
+            startActivity(intent);
+        });
+
+        navMyPage.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, MyPageMainActivity.class);
             startActivity(intent);
         });
 

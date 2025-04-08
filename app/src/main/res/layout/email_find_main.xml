@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F4F4">
+
+    <!-- 헤더 -->
+    <LinearLayout
+        android:id="@+id/header_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:paddingBottom="22dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <TextView
+                android:id="@+id/email_find_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/email_find_title"
+                android:fontFamily="@font/bmjua"
+                android:textSize="24sp"
+                android:textColor="#2A3D45"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 입력란 + 버튼 -->
+    <LinearLayout
+        android:id="@+id/form_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_container"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <EditText
+            android:id="@+id/edittext_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/edit_text_background"
+            android:text="닉네임 입력"
+            android:enabled="false"
+            android:focusable="false"
+            android:fontFamily="@font/bmjua"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColor="#999999"
+            android:textSize="16sp"
+            android:layout_marginBottom="6dp" />
+
+        <Button
+            android:id="@+id/nickname_okay_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/nickname_okay_button"
+            android:fontFamily="@font/bmjua"
+            android:backgroundTint="#D0F4DE"
+            android:textColor="#2A3D45"
+            android:layout_marginBottom="24dp"/>
+
+        <EditText
+            android:id="@+id/edittext_birthday_name"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/edit_text_background"
+            android:text="생년월일 입력"
+            android:enabled="false"
+            android:focusable="false"
+            android:fontFamily="@font/bmjua"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColor="#999999"
+            android:textSize="16sp"
+            android:layout_marginBottom="6dp" />
+
+        <Button
+            android:id="@+id/birthday_okay_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/birthday_okay_button"
+            android:fontFamily="@font/bmjua"
+            android:backgroundTint="#D0F4DE"
+            android:textColor="#2A3D45"
+            android:layout_marginBottom="40dp"/>
+
+        <Button
+            android:id="@+id/email_search_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/email_search_button"
+            android:fontFamily="@font/bmjua"
+            android:backgroundTint="#FBF5DA"
+            android:textColor="#2A3D45" />
+    </LinearLayout>
+
+</RelativeLayout>

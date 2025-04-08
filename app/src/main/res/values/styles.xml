@@ -44,4 +44,9 @@
         <item name="android:layout_height">200dp</item>
         <item name="android:background">#D0F4DE</item>
     </style>
+
+    <!-- 마이페이지 팝업 -->
+    <style name="CustomDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@drawable/rounded_popup_background</item>
+    </style>
 </resources>

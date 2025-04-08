@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AlarmPageActivity extends AppCompatActivity {
 
     private ImageButton rollButton;
-    private ImageButton navHome, navGroup, navProgress, navAlarm, navMypage;
+    private ImageButton navHome, navGroup, navSearch, navAlarm, navMyPage;
     private LinearLayout alarmContainer;
 
     @Override
@@ -20,12 +20,12 @@ public class AlarmPageActivity extends AppCompatActivity {
         setContentView(R.layout.alarm_page);
 
         // 뷰 초기화
-        rollButton = findViewById(R.id.roll_button);
+        rollButton = findViewById(R.id.roll_button_1);
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
-        navProgress = findViewById(R.id.nav_progress);
+        navSearch = findViewById(R.id.nav_search);
         navAlarm = findViewById(R.id.nav_alarm);
-        navMypage = findViewById(R.id.nav_mypage);
+        navMyPage = findViewById(R.id.nav_mypage);
 
         // 알림 추가할 컨테이너 가져오기
         alarmContainer = findViewById(R.id.alarm_scroll).findViewById(android.R.id.content);
@@ -36,9 +36,10 @@ public class AlarmPageActivity extends AppCompatActivity {
         // 하단 네비게이션 바 클릭 이벤트
         navHome.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
         navGroup.setOnClickListener(v -> startActivity(new Intent(this, GroupPageActivity.class)));
-        navProgress.setOnClickListener(v -> startActivity(new Intent(this, SampleLayoutActivity.class)));
+        navSearch.setOnClickListener(v -> startActivity(new Intent(this, SampleLayoutActivity.class)));
         navAlarm.setOnClickListener(v -> {/* 현재 페이지, 아무 동작 안함 */});
-        navMypage.setOnClickListener(v -> startActivity(new Intent(this, MyPageActivity.class)));
+        navMyPage.setOnClickListener(v -> startActivity(new Intent(this, MyPageMainActivity.class)));
+
 
         // 초기 알림 표시
         addAlarm("새로운 그룹 초대가 도착했습니다.", "5분 전");

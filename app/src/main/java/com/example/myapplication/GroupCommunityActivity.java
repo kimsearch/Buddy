@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class GroupCommunityActivity extends AppCompatActivity {
 
     ImageButton btnMypage, btnWritePost;
-    ImageButton navHome, navGroup, navSearch, navAlarm, navMypage;
+    ImageButton navHome, navGroup, navSearch, navAlarm, navMyPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class GroupCommunityActivity extends AppCompatActivity {
         // 상단 버튼
         btnMypage = findViewById(R.id.btn_mypage);
         btnMypage.setOnClickListener(view -> {
-            Intent intent = new Intent(GroupCommunityActivity.this, MyPageActivity.class);
+            Intent intent = new Intent(GroupCommunityActivity.this, MyPageMainActivity.class);
             startActivity(intent);
         });
 
@@ -36,7 +36,7 @@ public class GroupCommunityActivity extends AppCompatActivity {
         navGroup = findViewById(R.id.nav_group);
         navSearch = findViewById(R.id.nav_search);
         navAlarm = findViewById(R.id.nav_alarm);
-        navMypage = findViewById(R.id.nav_mypage);
+        navMyPage = findViewById(R.id.nav_mypage);
 
         navHome.setOnClickListener(view -> {
             Intent intent = new Intent(GroupCommunityActivity.this, MainActivity.class);
@@ -58,8 +58,8 @@ public class GroupCommunityActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        navMypage.setOnClickListener(view -> {
-            Intent intent = new Intent(GroupCommunityActivity.this, MyPageActivity.class);
+        navMyPage.setOnClickListener(view -> {
+            Intent intent = new Intent(GroupCommunityActivity.this, MyPageMainActivity.class);
             startActivity(intent);
         });
     }

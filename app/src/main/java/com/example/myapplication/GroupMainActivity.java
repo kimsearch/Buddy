@@ -12,7 +12,7 @@ import androidx.appcompat.widget.AppCompatImageButton;
 public class GroupMainActivity extends AppCompatActivity {
 
     private AppCompatImageButton notificationButton1, notificationButton2, notificationButton3;
-    private AppCompatImageButton navHome, navGroup;
+    private AppCompatImageButton navHome, navGroup, navMyPage;
     private EditText goalInputEditText;
 
     @Override
@@ -37,6 +37,7 @@ public class GroupMainActivity extends AppCompatActivity {
         // 하단 네비게이션 버튼 연결
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
+        navMyPage = findViewById(R.id.nav_mypage);
         // navProgress = findViewById(R.id.nav_progress); // 주석 처리: 레이아웃에 없음
 
         navHome.setOnClickListener(v ->
@@ -44,6 +45,11 @@ public class GroupMainActivity extends AppCompatActivity {
 
         navGroup.setOnClickListener(v ->
                 startActivity(new Intent(GroupMainActivity.this, GroupPageActivity.class)));
+
+        navMyPage.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupMainActivity.this, MyPageMainActivity.class);
+            startActivity(intent);
+        });
 
         // navProgress 버튼 누락되어 주석 처리
         // navProgress.setOnClickListener(v ->

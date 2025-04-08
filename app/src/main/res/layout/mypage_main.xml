@@ -1,173 +1,282 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#F8F9FB"
-    android:padding="16dp">
+    android:background="#F4F4F4">
 
-    <!-- 상단 바: 설정 버튼 포함 -->
+    <!-- 헤더 -->
     <LinearLayout
+        android:id="@+id/header_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:id="@+id/mypage_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/mypage_title"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="#2A3D45" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/settings_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_settings"
-            android:background="@null"
-            android:tint="#2A3D45" />
-    </LinearLayout>
-
-    <!-- 프로필 사진 -->
-    <ImageView
-        android:id="@+id/profile_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_profile"
-        android:background="@null"
-        android:layout_marginTop="16dp" />
-
-    <!-- 사용자 닉네임 -->
-    <TextView
-        android:id="@+id/user_nickname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="사용자 닉네임"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#2A3D45"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp" />
-
-    <!-- 획득한 뱃지 -->
-    <TextView
-        android:id="@+id/badge_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="획득한 뱃지"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="#2A3D45"
-        android:layout_marginTop="16dp" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="#FFFFFF">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:paddingBottom="22dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
-            <!-- 뱃지 아이콘 리스트 -->
+            <TextView
+                android:id="@+id/mypage_main_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/mypage_main_title"
+                android:fontFamily="@font/bmjua"
+                android:textSize="24sp"
+                android:textColor="#2A3D45"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/settings_title"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_settings"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/settings_title"
+                android:tint="#2A3D45"
+                android:scaleType="center"
+                android:padding="12dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 스크롤 영역 -->
+    <ScrollView
+        android:id="@+id/scroll_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header_container"
+        android:layout_above="@id/bottom_nav"
+        android:layout_marginBottom="80dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- 프로필 버튼 -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginRight="8dp">
+                android:gravity="center"
+                android:layout_marginBottom="16dp">
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/ic_profile"
+                    android:scaleType="centerCrop" />
 
                 <TextView
+                    android:id="@+id/nickname_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="꾸준한 다이어터"
-                    android:textSize="14sp"
+                    android:text="@string/nickname_text"
+                    android:textSize="18sp"
                     android:textColor="#2A3D45"
-                    android:gravity="center_horizontal" />
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/bmjua" />
             </LinearLayout>
+
+            <!-- 그래프 영역 -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/section_total_ranking"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginBottom="24dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="모범생"
-                    android:textSize="14sp"
+                    android:text="@string/section_total_ranking"
+                    android:textSize="20sp"
                     android:textColor="#2A3D45"
-                    android:gravity="center_horizontal" />
+                    android:fontFamily="@font/bmjua"
+                    android:layout_marginBottom="12dp"/>
+
+                <FrameLayout
+                    android:id="@+id/total_ranking_graph_placeholder"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@drawable/rounded_graph_background"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+            </LinearLayout>
+
+            <!-- 이전 기록 회색 처리 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/view_history"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/view_history"
+                    android:textSize="20sp"
+                    android:textColor="#2A3D45" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/group_goal_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp">
+
+                <!-- 이룬 목표 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <Button
+                        android:id="@+id/btnWalkTracker"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="@string/btnWalkTracker"
+                        android:fontFamily="@font/bmjua"
+                        android:textColor="#2A3D45"
+                        android:backgroundTint="#D0F4DE"
+                        android:gravity="start|center_vertical"
+                        android:paddingStart="16dp"/>
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/history_delete_1"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_edit"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/history_delete_1"
+                        android:tint="#2A3D45"
+                        android:scaleType="center"
+                        android:padding="12dp" />
+                </LinearLayout>
+
+                <!-- 이룬 목표 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <Button
+                        android:id="@+id/btnDiet"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="@string/btnDiet"
+                        android:fontFamily="@font/bmjua"
+                        android:textColor="#2A3D45"
+                        android:backgroundTint="#D0F4DE"
+                        android:gravity="start|center_vertical"
+                        android:paddingStart="16dp"/>
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/history_delete_2"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_edit"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/history_delete_2"
+                        android:tint="#2A3D45"
+                        android:scaleType="center"
+                        android:padding="12dp" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-    <!-- 성장 그래프 -->
-    <TextView
-        android:id="@+id/growth_graph_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="성장 그래프"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="#2A3D45"
-        android:layout_marginTop="16dp" />
-
-    <ImageView
-        android:id="@+id/growth_graph"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="#D0F4DE"
-        android:layout_marginBottom="16dp" />
-
     <!-- 하단 네비게이션 바 -->
     <LinearLayout
+        android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:background="#D0F4DE"
-        android:padding="8dp">
+        android:background="#DBDBDB"
+        android:padding="8dp"
+        android:layout_alignParentBottom="true">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_home"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_home"
-            android:background="@null"
-            android:tint="#2A3D45" />
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_group"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_group"
-            android:background="@null"
-            android:tint="#2A3D45" />
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_search"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_search"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_alarm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_alarm"
-            android:background="@null"
-            android:tint="#2A3D45" />
+            android:src="@drawable/ic_paw"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="fitCenter"
+            android:padding="12dp" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_mypage"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_mypage"
-            android:background="@null"
-            android:tint="#2A3D45" />
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

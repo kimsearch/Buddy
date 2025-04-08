@@ -26,7 +26,7 @@
             android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/roll_button"
+            android:id="@+id/roll_button_1"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/ic_roll"
@@ -57,7 +57,7 @@
             android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/roll_button"
+            android:id="@+id/roll_button_2"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/ic_roll"
