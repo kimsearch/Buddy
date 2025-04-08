@@ -1,78 +1,106 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.Switch;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView title, progressTitle, groupGoalTitle, personalGoalTitle;
-    private Switch weekSwitch;
-    private ProgressBar progressBar;
-    private ListView groupListView, personalListView;
-    private Button addGoalButton;
-    private ImageButton navHome, navGroup, navAlarm, navMyPage;
+    private ImageButton alarmButton, calendarButton, moreVertButton;
+    private Button goal1Button, goal2Button;
+    private ImageButton navHome, navGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // View 연결
-        title = findViewById(R.id.title);
-        weekSwitch = findViewById(R.id.week_switch);
-        progressBar = findViewById(R.id.progress_bar);
-        groupGoalTitle = findViewById(R.id.group_goal_title);
-        personalGoalTitle = findViewById(R.id.personal_goal_title);
-        groupListView = findViewById(R.id.group_list); // 두 개 ID가 같아서 수정 필요!
-        personalListView = findViewById(R.id.personal_list); // 둘 중 하나를 다른 ID로 바꿔야 함!
-        addGoalButton = findViewById(R.id.add_goal_button);
-
+        alarmButton = findViewById(R.id.notification_button);
+        calendarButton = findViewById(R.id.calendar);
+        moreVertButton = findViewById(R.id.edit_group_goals_button);
+        goal1Button = findViewById(R.id.btnWalkTracker);  // 하루 만보 걷기 챌린지
+        goal2Button = findViewById(R.id.btnDiet);  // 같이 다이어트 해요
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
-        navAlarm = findViewById(R.id.nav_alarm);
-        navMyPage = findViewById(R.id.nav_mypage);
 
-        // ⚠️ ListView ID 중복 문제 해결 필요!
-        // 예시 코드에선 아래처럼 별도 ID로 나누는 게 좋아:
-        // group_list, personal_list 로 xml에서 ID 변경 추천
 
-        // 임시 데이터 (목표 리스트)
-        String[] groupGoals = {"그룹 목표 1", "그룹 목표 2"};
-        String[] personalGoals = {"개인 목표 A", "개인 목표 B"};
+        // 터치 효과 공통 함수
+        applyTouchEffect(alarmButton);
+        applyTouchEffect(calendarButton);
+        applyTouchEffect(moreVertButton);
 
-        // 어댑터 설정
-        ArrayAdapter<String> groupAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, groupGoals);
-        ArrayAdapter<String> personalAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, personalGoals);
-
-        groupListView.setAdapter(groupAdapter);
-        personalListView.setAdapter(personalAdapter);
-
-        // 주 단위 보기 Switch 이벤트
-        weekSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            String msg = isChecked ? "주간 보기 활성화됨" : "주간 보기 비활성화됨";
-            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        // 클릭 이벤트 1: 알람 버튼 → alarm_page.xml
+        alarmButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AlarmPageActivity.class);
+            startActivity(intent);
         });
 
-        // 목표 추가 버튼
-        addGoalButton.setOnClickListener(v -> {
-            Toast.makeText(this, "목표 추가 화면으로 이동 (구현 필요)", Toast.LENGTH_SHORT).show();
-            // 예: startActivity(new Intent(this, AddGoalActivity.class));
+        // 클릭 이벤트 2: 캘린더 버튼 → group_goal_calendar.xml
+        calendarButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
+            startActivity(intent);
         });
 
-        // 네비게이션 버튼 클릭 이벤트
-        navHome.setOnClickListener(v -> Toast.makeText(this, "홈으로 이동", Toast.LENGTH_SHORT).show());
-        navGroup.setOnClickListener(v -> Toast.makeText(this, "그룹 화면 이동 (구현 필요)", Toast.LENGTH_SHORT).show());
-        navAlarm.setOnClickListener(v -> Toast.makeText(this, "알림 화면 이동 (구현 필요)", Toast.LENGTH_SHORT).show());
-        navMyPage.setOnClickListener(v -> Toast.makeText(this, "마이페이지 이동 (구현 필요)", Toast.LENGTH_SHORT).show());
+        // 클릭 이벤트 3: more_vert 버튼 → 팝업창으로 그룹 삭제 옵션
+        moreVertButton.setOnClickListener(v -> {
+            PopupMenu popupMenu = new PopupMenu(MainActivity.this, moreVertButton);
+            popupMenu.getMenu().add("그룹 목표 1 삭제하기");
+            popupMenu.getMenu().add("그룹 목표 2 삭제하기");
+
+            popupMenu.setOnMenuItemClickListener(item -> {
+                Toast.makeText(MainActivity.this, item.getTitle() + " 선택됨", Toast.LENGTH_SHORT).show();
+                // 실제 삭제 로직은 여기에 작성하면 됨
+                return true;
+            });
+
+            popupMenu.show();
+        });
+
+        // 클릭 이벤트 4, 5: 그룹 목표 → group_main.xml
+        goal1Button.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, GroupMainActivity.class);
+            startActivity(intent);
+        });
+
+        goal2Button.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, GroupMainActivity.class);
+            startActivity(intent);
+        });
+
+        navHome.setOnClickListener(v -> {
+            // 현재 페이지 → 아무 동작 안 함
+        });
+
+        navGroup.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, GroupPageActivity.class);
+            startActivity(intent);
+        });
+
+    }
+
+    // 터치 효과 주기 위한 함수
+    private void applyTouchEffect(View view) {
+        view.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    v.setAlpha(0.6f); // 눌렀을 때 투명도 변경
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    v.setAlpha(1.0f); // 원래대로
+                    break;
+            }
+            return false; // 클릭 이벤트도 함께 동작하게 하기 위해 false
+        });
     }
 }

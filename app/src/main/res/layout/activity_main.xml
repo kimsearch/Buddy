@@ -1,165 +1,377 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#F8F9FB"
-    android:padding="16dp">
+    android:background="#F4F4F4">
 
-    <!-- 상단 제목 -->
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="나의 목표 진행 현황"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="#2A3D45"
-        android:layout_marginBottom="16dp" />
-
-    <!-- 주간 보기 스위치 -->
+    <!-- 헤더 -->
     <LinearLayout
+        android:id="@+id/header_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="end"
-        android:layout_marginBottom="16dp">
-        <TextView
-            android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+
+        <!-- 앱 이름 + 알림 -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="주 단위 보기"
-            android:textSize="14sp"
-            android:textColor="#2A3D45"
-            android:layout_marginEnd="8dp" />
-        <Switch
-            android:id="@+id/week_switch"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:paddingBottom="22dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <TextView
+                android:id="@+id/app_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#2A3D45"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/notification_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_alarm"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/notification_description"
+                android:tint="#2A3D45"
+                android:scaleType="center"
+                android:padding="12dp" />
+        </LinearLayout>
+
+        <!-- 나의 목표 현황 -->
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="18dp"
+            android:paddingStart="30dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/my_goal_border">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/my_goal_status"
+                android:textSize="20sp"
+                android:textColor="#2A3D45"
+                android:layout_marginEnd="12dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/calendar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_calendar"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@null"
+                android:importantForAccessibility="no"
+                android:tint="#2A3D45"
+                android:scaleType="center"
+                android:padding="8dp"/>
+        </LinearLayout>
     </LinearLayout>
 
-    <!-- 목표 진행률 그래프 -->
-    <LinearLayout
+    <!-- 스크롤 영역 -->
+    <ScrollView
+        android:id="@+id/scroll_area"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="24dp">
+        android:layout_height="match_parent"
+        android:layout_below="@id/header_container"
+        android:layout_above="@id/bottom_nav"
+        android:background="@android:color/transparent"
+        android:fillViewport="true">
 
-        <TextView
-            android:id="@+id/progress_title"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="목표 진행률"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#2A3D45"
-            android:layout_marginEnd="12dp" />
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:progress="70"
-            android:max="100"
-            android:progressTint="#D0F4DE"
-            android:backgroundTint="#FDFFB6" />
-    </LinearLayout>
+            <!-- 그룹 목표 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
 
-    <!-- 그룹별 목표 설정/확인 -->
-    <TextView
-        android:id="@+id/group_goal_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="그룹 목표 설정 및 확인"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#2A3D45"
-        android:layout_marginBottom="12dp" />
+                <TextView
+                    android:id="@+id/group_goal_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/group_goals"
+                    android:textSize="20sp"
+                    android:textColor="#2A3D45" />
 
-    <ListView
-        android:id="@+id/group_list"
-        android:layout_width="match_parent"
-        android:layout_height="179dp"
-        android:background="#FFFFFF"
-        android:divider="#D0F4DE"
-        android:dividerHeight="1dp" />
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/edit_group_goals_button"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_more_vert"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/edit_group_goals_button"
+                    android:tint="#2A3D45"
+                    android:padding="8dp"/>
+            </LinearLayout>
 
-    <!-- 개인 목표 설정/확인 -->
-    <TextView
-        android:id="@+id/personal_goal_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
-        android:text="개인 목표 설정 및 확인"
-        android:textColor="#2A3D45"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+            <LinearLayout
+                android:id="@+id/group_goal_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp">
 
-    <ListView
-        android:id="@+id/personal_list"
-        android:layout_width="match_parent"
-        android:layout_height="185dp"
-        android:background="#FFFFFF"
-        android:divider="#D0F4DE"
-        android:dividerHeight="1dp" />
+                <!-- 그룹 목표 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
 
-    <!-- 목표 추가 버튼 -->
-    <Button
-        android:id="@+id/add_goal_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="목표 추가하기"
-        android:backgroundTint="#D0F4DE"
-        android:textColor="#2A3D45"
-        android:layout_marginTop="16dp"
-        android:padding="12dp" />
+                    <Button
+                        android:id="@+id/btnWalkTracker"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="@string/btnWalkTracker"
+                        android:fontFamily="@font/bmjua"
+                        android:textColor="#2A3D45"
+                        android:backgroundTint="#D0F4DE"
+                        android:gravity="start|center_vertical"
+                        android:paddingStart="16dp"/>
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/ic_data"
+                        android:importantForAccessibility="no" />
+                </LinearLayout>
+
+                <!-- 그룹 목표 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <Button
+                        android:id="@+id/btnDiet"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="@string/btnDiet"
+                        android:fontFamily="@font/bmjua"
+                        android:textColor="#2A3D45"
+                        android:backgroundTint="#D0F4DE"
+                        android:gravity="start|center_vertical"
+                        android:paddingStart="16dp"/>
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/ic_data"
+                        android:importantForAccessibility="no" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 개인 목표 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/personal_goal_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/personal_goals"
+                    android:textSize="20sp"
+                    android:textColor="#2A3D45" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/edit_personal_goals_button"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_more_vert"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/edit_personal_goals_button"
+                    android:tint="#2A3D45"
+                    android:padding="8dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/personal_goal_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+                <!-- 개인 목표 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="@string/personal_goal_1"
+                        android:fontFamily="@font/bmjua"
+                        android:textColor="#2A3D45"
+                        android:backgroundTint="#FBF5DA"
+                        android:gravity="start|center_vertical"
+                        android:paddingStart="16dp"/>
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/ic_data"
+                        android:importantForAccessibility="no" />
+                </LinearLayout>
+
+                <!-- 개인 목표 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="@string/personal_goal_2"
+                        android:fontFamily="@font/bmjua"
+                        android:textColor="#2A3D45"
+                        android:backgroundTint="#FBF5DA"
+                        android:gravity="start|center_vertical"
+                        android:paddingStart="16dp"/>
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/ic_data"
+                        android:importantForAccessibility="no" />
+                </LinearLayout>
+
+                <!-- 개인 목표 추가하기 버튼 -->
+                <Button
+                    android:id="@+id/add_goal_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#FBF5DA"
+                    android:padding="14dp"
+                    android:text="@string/add_personal_goals"
+                    android:fontFamily="@font/bmjua"
+                    android:textColor="#2A3D45"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="80dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <!-- 하단 네비게이션 바 -->
     <LinearLayout
+        android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:background="#D0F4DE"
-        android:padding="8dp">
+        android:background="#DBDBDB"
+        android:padding="8dp"
+        android:layout_alignParentBottom="true">
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_home"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_home"
-            android:background="@null"
-            android:tint="#2A3D45" />
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp"/>
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_group"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_group"
-            android:background="@null"
-            android:tint="#2A3D45" />
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
 
-        <ImageButton
-            android:id="@+id/nav_alarm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_search"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_alarm"
-            android:background="@null"
-            android:tint="#2A3D45" />
+            android:src="@drawable/ic_search"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_alarm"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_paw"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="fitCenter"
+            android:padding="12dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_mypage"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_mypage"
-            android:background="@null"
-            android:tint="#2A3D45" />
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

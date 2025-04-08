@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F4F4">
+
+    <!-- 헤더 -->
+    <LinearLayout
+        android:id="@+id/header_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+
+        <!-- 그룹 만들기 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:paddingBottom="22dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <TextView
+                android:id="@+id/group_make_page"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/group_make_page"
+                android:textSize="24sp"
+                android:textColor="#2A3D45"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/group_make_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header_container">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- 그룹 이름 입력 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="그룹 이름"
+                android:textSize="16sp"
+                android:textColor="#2A3D45"
+                android:layout_marginBottom="6dp" />
+
+            <EditText
+                android:id="@+id/edittext_group_name"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_background"
+                android:hint="@string/edittext_group_name"
+                android:fontFamily="@font/bmjua"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="#2A3D45"
+                android:layout_marginBottom="6dp"/>
+
+            <!-- 문구 + 확인 버튼 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="top|start">
+
+                <TextView
+                    android:id="@+id/group_name_hint"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/group_name_hint"
+                    android:textColor="#888888"
+                    android:textSize="12sp"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_group_name_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:background="@drawable/rounded_yellow_button"
+                    android:text="@string/button_group_name_checke"
+                    android:textSize="14sp"
+                    android:textColor="#2A3D45"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:paddingLeft="33dp"
+                    android:paddingRight="33dp"/>
+            </LinearLayout>
+
+            <!-- 카테고리 선택 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="카테고리"
+                android:textSize="16sp"
+                android:textColor="#2A3D45"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="6dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="4"
+                android:layout_marginBottom="8dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/category_btn_1"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="@string/category_btn_1"
+                    android:background="@drawable/rounded_button_background"
+                    android:textColor="#2A3D45"
+                    android:layout_marginEnd="4dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/category_btn_2"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="@string/category_btn_2"
+                    android:background="@drawable/rounded_button_background"
+                    android:textColor="#2A3D45"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/category_btn_3"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="@string/category_btn_3"
+                    android:background="@drawable/rounded_button_background"
+                    android:textColor="#2A3D45"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/category_btn_4"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="@string/category_btn_4"
+                    android:background="@drawable/rounded_button_background"
+                    android:textColor="#2A3D45"
+                    android:layout_marginStart="4dp"/>
+            </LinearLayout>
+
+            <!-- 기간 설정 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="기간 설정"
+                    android:textSize="16sp"
+                    android:textColor="#2A3D45"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="6dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_start_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="@string/button_start_date"
+                    android:textColor="#2A3D45"
+                    android:background="@drawable/rounded_gray_button"
+                    android:layout_marginBottom="6dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_end_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="@string/button_end_date"
+                    android:textColor="#2A3D45"
+                    android:background="@drawable/rounded_gray_button" />
+            </LinearLayout>
+
+
+            <!-- 그룹 설명 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="그룹 설명"
+                android:textSize="16sp"
+                android:textColor="#2A3D45"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="6dp" />
+
+            <EditText
+                android:id="@+id/edittext_group_description"
+                style="@style/customEditTextFontStyle"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@drawable/edit_text_background"
+                android:gravity="top|start"
+                android:hint="@string/edittext_group_description"
+                android:inputType="textMultiLine"
+                android:maxLength="100"
+                android:padding="10dp"
+                android:textColor="#2A3D45" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_create_group"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="@string/create_room"
+                android:textColor="#2A3D45"
+                android:textSize="16sp"
+                android:background="@drawable/rounded_yellow_button"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="24dp"/>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

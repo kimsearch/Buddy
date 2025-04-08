@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F4F4"
+    tools:context=".GroupMemberActivity">
+
+    <!-- 상단바: 제목 + 아이콘 -->
+    <LinearLayout
+        android:id="@+id/header_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/member_page_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="그룹 멤버"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#2A3D45" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/member_refresh_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_home"
+            android:background="@null"
+            android:tint="#2A3D45" />
+    </LinearLayout>
+
+    <!-- 멤버 리스트 -->
+    <ScrollView
+        android:id="@+id/member_scroll"
+        android:layout_below="@id/header_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/member_list_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- 멤버 아이템 예시 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#FFFFFF"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center_vertical"
+                android:elevation="1dp">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_home"
+                    android:tint="#2A3D45"
+                    android:background="#D0F4DE"
+                    android:padding="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="홍길동"
+                    android:textSize="18sp"
+                    android:textColor="#2A3D45" />
+            </LinearLayout>
+
+            <!-- 멤버는 자바 코드로 동적으로 추가할 수 있음 -->
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
