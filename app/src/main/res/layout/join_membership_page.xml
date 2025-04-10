@@ -22,7 +22,7 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <!-- 닉네임 입력 + 중복확인 -->
+    <!-- 닉네임 입력, 중복확인 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
         android:padding="12dp"
         android:textColor="@android:color/black" />
 
-    <!-- 이메일 입력 + 중복확인 -->
+    <!-- 이메일 입력 + 인증번호 전송 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -86,16 +86,48 @@
             android:textColor="@android:color/black" />
 
         <Button
-            android:id="@+id/email_check_button"
+            android:id="@+id/email_auth_button"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:backgroundTint="#FDFFB6"
             android:padding="12dp"
-            android:text="@string/email_check_button"
+            android:text="인증번호 전송"
             android:fontFamily="@font/bmjua"
             android:textColor="@android:color/black" />
     </LinearLayout>
+
+    <!-- 인증번호 입력 및 확인 버튼 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edittext_verification_code"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="2"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="인증번호 입력"
+            android:fontFamily="@font/bmjua"
+            android:padding="12dp"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:id="@+id/email_verify_button"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:backgroundTint="#FDFFB6"
+            android:padding="12dp"
+            android:text="확인"
+            android:fontFamily="@font/bmjua"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
 
     <!-- 비밀번호 입력 -->
     <EditText
