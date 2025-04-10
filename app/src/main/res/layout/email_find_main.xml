@@ -37,7 +37,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- 입력란 + 버튼 -->
+    <!-- 입력 + 버튼 -->
     <LinearLayout
         android:id="@+id/form_container"
         android:layout_width="match_parent"
@@ -51,9 +51,9 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@drawable/edit_text_background"
-            android:text="닉네임 입력"
-            android:enabled="false"
-            android:focusable="false"
+            android:hint="닉네임 입력"
+            android:enabled="true"
+            android:focusable="true"
             android:fontFamily="@font/bmjua"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
@@ -76,9 +76,9 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@drawable/edit_text_background"
-            android:text="생년월일 입력"
-            android:enabled="false"
-            android:focusable="false"
+            android:hint="생년월일 입력(xxxx-xx-xx)"
+            android:enabled="true"
+            android:focusable="true"
             android:fontFamily="@font/bmjua"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"

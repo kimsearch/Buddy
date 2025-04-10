@@ -9,7 +9,7 @@
     android:background="#D0F4DE"
     tools:context=".LoginPageActivity">
 
-    <!-- Large Logo Image -->
+    <!-- Large LogoImage -->
     <ImageView
         android:id="@+id/logo_image"
         android:layout_width="200dp"
@@ -49,31 +49,31 @@
     </LinearLayout>
 
     <!-- 비밀번호 입력 -->
-        <EditText
-            android:id="@+id/edittext_password_input"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:hint="비밀번호"
-            android:fontFamily="@font/bmjua"
-            android:inputType="textPassword"
-            android:padding="12dp"
-            android:background="@drawable/rounded_edittext"
-            android:textColor="@android:color/black"
-            android:textSize="14sp"
-            android:layout_marginBottom="24dp" />
+    <EditText
+        android:id="@+id/edittext_password_input"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="비밀번호"
+        android:fontFamily="@font/bmjua"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:background="@drawable/rounded_edittext"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:layout_marginBottom="24dp" />
 
     <!-- 로그인 버튼 -->
-        <Button
-            android:id="@+id/login_login_button"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="@string/login_login_button"
-            android:fontFamily="@font/bmjua"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="#FBF5DA"
-            android:textColor="@android:color/black"
-            android:padding="12dp"
-            android:layout_gravity="center_horizontal" />
+    <Button
+        android:id="@+id/login_login_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/login_login_button"
+        android:fontFamily="@font/bmjua"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#FBF5DA"
+        android:textColor="@android:color/black"
+        android:padding="12dp"
+        android:layout_gravity="center_horizontal" />
 
 
     <!-- 닉네임/비밀번호/회원가입 버튼 -->
@@ -86,7 +86,7 @@
         android:weightSum="3">
 
         <Button
-            android:id="@+id/find_nickname_button"
+            android:id="@+id/find_email_button"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
@@ -102,7 +102,7 @@
             android:ellipsize="end" />
 
         <Button
-            android:id="@+id/find_email_button"
+            android:id="@+id/find_password_button"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
