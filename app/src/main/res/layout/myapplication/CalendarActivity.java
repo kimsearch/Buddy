@@ -15,7 +15,7 @@ public class CalendarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.group_goal_calender);
+        setContentView(R.layout.calendar);
 
         calendarView = findViewById(R.id.calendar_view);
         navHome = findViewById(R.id.nav_home);

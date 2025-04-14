@@ -13,11 +13,11 @@ public class SplashMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash_main);
+        setContentView(R.layout.splash);
 
         // 4초 후에 MainActivity로 이동
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashMainActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(intent);
             finish(); // SplashActivity를 백스택에서 제거
         }, SPLASH_TIME_OUT);

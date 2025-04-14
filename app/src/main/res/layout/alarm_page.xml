@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F4"
-    tools:context=".AlarmPageActivity">
+    android:background="#F4F4F4">
 
-    <!-- 알림 + 리롤 버튼 -->
+    <!-- 헤더 -->
     <LinearLayout
         android:id="@+id/header_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:layout_alignParentTop="true">
 
         <TextView
             android:id="@+id/alarm_page_title"
@@ -27,151 +26,111 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/roll_button_1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:src="@drawable/ic_roll"
+            android:contentDescription="@string/roll_button_description"
             android:background="@null"
             android:tint="#2A3D45" />
     </LinearLayout>
 
-    <!-- 알림 제목 + 리롤 버튼 -->
-    <LinearLayout
-        android:id="@+id/alarm_title_bar"
-        android:layout_below="@id/header_container"
+    <!-- RecyclerView 알림 리스트 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/alarm_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="8dp"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:id="@+id/alarm_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="알림"
-            android:textSize="22sp"
-            android:textColor="#2A3D45"
-            android:textStyle="bold" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/roll_button_2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_roll"
-            android:background="@null"
-            android:tint="#2A3D45" />
-    </LinearLayout>
-
-    <!-- 알림 리스트 (스크롤 가능) -->
-    <ScrollView
-        android:id="@+id/alarm_scroll"
-        android:layout_below="@id/alarm_title_bar"
+        android:layout_height="match_parent"
         android:layout_above="@id/bottom_nav"
-        android:layout_width="match_parent"
+        android:layout_below="@id/header_container"
+        android:importantForAccessibility="no"
+        android:padding="16dp"
+        android:clipToPadding="false" />
+
+    <!-- 알림이 없습니다 텍스트 추가 -->
+    <TextView
+        android:id="@+id/empty_message"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fillViewport="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <!-- 알림 아이템 예시 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="#FFFFFF"
-                android:padding="12dp"
-                android:layout_marginBottom="8dp"
-                android:elevation="1dp">
-
-                <TextView
-                    android:id="@+id/alarm_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/alarm_text"
-                    android:textSize="16sp"
-                    android:textColor="#2A3D45" />
-
-                <TextView
-                    android:id="@+id/alarm_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/alarm_time"
-                    android:textSize="14sp"
-                    android:textColor="#808080"
-                    android:layout_marginTop="4dp" />
-            </LinearLayout>
-
-            <!-- 추가 알림 아이템들 여기에 계속 추가 가능 -->
-        </LinearLayout>
-    </ScrollView>
+        android:text="@string/empty_message"
+        android:textSize="16sp"
+        android:textColor="#999999"
+        android:fontFamily="@font/bmjua"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
 
     <!-- 하단 네비게이션 바 -->
     <LinearLayout
         android:id="@+id/bottom_nav"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:background="#DBDBDB"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:layout_alignParentBottom="true">
 
-        <!-- 하단 버튼들 -->
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_home"
-            android:layout_width="0dp"
+            android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_home"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:contentDescription="홈으로 이동"
+            android:scaleType="center"
             android:padding="12dp"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_group"
-            android:layout_width="0dp"
+            android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_group"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:contentDescription="그룹 페이지로 이동"
+            android:scaleType="center"
             android:padding="12dp" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_search"
-            android:layout_width="0dp"
+            android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_search"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:contentDescription="그룹 검색 페이지로 이동"
+            android:scaleType="center"
             android:padding="12dp" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/nav_alarm"
-            android:layout_width="0dp"
+            android:id="@+id/nav_pet"
+            android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_paw"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:contentDescription="펫 키우기 페이지로 이동"
+            android:scaleType="fitCenter"
             android:padding="12dp" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_mypage"
-            android:layout_width="0dp"
+            android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_mypage"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:contentDescription="마이페이지로 이동"
+            android:scaleType="center"
             android:padding="12dp" />
     </LinearLayout>
 </RelativeLayout>

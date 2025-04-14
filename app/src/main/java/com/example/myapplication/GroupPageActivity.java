@@ -27,11 +27,9 @@ public class GroupPageActivity extends AppCompatActivity {
         notificationBtn = findViewById(R.id.notification_button);
         deleteGoal1Btn = findViewById(R.id.delete_group_goals_button);
         editGoal2Btn = findViewById(R.id.edit_group_goals_button_1);
-        editGoal3Btn = findViewById(R.id.edit_group_goals_button_2);
 
         goal1Btn = findViewById(R.id.group_goal_button_1);
         goal2Btn = findViewById(R.id.group_goal_button_2);
-        goal3Btn = findViewById(R.id.group_goal_3);
         createRoomBtn = findViewById(R.id.create_room_button);
 
         navHome = findViewById(R.id.nav_home);
@@ -45,19 +43,6 @@ public class GroupPageActivity extends AppCompatActivity {
 
         // 상단 버튼들
         notificationBtn.setOnClickListener(v -> navigateTo(AlarmPageActivity.class));
-
-        // 그룹 목표 버튼들
-        goal1Btn.setOnClickListener(v -> navigateTo(GroupMainActivity.class));
-        deleteGoal1Btn.setOnClickListener(v -> navigateTo(GroupDeleteActivity.class));
-
-        goal2Btn.setOnClickListener(v -> navigateTo(GroupMainActivity.class));
-        editGoal2Btn.setOnClickListener(v -> navigateTo(GroupExitActivity.class));
-
-        goal3Btn.setOnClickListener(v -> navigateTo(GroupMainActivity.class));
-        editGoal3Btn.setOnClickListener(v -> navigateTo(GroupExitActivity.class));
-
-        // 그룹 만들기
-        createRoomBtn.setOnClickListener(v -> navigateTo(GroupMakeActivity.class));
 
         // 하단 내비게이션
         navHome.setOnClickListener(v -> navigateTo(MainActivity.class));

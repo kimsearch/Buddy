@@ -9,8 +9,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.IOException;
-
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -93,7 +91,7 @@ public class LoginPageActivity extends AppCompatActivity {
         });
 
         signupButton.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginPageActivity.this, JoinMembershipPageActivity.class);
+            Intent intent = new Intent(LoginPageActivity.this, JoinPageActivity.class);
             startActivity(intent);
         });
     }

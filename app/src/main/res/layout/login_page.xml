@@ -90,6 +90,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
+            android:layout_marginEnd="4dp"
             android:text="@string/find_nickname_button"
             android:fontFamily="@font/bmjua"
             android:textSize="14sp"
@@ -97,23 +98,6 @@
             android:textColor="#2A3D45"
             android:padding="8dp"
             android:minHeight="40dp"
-            android:layout_marginStart="0dp"
-            android:singleLine="true"
-            android:ellipsize="end" />
-
-        <Button
-            android:id="@+id/find_password_button"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:text="@string/find_email_button"
-            android:fontFamily="@font/bmjua"
-            android:textSize="14sp"
-            android:backgroundTint="#80FFFFFF"
-            android:textColor="#2A3D45"
-            android:padding="8dp"
-            android:minHeight="40dp"
-            android:layout_marginStart="0dp"
             android:singleLine="true"
             android:ellipsize="end" />
 
@@ -122,6 +106,8 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
             android:text="@string/signup_button"
             android:fontFamily="@font/bmjua"
             android:textSize="14sp"
@@ -129,7 +115,6 @@
             android:textColor="#2A3D45"
             android:padding="8dp"
             android:minHeight="40dp"
-            android:layout_marginStart="0dp"
             android:singleLine="true"
             android:ellipsize="end" />
     </LinearLayout>

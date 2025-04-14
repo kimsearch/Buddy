@@ -72,5 +72,16 @@ public class MyPageSettingActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        // 6. 회원 탈퇴 버튼
+        Button deleteIdButton = findViewById(R.id.delete_id_button);
+        deleteIdButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyPageSettingActivity.this, AppDeleteActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

@@ -19,7 +19,7 @@ import retrofit2.Response;
 public class LoginPageActivity extends AppCompatActivity {
 
     private EditText emailInput, passwordInput;
-    private Button loginButton, findEmailButton, findPasswordButton, signupButton;
+    private Button loginButton, findEmailButton, signupButton;
 
     private Retrofit_interface apiService;
 
@@ -42,7 +42,6 @@ public class LoginPageActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.edittext_password_input);
         loginButton = findViewById(R.id.login_login_button);
         findEmailButton = findViewById(R.id.find_email_button);
-        findPasswordButton = findViewById(R.id.find_password_button);
         signupButton = findViewById(R.id.signup_button);
 
         apiService = Retrofit_client.getInstance().create(Retrofit_interface.class);
@@ -87,13 +86,8 @@ public class LoginPageActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        findPasswordButton.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginPageActivity.this, PasswordInputActivity.class);
-            startActivity(intent);
-        });
-
         signupButton.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginPageActivity.this, JoinMembershipPageActivity.class);
+            Intent intent = new Intent(LoginPageActivity.this, JoinPageActivity.class);
             startActivity(intent);
         });
     }

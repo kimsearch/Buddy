@@ -27,7 +27,7 @@ public class JoinMembershipPageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.join_membership_page);
+        setContentView(R.layout.join_page);
 
         nicknameInput = findViewById(R.id.edittext_id_input);
         birthInput = findViewById(R.id.edittext_birth_input);
@@ -66,17 +66,17 @@ public class JoinMembershipPageActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.code() == 200) {
-                        Toast.makeText(JoinMembershipPageActivity.this, "사용 가능한 닉네임입니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(JoinPageActivity.this, "사용 가능한 닉네임입니다.", Toast.LENGTH_SHORT).show();
                     } else if (response.code() == 409) {
-                        Toast.makeText(JoinMembershipPageActivity.this, "이미 사용 중인 닉네임입니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(JoinPageActivity.this, "이미 사용 중인 닉네임입니다.", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(JoinMembershipPageActivity.this, "알 수 없는 오류: " + response.code(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(JoinPageActivity.this, "알 수 없는 오류: " + response.code(), Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Toast.makeText(JoinMembershipPageActivity.this, "서버 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(JoinPageActivity.this, "서버 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         });
@@ -93,15 +93,15 @@ public class JoinMembershipPageActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.isSuccessful()) {
-                        Toast.makeText(JoinMembershipPageActivity.this, "인증번호가 전송되었습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(JoinPageActivity.this, "인증번호가 전송되었습니다.", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(JoinMembershipPageActivity.this, "전송 실패: " + response.code(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(JoinPageActivity.this, "전송 실패: " + response.code(), Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Toast.makeText(JoinMembershipPageActivity.this, "서버 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(JoinPageActivity.this, "서버 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         });
@@ -120,15 +120,15 @@ public class JoinMembershipPageActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.isSuccessful()) {
-                        Toast.makeText(JoinMembershipPageActivity.this, "이메일 인증 성공!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(JoinPageActivity.this, "이메일 인증 성공!", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(JoinMembershipPageActivity.this, "인증 실패: " + response.code(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(JoinPageActivity.this, "인증 실패: " + response.code(), Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Toast.makeText(JoinMembershipPageActivity.this, "서버 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(JoinPageActivity.this, "서버 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         });
@@ -158,20 +158,20 @@ public class JoinMembershipPageActivity extends AppCompatActivity {
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     try {
                         if (response.isSuccessful()) {
-                            Toast.makeText(JoinMembershipPageActivity.this, "회원가입 성공!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(JoinMembershipPageActivity.this, LoginPageActivity.class));
+                            Toast.makeText(JoinPageActivity.this, "회원가입 성공!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(JoinPageActivity.this, LoginPageActivity.class));
                             finish();
                         } else {
-                            Toast.makeText(JoinMembershipPageActivity.this, "회원가입 실패: " + response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(JoinPageActivity.this, "회원가입 실패: " + response.errorBody().string(), Toast.LENGTH_SHORT).show();
                         }
                     } catch (IOException e) {
-                        Toast.makeText(JoinMembershipPageActivity.this, "응답 처리 오류", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(JoinPageActivity.this, "응답 처리 오류", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Toast.makeText(JoinMembershipPageActivity.this, "서버 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(JoinPageActivity.this, "서버 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         });

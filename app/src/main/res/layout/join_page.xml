@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="24dp"
     android:background="#D0F4DE"
-    tools:context=".JoinMembershipPageActivity">
+    tools:context=".JoinPageActivity">
 
     <!-- Title (회원가입) -->
     <TextView
@@ -34,11 +34,14 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="2"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="8dp"
             android:background="@drawable/rounded_edittext"
             android:hint="닉네임"
             android:fontFamily="@font/bmjua"
-            android:padding="12dp"
+            android:textSize="14sp"
+            android:paddingVertical="6dp"
+            android:paddingHorizontal="12dp"
+            android:gravity="center_vertical"
             android:textColor="@android:color/black" />
 
         <Button
@@ -46,7 +49,9 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:backgroundTint="#FDFFB6"
+            android:backgroundTint="#FBF5DA"
+            android:textSize="14sp"
+            android:gravity="center"
             android:padding="12dp"
             android:text="@string/id_check_button"
             android:fontFamily="@font/bmjua"
@@ -62,7 +67,10 @@
         android:background="@drawable/rounded_edittext"
         android:hint="생년월일"
         android:fontFamily="@font/bmjua"
-        android:padding="12dp"
+        android:textSize="14sp"
+        android:paddingVertical="6dp"
+        android:paddingHorizontal="12dp"
+        android:gravity="center_vertical"
         android:textColor="@android:color/black" />
 
     <!-- 이메일 입력 + 인증번호 전송 -->
@@ -81,8 +89,11 @@
             android:background="@drawable/rounded_edittext"
             android:hint="이메일"
             android:fontFamily="@font/bmjua"
+            android:textSize="14sp"
             android:inputType="textEmailAddress"
-            android:padding="12dp"
+            android:paddingVertical="6dp"
+            android:paddingHorizontal="12dp"
+            android:gravity="center_vertical"
             android:textColor="@android:color/black" />
 
         <Button
@@ -90,7 +101,8 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:backgroundTint="#FDFFB6"
+            android:backgroundTint="#FBF5DA"
+            android:textSize="14sp"
             android:padding="12dp"
             android:text="인증번호 전송"
             android:fontFamily="@font/bmjua"
@@ -113,7 +125,10 @@
             android:background="@drawable/rounded_edittext"
             android:hint="인증번호 입력"
             android:fontFamily="@font/bmjua"
-            android:padding="12dp"
+            android:textSize="14sp"
+            android:paddingVertical="6dp"
+            android:paddingHorizontal="12dp"
+            android:gravity="center_vertical"
             android:textColor="@android:color/black" />
 
         <Button
@@ -121,7 +136,8 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:backgroundTint="#FDFFB6"
+            android:backgroundTint="#FBF5DA"
+            android:textSize="14sp"
             android:padding="12dp"
             android:text="확인"
             android:fontFamily="@font/bmjua"
@@ -138,8 +154,11 @@
         android:background="@drawable/rounded_edittext"
         android:hint="비밀번호"
         android:fontFamily="@font/bmjua"
+        android:textSize="14sp"
         android:inputType="textPassword"
-        android:padding="12dp"
+        android:paddingVertical="6dp"
+        android:paddingHorizontal="12dp"
+        android:gravity="center_vertical"
         android:textColor="@android:color/black" />
 
     <!-- 비밀번호 확인 -->
@@ -158,8 +177,10 @@
             android:background="@drawable/rounded_edittext"
             android:hint="비밀번호 재입력"
             android:fontFamily="@font/bmjua"
+            android:textSize="14sp"
             android:inputType="textPassword"
-            android:padding="12dp"
+            android:paddingVertical="6dp"
+            android:paddingHorizontal="12dp"            android:gravity="center_vertical"
             android:textColor="@android:color/black" />
 
         <Button
@@ -167,7 +188,8 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:backgroundTint="#FDFFB6"
+            android:backgroundTint="#FBF5DA"
+            android:textSize="14sp"
             android:padding="12dp"
             android:text="@string/password_check_button"
             android:fontFamily="@font/bmjua"
@@ -176,13 +198,16 @@
 
     <!-- 회원가입 버튼 -->
     <Button
-        android:id="@+id/signup_button"
-        android:layout_width="match_parent"
+        android:id="@+id/login_login_button"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FDFFB6"
-        android:padding="15dp"
-        android:text="@string/signup_button"
+        android:text="@string/login_login_button"
         android:fontFamily="@font/bmjua"
-        android:textColor="@android:color/black" />
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#FBF5DA"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:padding="12dp"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

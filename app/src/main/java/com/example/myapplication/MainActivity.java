@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageButton alarmButton, calendarButton, moreVertButton;
     private Button goal1Button, goal2Button;
-    private ImageButton navHome, navGroup, navMyPage;
+    private ImageButton navHome, navGroup, navSearch, navMyPage;
 
 
     @Override
@@ -41,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
 
         alarmButton = findViewById(R.id.notification_button);
         calendarButton = findViewById(R.id.calendar);
-        moreVertButton = findViewById(R.id.edit_group_goals_button);
         goal1Button = findViewById(R.id.btnWalkTracker);  // 하루 만보 걷기 챌린지
         goal2Button = findViewById(R.id.btnDiet);  // 같이 다이어트 해요
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
+        navSearch = findViewById(R.id.nav_search);
         navMyPage = findViewById(R.id.nav_mypage);
 
 

@@ -10,14 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CalendarActivity extends AppCompatActivity {
 
     private CalendarView calendarView;
-    private ImageButton navHome, navGroup, navMyPage;
+    private ImageButton navHome, navGroup, navSearch, navMyPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.group_goal_calender);
+        setContentView(R.layout.calendar);
 
-        calendarView = findViewById(R.id.calendar_view);
+        calendarView = findViewById(R.id.calendar);
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
         navMyPage = findViewById(R.id.nav_mypage);

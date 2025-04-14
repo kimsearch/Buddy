@@ -20,7 +20,7 @@
             android:orientation="horizontal"
             android:gravity="center"
             android:paddingTop="18dp"
-            android:paddingBottom="22dp"
+            android:paddingBottom="2dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp">
 
@@ -87,13 +87,71 @@
             android:orientation="vertical"
             android:layout_marginBottom="20dp">
 
+            <!-- 시작 날짜 / 목표 설정 / 반복 정보 -->
+            <LinearLayout
+                android:id="@+id/section_start_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="0dp"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/textViewStartDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="시작 날짜"
+                    android:textColor="#A0A0A0"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/bmjua" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/textViewAlarmRepeat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="반복 정보"
+                    android:textColor="#A0A0A0"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/bmjua"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                    android:id="@+id/section_goal_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="20dp"
+                    android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/textGoalSetting"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:text="목표"
+                    android:fontFamily="@font/bmjua"
+                    android:textColor="#2A3D45"
+                    android:background="@drawable/bg_white_rounded"
+                    android:gravity="start|center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
             <!-- 누적 랭킹 -->
             <LinearLayout
                 android:id="@+id/section_total_ranking"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="18dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -107,7 +165,7 @@
                 <FrameLayout
                     android:id="@+id/total_ranking_graph_placeholder"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="150dp"
                     android:background="@drawable/rounded_graph_background"
                     android:layout_marginBottom="16dp"
                     android:layout_marginStart="8dp"
@@ -120,7 +178,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="30dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -130,15 +188,6 @@
                     android:textColor="#2A3D45"
                     android:fontFamily="@font/bmjua"
                     android:layout_marginBottom="12dp"/>
-
-                <FrameLayout
-                    android:id="@+id/personal_goal_graph_placeholder"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="@drawable/rounded_graph_background"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -197,7 +246,7 @@
                 <FrameLayout
                     android:id="@+id/history_graph_placeholder"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="150dp"
                     android:background="@drawable/rounded_graph_background"
                     android:layout_marginBottom="16dp"
                     android:layout_marginStart="8dp"
@@ -251,11 +300,12 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
             android:importantForAccessibility="no"
+            android:contentDescription="그룹 검색 페이지로 이동"
             android:scaleType="center"
             android:padding="12dp" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/nav_alarm"
+            android:id="@+id/nav_pet"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="1"
@@ -263,6 +313,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
             android:importantForAccessibility="no"
+            android:contentDescription="펫 키우기 페이지로 이동"
             android:scaleType="fitCenter"
             android:padding="12dp" />
 

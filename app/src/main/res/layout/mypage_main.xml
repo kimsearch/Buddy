@@ -55,7 +55,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/header_container"
         android:layout_above="@id/bottom_nav"
-        android:layout_marginBottom="80dp">
+        android:layout_marginBottom="12dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="40dp">
 
                 <ImageView
                     android:id="@+id/profile_image"
@@ -98,9 +98,10 @@
                 android:layout_marginBottom="24dp">
 
                 <TextView
+                    android:id="@+id/record"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/section_total_ranking"
+                    android:text="@string/record"
                     android:textSize="20sp"
                     android:textColor="#2A3D45"
                     android:fontFamily="@font/bmjua"
@@ -109,7 +110,7 @@
                 <FrameLayout
                     android:id="@+id/total_ranking_graph_placeholder"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="150dp"
                     android:background="@drawable/rounded_graph_background"
                     android:layout_marginBottom="16dp"
                     android:layout_marginStart="8dp"
@@ -228,6 +229,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
             android:importantForAccessibility="no"
+            android:contentDescription="홈으로 이동"
             android:scaleType="center"
             android:padding="12dp"/>
 
@@ -240,6 +242,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
             android:importantForAccessibility="no"
+            android:contentDescription="그룹 페이지로 이동"
             android:scaleType="center"
             android:padding="12dp" />
 
@@ -252,11 +255,12 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
             android:importantForAccessibility="no"
+            android:contentDescription="그룹 검색 페이지로 이동"
             android:scaleType="center"
             android:padding="12dp" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/nav_alarm"
+            android:id="@+id/nav_pet"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="1"
@@ -264,6 +268,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
             android:importantForAccessibility="no"
+            android:contentDescription="펫 키우기 페이지로 이동"
             android:scaleType="fitCenter"
             android:padding="12dp" />
 
@@ -276,6 +281,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
             android:importantForAccessibility="no"
+            android:contentDescription="마이페이지로 이동"
             android:scaleType="center"
             android:padding="12dp" />
     </LinearLayout>

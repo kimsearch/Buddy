@@ -17,7 +17,8 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".LoginPageActivity"
+
+            android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="true">
             <intent-filter>
@@ -25,26 +26,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".JoinMembershipPageActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SplashMainActivity" />
-        <activity android:name=".AlarmPageActivity" />
-        <activity android:name=".CalendarActivity" />
+        <activity android:name=".AppDeleteActivity" />
+        <activity android:name=".EmailFindMainActivity" />
+        <activity android:name=".EmailFindSubActivity" />
         <activity android:name=".GroupCommunityActivity" />
         <activity android:name=".GroupCommunityWriteActivity" />
-        <activity android:name=".GroupDeleteActivity" />
-        <activity android:name=".GroupExitActivity" />
         <activity android:name=".GroupMainActivity" />
-        <activity android:name=".GroupMakeActivity" />
         <activity android:name=".GroupMemberActivity" />
         <activity android:name=".GroupPageActivity" />
-        <activity android:name=".SampleLayoutActivity" />
+        <activity android:name=".JoinPageActivity" />
+        <activity android:name=".LoginPageActivity" />
         <activity android:name=".MyPageMainActivity" />
         <activity android:name=".MyPageSettingActivity" />
         <activity android:name=".PasswordInputActivity" />
-        <activity android:name=".EmailFindMainActivity" />
-        <activity android:name=".EmailFindSubActivity" />
+        <activity android:name=".SampleLayoutActivity" />
+        <activity android:name=".SplashActivity" />
+
 
     </application>
 

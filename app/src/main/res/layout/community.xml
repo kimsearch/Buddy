@@ -27,8 +27,8 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_mypage"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:src="@drawable/ic_mypage"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
@@ -74,16 +74,16 @@
 
                     <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/btn_like"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
                         android:src="@drawable/ic_heart"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:tint="#FF4B4B"/>
 
                     <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/btn_comment"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
                         android:src="@drawable/ic_speech_bubble"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:tint="#2A3D45"/>
@@ -114,7 +114,6 @@
         android:backgroundTint="#2A3D45"
         android:background="@drawable/ic_edit"
         android:src="@drawable/ic_edit"
-        android:tint="#FFFFFF"
         android:elevation="6dp"/>
 
     <LinearLayout
@@ -136,6 +135,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
             android:importantForAccessibility="no"
+            android:contentDescription="홈으로 이동"
             android:scaleType="center"
             android:padding="12dp"/>
 
@@ -148,6 +148,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
             android:importantForAccessibility="no"
+            android:contentDescription="그룹 페이지로 이동"
             android:scaleType="center"
             android:padding="12dp" />
 
@@ -160,11 +161,12 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
             android:importantForAccessibility="no"
+            android:contentDescription="그룹 검색 페이지로 이동"
             android:scaleType="center"
             android:padding="12dp" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/nav_alarm"
+            android:id="@+id/nav_pet"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="1"
@@ -172,6 +174,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
             android:importantForAccessibility="no"
+            android:contentDescription="펫 키우기 페이지로 이동"
             android:scaleType="fitCenter"
             android:padding="12dp" />
 
@@ -184,6 +187,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
             android:importantForAccessibility="no"
+            android:contentDescription="마이페이지로 이동"
             android:scaleType="center"
             android:padding="12dp" />
     </LinearLayout>
