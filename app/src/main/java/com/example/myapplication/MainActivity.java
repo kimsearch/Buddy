@@ -67,21 +67,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 클릭 이벤트 3: more_vert 버튼 → 팝업창으로 그룹 삭제 옵션
-        moreVertButton.setOnClickListener(v -> {
-            PopupMenu popupMenu = new PopupMenu(MainActivity.this, moreVertButton);
-            popupMenu.getMenu().add("그룹 목표 1 삭제하기");
-            popupMenu.getMenu().add("그룹 목표 2 삭제하기");
-
-            popupMenu.setOnMenuItemClickListener(item -> {
-                Toast.makeText(MainActivity.this, item.getTitle() + " 선택됨", Toast.LENGTH_SHORT).show();
-                // 실제 삭제 로직은 여기에 작성하면 됨
-                return true;
-            });
-
-            popupMenu.show();
-        });
-
         // 클릭 이벤트 4, 5: 그룹 목표 → group_main.xml
         goal1Button.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, GroupMainActivity.class);
