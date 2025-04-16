@@ -9,10 +9,13 @@ public class Retrofit_client {
 
     private static Retrofit retrofit;
 
+    // 생성자 비공개 (싱글턴 패턴)
     private Retrofit_client() {}
 
+    // ✅ 메서드 이름을 getClient()로 사용
     public static Retrofit getInstance() {
         if (retrofit == null) {
+            // 로깅 인터셉터 설정 (요청/응답 로그 확인용)
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -21,7 +24,7 @@ public class Retrofit_client {
                     .build();
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://10.0.2.2:8080/")
+                    .baseUrl("http://10.0.2.2:8080/") // 에뮬레이터에서 로컬 서버 접속용
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();
