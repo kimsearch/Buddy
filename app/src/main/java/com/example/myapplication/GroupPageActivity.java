@@ -9,7 +9,7 @@ import androidx.appcompat.widget.AppCompatImageButton;
 public class GroupPageActivity extends AppCompatActivity {
 
     // UI 요소들 선언
-    private AppCompatImageButton notificationBtn, deleteGoal1Btn, editGoal2Btn, editGoal3Btn;
+    private AppCompatImageButton notificationBtn, deleteGoal1Btn, deleteGoal2Btn, deleteGoal3Btn;
     private AppCompatImageButton navHome, navGroup, navSearch, navMyPage;
     private Button goal1Btn, goal2Btn, goal3Btn, createRoomBtn;
 
@@ -26,8 +26,8 @@ public class GroupPageActivity extends AppCompatActivity {
     private void initViews() {
         notificationBtn = findViewById(R.id.notification_button);
         deleteGoal1Btn = findViewById(R.id.delete_group_goals_button);
-        editGoal2Btn = findViewById(R.id.edit_group_goals_button_1);
-        editGoal3Btn = findViewById(R.id.edit_group_goals_button_2);
+        deleteGoal2Btn = findViewById(R.id.delete_group_goals_button_1);
+        deleteGoal3Btn = findViewById(R.id.delete_group_goals_button_2);
 
         goal1Btn = findViewById(R.id.group_goal_button_1);
         goal2Btn = findViewById(R.id.group_goal_button_2);
@@ -46,15 +46,15 @@ public class GroupPageActivity extends AppCompatActivity {
         // 상단 버튼들
         notificationBtn.setOnClickListener(v -> navigateTo(AlarmPageActivity.class));
 
+        // 삭제 버튼 클릭 시 GroupExitActivity로 이동
+        deleteGoal1Btn.setOnClickListener(v -> navigateTo(GroupExitActivity.class));
+        deleteGoal2Btn.setOnClickListener(v -> navigateTo(GroupExitActivity.class));
+        deleteGoal3Btn.setOnClickListener(v -> navigateTo(GroupExitActivity.class));
+
         // 그룹 목표 버튼들
-        goal1Btn.setOnClickListener(v -> navigateTo(GroupMainActivity.class));
-        deleteGoal1Btn.setOnClickListener(v -> navigateTo(GroupDeleteActivity.class));
-
+        goal1Btn.setOnClickListener(v -> navigateTo(GroupMainStepActivity.class));
         goal2Btn.setOnClickListener(v -> navigateTo(GroupMainActivity.class));
-        editGoal2Btn.setOnClickListener(v -> navigateTo(GroupExitActivity.class));
-
         goal3Btn.setOnClickListener(v -> navigateTo(GroupMainActivity.class));
-        editGoal3Btn.setOnClickListener(v -> navigateTo(GroupExitActivity.class));
 
         // 그룹 만들기
         createRoomBtn.setOnClickListener(v -> navigateTo(GroupMakeActivity.class));
@@ -62,7 +62,7 @@ public class GroupPageActivity extends AppCompatActivity {
         // 하단 내비게이션
         navHome.setOnClickListener(v -> navigateTo(MainActivity.class));
         navGroup.setOnClickListener(v -> recreate()); // 현재 페이지 → 새로고침
-        navSearch.setOnClickListener(v -> navigateTo(SampleLayoutActivity.class));
+        navSearch.setOnClickListener(v -> navigateTo(GroupSearchPageActivity.class));
         navMyPage.setOnClickListener(v -> navigateTo(MyPageMainActivity.class));
     }
 

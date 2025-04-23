@@ -1,95 +1,119 @@
 package com.example.myapplication;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.inputmethod.InputMethodManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.*;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import java.util.ArrayList;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class GroupMakeActivity extends AppCompatActivity {
 
-    private EditText editTextGroupName, editTextDescription;
-    private TextView groupNameHint;
-    private AppCompatButton btnGroupNameCheck, btnCategory1, btnStartDate, btnEndDate, btnCreateGroup;
-    private ScrollView scrollView;
-
-    // 예시: 기존 그룹 이름 목록 (실제로는 DB 또는 서버에서 가져와야 함)
-    private final ArrayList<String> existingGroupNames = new ArrayList<>();
-
-    private String selectedSubCategory = "";
+    private EditText editTextGroupName, editTextGroupDescription;
+    private Button buttonStartDate, buttonAlarmSetting, buttonCreateGroup;
+    private TextView selectedCategory;
+    private String selectedAlarmSetting = "설정 안 됨";
+    private String selectedStartDate = "";
+    private String selectedSubCategory = "";  // 선택된 서브 카테고리
+    private boolean isGoalFrequencySet = false; // Track if goal frequency is set
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_make);
 
+        // UI 연결
         editTextGroupName = findViewById(R.id.edittext_group_name);
-        groupNameHint = findViewById(R.id.group_name_hint);
-        btnGroupNameCheck = findViewById(R.id.button_group_name_check);
-        btnCategory1 = findViewById(R.id.category_btn_1);
-        btnStartDate = findViewById(R.id.button_start_date);
-        btnEndDate = findViewById(R.id.button_end_date);
-        editTextDescription = findViewById(R.id.edittext_group_description);
-        btnCreateGroup = findViewById(R.id.button_create_group);
-        scrollView = findViewById(R.id.group_make_scroll);
+        editTextGroupDescription = findViewById(R.id.edittext_group_description);
+        buttonStartDate = findViewById(R.id.button_start_date);
+        buttonAlarmSetting = findViewById(R.id.button_alarm_setting);
+        buttonCreateGroup = findViewById(R.id.button_create_group);
+        selectedCategory = findViewById(R.id.selected_category);
 
-        // 가상 데이터 - 이미 존재하는 그룹 이름들
-        existingGroupNames.add("헬스왕");
-        existingGroupNames.add("하루만보기");
+        // Initially disable the create group button
+        buttonCreateGroup.setEnabled(false);
+        buttonCreateGroup.setAlpha(0.5f); // Show it as disabled
 
-        // 그룹 이름 확인 버튼 클릭 시
-        btnGroupNameCheck.setOnClickListener(v -> {
-            String inputName = editTextGroupName.getText().toString().trim();
-            if (inputName.isEmpty()) {
-                Toast.makeText(this, "그룹 이름을 입력하세요", Toast.LENGTH_SHORT).show();
+        // 시작 날짜 버튼 클릭 시
+        buttonStartDate.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    (view, year, month, dayOfMonth) -> {
+                        calendar.set(year, month, dayOfMonth);
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                        selectedStartDate = sdf.format(calendar.getTime());
+                        buttonStartDate.setText(selectedStartDate);
+                    },
+                    calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH));
+            datePickerDialog.show();
+        });
+
+        // 목표 설정 주기 팝업
+        buttonAlarmSetting.setOnClickListener(v -> showAlarmPopup());
+
+        // 그룹 만들기 버튼 클릭 시
+        buttonCreateGroup.setOnClickListener(v -> {
+            String groupName = editTextGroupName.getText().toString().trim();
+            String groupDesc = editTextGroupDescription.getText().toString().trim(); // 그룹 설명 가져오기
+
+            if (groupName.isEmpty() || groupDesc.isEmpty()) {
+                Toast.makeText(this, "그룹 이름과 설명을 입력하세요", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            if (existingGroupNames.contains(inputName)) {
-                groupNameHint.setText("⚠ 이미 존재하는 그룹 이름입니다.");
-                groupNameHint.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+            // 카테고리 선택에 따른 이동 처리
+            Intent intent;
+
+            if ("만보기".equals(selectedSubCategory) || "다이어트".equals(selectedSubCategory)) {
+                intent = new Intent(GroupMakeActivity.this, GroupMainStepActivity.class);
             } else {
-                groupNameHint.setText("✔ 사용 가능한 이름입니다.");
-                groupNameHint.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+                intent = new Intent(GroupMakeActivity.this, GroupMainActivity.class);
             }
 
-            hideKeyboard();
-        });
-
-        // 카테고리 버튼 클릭
-        btnCategory1.setOnClickListener(v -> {
-            btnCategory1.setBackgroundColor(0xFFF3BFB9); // 색상 변경
-            showSubCategoryPopup();
-        });
-
-        // 시작 날짜 선택
-        btnStartDate.setOnClickListener(v -> showDateDialog(btnStartDate));
-
-        // 종료 날짜 선택
-        btnEndDate.setOnClickListener(v -> showDateDialog(btnEndDate));
-
-        // 키보드 입력 시 하단 가림 방지 스크롤 조정
-        scrollView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
-            scrollView.post(() -> scrollView.fullScroll(View.FOCUS_DOWN));
-        });
-
-        // 그룹 만들기 버튼 클릭 시 다음 화면으로 이동
-        btnCreateGroup.setOnClickListener(v -> {
-            Intent intent = new Intent(GroupMakeActivity.this, GroupMainActivity.class);
+            // 인텐트로 데이터를 전달
+            intent.putExtra("groupName", groupName);
+            intent.putExtra("startDate", selectedStartDate); // 시작 날짜
+            intent.putExtra("alarmSetting", selectedAlarmSetting); // 알림 설정
+            intent.putExtra("goalSubtitle", selectedSubCategory); // 목표 서브타이틀 (만보기, 다이어트 등)
+            intent.putExtra("groupDesc", groupDesc); // 그룹 설명
             startActivity(intent);
             finish();
         });
+
+        // 그룹 이름에 대한 TextWatcher 추가
+        editTextGroupName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                String groupName = editTextGroupName.getText().toString().trim();
+                if (!groupName.isEmpty()) {
+                    enableCreateGroupButton();
+                } else {
+                    disableCreateGroupButton();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
+
+        // 카테고리 버튼 클릭 시
+        findViewById(R.id.category_btn_1).setOnClickListener(v -> {
+            showSubCategoryPopup();
+        });
     }
 
+    // 카테고리 선택 팝업
     private void showSubCategoryPopup() {
         String[] items = {"만보기", "섭취 칼로리", "운동 칼로리", "식단"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -97,31 +121,54 @@ public class GroupMakeActivity extends AppCompatActivity {
         builder.setItems(items, (dialog, which) -> {
             selectedSubCategory = items[which];
             Toast.makeText(this, selectedSubCategory + " 선택됨", Toast.LENGTH_SHORT).show();
-            // 예: 텍스트뷰 업데이트 가능
-            groupNameHint.setText("선택된 항목: " + selectedSubCategory);
+            // 선택된 카테고리 텍스트 뷰 업데이트
+            selectedCategory.setText("선택된 카테고리: " + selectedSubCategory);
+
+            // 선택된 카테고리가 '만보기'일 경우 그룹 목표 입력란을 '걸음 수' 목표로 설정
+            if ("만보기".equals(selectedSubCategory)) {
+                editTextGroupDescription.setHint("걸음 수 목표 입력");
+            } else if ("다이어트".equals(selectedSubCategory)) {
+                editTextGroupDescription.setHint("섭취 칼로리 목표 입력");
+            }
+
+            // Enable the create group button only when category is selected
+            enableCreateGroupButton();
         });
         builder.show();
     }
 
-    private void showDateDialog(AppCompatButton button) {
-        final Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                (view, year1, monthOfYear, dayOfMonth) -> {
-                    String dateStr = year1 + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
-                    button.setText(dateStr);
-                }, year, month, day);
-        datePickerDialog.show();
+    private void enableCreateGroupButton() {
+        if (!selectedSubCategory.isEmpty()) {
+            buttonCreateGroup.setEnabled(true);
+            buttonCreateGroup.setAlpha(1f);  // Make it visible
+        }
     }
 
-    private void hideKeyboard() {
-        View view = this.getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
+    private void disableCreateGroupButton() {
+        buttonCreateGroup.setEnabled(false);
+        buttonCreateGroup.setAlpha(0.5f); // Show it as disabled
+    }
+
+    private void showAlarmPopup() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("알림 설정");
+
+        String[] alarmOptions = {"안 함", "매일", "매주", "매월"};
+        builder.setItems(alarmOptions, (dialog, which) -> {
+            selectedAlarmSetting = alarmOptions[which];
+            buttonAlarmSetting.setText(selectedAlarmSetting);
+
+            // Check if the goal frequency is set to any option other than "안 함"
+            if (!"안 함".equals(selectedAlarmSetting)) {
+                isGoalFrequencySet = true;
+                enableCreateGroupButton();  // Enable the button once the frequency is set
+            } else {
+                isGoalFrequencySet = false;
+                disableCreateGroupButton(); // Disable the button if frequency is not set
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

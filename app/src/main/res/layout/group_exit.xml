@@ -80,7 +80,7 @@
         android:layout_below="@id/header_container"
         android:layout_marginTop="24dp"
         android:layout_centerHorizontal="true"
-        android:text="@string/group_exit_warning"
+        android:text="그룹을 나가면 그동안의 기록은 삭제됩니다.\n또한 그룹의 방장일 경우, 나가게 되면 방이 삭제됩니다.\n그래도 하시겠습니까?"
         android:textColor="#888888"
         android:textSize="14sp"
         android:padding="8dp" />

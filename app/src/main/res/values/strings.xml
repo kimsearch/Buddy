@@ -48,10 +48,9 @@
         <string name="group_goal_3">버디퀘스트 화이팅</string>
         <string name="create_room">방 만들기</string>
 
-    <!-- 그룹 메인 -->
-        <string name="group_main_title">하루 만보 걷기 챌린지</string>
+    <!--그룹 메인 -->
         <string name="section_total_ranking">누적 랭킹 </string>
-        <string name="section_personal_goal">내 목표 달성</string>
+        <string name="section_personal_goal">만보기</string>
         <string name="goal_input_edittext">숫자를 입력하세요</string>
         <string name="goal_input_button">입력</string>
         <string name="section_history">이전 기록</string>
@@ -59,14 +58,16 @@
     <!-- 그룹 만들기 -->
         <string name="group_make_page">그룹 만들기</string>
         <string name="edittext_group_name">그룹 이름 입력</string>
-        <string name="group_name_hint">이름을 입력하지 않으면 방을 생성할 수 없어요</string>
+        <string name="group_name_hint">그룹 이름을 입력하지 않으면 방을 생성할 수 없어요</string>
         <string name="button_group_name_checke">확인</string>
+        <string name="category">카테고리</string>
         <string name="category_btn_1">다이어트</string>
         <string name="category_btn_2">재테크</string>
         <string name="category_btn_3">공부</string>
         <string name="category_btn_4">취미</string>
-        <string name="button_start_date">시작 날짜</string>
-        <string name="button_end_date">종료 날짜</string>
+        <string name="start_goal">시작 날짜</string>
+        <string name="alarm_timer">목표 주기 설정</string>
+        <string name="group_introduction">그룹 소개</string>
         <string name="edittext_group_description">그룹 설명을 입력하세요 (100자 이내)</string>
 
     <!-- 그룹 커뮤니티 -->
@@ -85,6 +86,17 @@
         <string name="group_exit_warning">그룹을 나가면 그동안의 기록이 사라집니다.</string>
         <string name="group_delete_title">그룹 삭제하기</string>
         <string name="group_exit_ather_warning">그룹을 삭제하면 다시 복구할 수 없습니다.</string>
+
+    <!--그룹찾기 페이지 -->
+        <string name="group_search_title">그룹 찾기</string>
+        <string name="search_group_input_1"> </string>
+        <string name="search_group_input_1_description">그룹 이름 입력 칸</string>
+        <string name="group_search_button_description">그룹 검색 버튼</string>
+        <string name="search_group_input_button_description">그룹 검색 버튼</string>
+        <string name="search_group_name_1">하루 만보 걷기 챌린지</string>
+        <string name="search_group_party_1">인원수</string>
+        <string name="group_introduction_1">그룹장이 적은 그룹 설명</string>
+        <string name="group_rfp">그룹 참가 요청</string>
 
         <!-- 알림 페이지 -->
         <string name="alarm_page_title">알림</string>

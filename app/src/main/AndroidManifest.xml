@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.myapplication">
 
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -33,7 +35,7 @@
         <activity android:name=".GroupCommunityWriteActivity" />
         <activity android:name=".GroupDeleteActivity" />
         <activity android:name=".GroupExitActivity" />
-        <activity android:name=".GroupMainActivity" />
+        <activity android:name=".GroupMainStepActivity" />
         <activity android:name=".GroupMakeActivity" />
         <activity android:name=".GroupMemberActivity" />
         <activity android:name=".GroupPageActivity" />
@@ -43,6 +45,8 @@
         <activity android:name=".PasswordInputActivity" />
         <activity android:name=".EmailFindMainActivity" />
         <activity android:name=".EmailFindSubActivity" />
+        <activity android:name=".GroupSearchPageActivity"/>
+        <activity android:name=".GroupMainActivity"/>
 
     </application>
 

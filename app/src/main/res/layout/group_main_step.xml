@@ -13,7 +13,6 @@
         android:orientation="vertical"
         android:layout_alignParentTop="true">
 
-        <!-- 그룹 이름  + 맴버 + 커뮤 + 알림 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,7 +66,6 @@
                 android:tint="#2A3D45"
                 android:scaleType="center"
                 android:padding="12dp" />
-
         </LinearLayout>
     </LinearLayout>
 
@@ -108,7 +106,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/section_total_ranking"
+                    android:text="누적 랭킹"
                     android:textSize="20sp"
                     android:textColor="#2A3D45"
                     android:fontFamily="@font/bmjua"
@@ -117,14 +115,33 @@
                 <FrameLayout
                     android:id="@+id/total_ranking_graph_placeholder"
                     android:layout_width="match_parent"
-                    android:layout_height="158dp"
+                    android:layout_height="130dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/rounded_graph_background" />
             </LinearLayout>
 
-            <!-- 내 목표 달성 -->
+            <!-- 내 목표 달성 추가 부분 (만보기) -->
+            <LinearLayout
+                android:id="@+id/section_personal_goal_step"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="24dp">
+
+                <!-- 걸음 수 (중앙 배치) -->
+                <TextView
+                    android:id="@+id/step_count_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="걸음 수: 0"
+                    android:textSize="24sp"
+                    android:textColor="#2A3D45"
+                    android:gravity="center"
+                    android:layout_marginBottom="16dp" />
+            </LinearLayout>
+            <!-- 내 목표 달성 추가 부분 -->
             <LinearLayout
                 android:id="@+id/section_personal_goal"
                 android:layout_width="match_parent"
@@ -135,7 +152,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="오늘 목표 기록"
+                    android:text="내 목표 달성"
                     android:textSize="20sp"
                     android:textColor="#2A3D45"
                     android:fontFamily="@font/bmjua"
@@ -149,42 +166,6 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/rounded_graph_background" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp">
-
-                    <EditText
-                        android:id="@+id/goal_input_edittext"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_weight="1"
-                        android:hint="@string/goal_input_edittext"
-                        android:fontFamily="@font/bmjua"
-                        android:inputType="number"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp"
-                        android:background="@drawable/edit_text_background"
-                        android:textColor="#2A3D45"
-                        android:textSize="16sp" />
-
-                    <Button
-                        android:id="@+id/goal_input_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:text="@string/goal_input_button"
-                        android:fontFamily="@font/bmjua"
-                        android:textColor="#2A3D45"
-                        android:backgroundTint="#D0F4DE"
-                        android:layout_marginStart="12dp"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"/>
-                </LinearLayout>
             </LinearLayout>
 
             <!-- 이전 기록 보기 -->
@@ -198,7 +179,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/section_history"
+                    android:text="이전 기록"
                     android:textSize="20sp"
                     android:textColor="#2A3D45"
                     android:fontFamily="@font/bmjua"
@@ -215,7 +196,6 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
 
     <!-- 하단 네비게이션 바 -->
     <LinearLayout
@@ -261,11 +241,12 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
             android:importantForAccessibility="no"
+            android:contentDescription="그룹 검색 페이지로 이동"
             android:scaleType="center"
             android:padding="12dp" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/nav_alarm"
+            android:id="@+id/nav_pet"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="1"
@@ -273,6 +254,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
             android:importantForAccessibility="no"
+            android:contentDescription="펫 키우기 페이지로 이동"
             android:scaleType="fitCenter"
             android:padding="12dp" />
 
