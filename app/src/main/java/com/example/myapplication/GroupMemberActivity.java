@@ -20,7 +20,7 @@ public class GroupMemberActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_member);
 
-        memberListContainer = findViewById(R.id.member_list_container);
+        memberListContainer = findViewById(R.id.member_recycler_view);
         refreshButton = findViewById(R.id.member_refresh_button);
 
         // 초기 멤버 리스트 추가
@@ -44,7 +44,6 @@ public class GroupMemberActivity extends AppCompatActivity {
 
     // 멤버 항목 하나씩 추가
     private void addMemberItem(String name) {
-        // XML 코드에서 이미 예시 하나가 들어있다면 LayoutInflater 없이 View를 만들 수도 있음
         LinearLayout memberItem = new LinearLayout(this);
         memberItem.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,

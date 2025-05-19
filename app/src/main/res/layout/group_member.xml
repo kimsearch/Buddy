@@ -3,81 +3,135 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F4"
-    tools:context=".GroupMemberActivity">
+    android:background="#F4F4F4">
 
-    <!-- 상단바: 제목 + 아이콘 -->
+    <!-- 헤더 -->
     <LinearLayout
         android:id="@+id/header_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:padding="16dp">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
 
-        <TextView
-            android:id="@+id/member_page_title"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="그룹 멤버"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="#2A3D45" />
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:paddingBottom="22dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/member_refresh_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_home"
-            android:background="@null"
-            android:tint="#2A3D45" />
+            <TextView
+                android:id="@+id/group_member_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/group_mamber_title"
+                android:textSize="24sp"
+                android:textColor="#2A3D45"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/member_refresh_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_roll"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="#2A3D45"
+                android:contentDescription="새로고침"
+                android:padding="12dp"
+                android:layout_gravity="end"/>
+        </LinearLayout>
     </LinearLayout>
 
     <!-- 멤버 리스트 -->
-    <ScrollView
-        android:id="@+id/member_scroll"
-        android:layout_below="@id/header_container"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/member_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true">
+        android:layout_height="0dp"
+        android:layout_below="@id/header_container"
+        android:layout_above="@id/bottom_nav"
+        android:padding="12dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical" />
 
-        <LinearLayout
-            android:id="@+id/member_list_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+    <!-- 하단 네비게이션 바 -->
+    <LinearLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#DBDBDB"
+        android:padding="8dp"
+        android:layout_alignParentBottom="true">
 
-            <!-- 멤버 아이템 예시 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="#FFFFFF"
-                android:padding="12dp"
-                android:layout_marginBottom="8dp"
-                android:gravity="center_vertical"
-                android:elevation="1dp">
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_home"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:contentDescription="홈으로 이동"
+            android:scaleType="center"
+            android:padding="12dp"/>
 
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_home"
-                    android:tint="#2A3D45"
-                    android:background="#D0F4DE"
-                    android:padding="8dp" />
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_group"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_group"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:contentDescription="그룹 페이지로 이동"
+            android:scaleType="center"
+            android:padding="12dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="홍길동"
-                    android:textSize="18sp"
-                    android:textColor="#2A3D45" />
-            </LinearLayout>
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_search"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_search"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:contentDescription="그룹 검색 페이지로 이동"
+            android:scaleType="center"
+            android:padding="12dp" />
 
-            <!-- 멤버는 자바 코드로 동적으로 추가할 수 있음 -->
-        </LinearLayout>
-    </ScrollView>
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_pet"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_paw"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:contentDescription="펫 키우기 페이지로 이동"
+            android:scaleType="fitCenter"
+            android:padding="12dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_mypage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_mypage"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:contentDescription="마이페이지로 이동"
+            android:scaleType="center"
+            android:padding="12dp" />
+    </LinearLayout>
 </RelativeLayout>

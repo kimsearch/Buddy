@@ -1,66 +1,58 @@
+// AlarmPageActivity.java
 package com.example.myapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AlarmPageActivity extends AppCompatActivity {
 
-    private ImageButton rollButton;
-    private ImageButton navHome, navGroup, navSearch, navAlarm, navMyPage;
-    private LinearLayout alarmContainer;
+    private RecyclerView recyclerView;
+    private AlarmAdapter alarmAdapter;
+    private TextView emptyMessageTextView;
+    private List<Alarm> alarmList;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarm_page);
 
-        // 뷰 초기화
-        rollButton = findViewById(R.id.roll_button_1);
-        navHome = findViewById(R.id.nav_home);
-        navGroup = findViewById(R.id.nav_group);
-        navSearch = findViewById(R.id.nav_search);
-        navAlarm = findViewById(R.id.nav_alarm);
-        navMyPage = findViewById(R.id.nav_mypage);
+        // recyclerView: 알림 리스트 보여줄 컴포넌트
+        // emptyMessageTextView: 알림 없을 때 "알림이 없습니다" 텍스트 보여주는 view
+        recyclerView = findViewById(R.id.alarm_recycler_view);
+        emptyMessageTextView = findViewById(R.id.empty_message);
 
-        // 알림 추가할 컨테이너 가져오기
-        alarmContainer = findViewById(R.id.alarm_scroll).findViewById(android.R.id.content);
+        // 처음에 빈 알림 리스트 만들고
+        alarmList = new ArrayList<>();
 
-        // 롤 버튼 클릭 시 동작
-        rollButton.setOnClickListener(view -> refreshAlarms());
+        // 테스트용 알림
+        // 메세지만 보여주고 버튼은 안 보여줌
+        alarmList.add(new Alarm("설정한 목표 잊으신 거 아니죠?", Alarm.TYPE_NORMAL));
+        // 메세지, 버튼 둘 다 보여줌
+        alarmList.add(new Alarm("홍길동님이 그룹 참가를 요청했어요", Alarm.TYPE_REQUEST));
 
-        // 하단 네비게이션 바 클릭 이벤트
-        navHome.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
-        navGroup.setOnClickListener(v -> startActivity(new Intent(this, GroupPageActivity.class)));
-        navSearch.setOnClickListener(v -> startActivity(new Intent(this, SampleLayoutActivity.class)));
-        navAlarm.setOnClickListener(v -> {/* 현재 페이지, 아무 동작 안함 */});
-        navMyPage.setOnClickListener(v -> startActivity(new Intent(this, MyPageMainActivity.class)));
+        // 빈 알림 리스트 만든 걸 어댑터에 연결
+        alarmAdapter = new AlarmAdapter(alarmList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(alarmAdapter);
 
-
-        // 초기 알림 표시
-        addAlarm("새로운 그룹 초대가 도착했습니다.", "5분 전");
+        // 이 메서드는 알림이 있는지 없는지를 판단해서, 뭘 보여줄지 정함
+        updateEmptyView();
     }
 
-    private void refreshAlarms() {
-        // 알림 초기화 후 새로 추가
-        alarmContainer.removeAllViews();
-        addAlarm("새로운 투표가 시작되었습니다.", "방금 전");
-        addAlarm("그룹 일정이 업데이트되었습니다.", "2시간 전");
-    }
-
-    private void addAlarm(String text, String time) {
-        View alarmItem = getLayoutInflater().inflate(R.layout.alarm_item, alarmContainer, false);
-
-        TextView alarmText = alarmItem.findViewById(R.id.alarm_text);
-        TextView alarmTime = alarmItem.findViewById(R.id.alarm_time);
-
-        alarmText.setText(text);
-        alarmTime.setText(time);
-
-        alarmContainer.addView(alarmItem);
+    private void updateEmptyView() {
+        if (alarmList.isEmpty()) {
+            emptyMessageTextView.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        } else {
+            emptyMessageTextView.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
     }
 }
