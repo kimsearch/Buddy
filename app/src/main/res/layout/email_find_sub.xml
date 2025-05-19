@@ -37,7 +37,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- 중앙에 위치한 텍스트뷰 + 버튼 -->
+    <!-- 중앙에 위치 텍스트뷰 + 버튼 -->
     <LinearLayout
         android:id="@+id/form_container"
         android:layout_width="match_parent"
@@ -51,7 +51,7 @@
             android:id="@+id/email_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/email_text"
+            android:text="~님의 이메일은 sebong1090@gmail.com입니다"
             android:textSize="16sp"
             android:textColor="#2A3D45"
             android:fontFamily="@font/bmjua"
@@ -59,12 +59,15 @@
 
         <Button
             android:id="@+id/password_search_button"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:text="@string/password_search_button"
             android:fontFamily="@font/bmjua"
             android:backgroundTint="#FBF5DA"
-            android:textColor="#2A3D45" />
+            android:textColor="#2A3D45"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+            android:layout_gravity="center_horizontal" />
     </LinearLayout>
 
 </RelativeLayout>
