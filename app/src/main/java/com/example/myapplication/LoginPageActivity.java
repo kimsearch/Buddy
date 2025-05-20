@@ -88,7 +88,7 @@ public class LoginPageActivity extends AppCompatActivity {
         });
 
         signupButton.setOnClickListener(v -> {
-            startActivity(new Intent(LoginPageActivity.this, JoinMembershipPageActivity.class));
+            startActivity(new Intent(LoginPageActivity.this, JoinPageActivity.class));
         });
     }
 }

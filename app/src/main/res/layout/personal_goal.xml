@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:layout_alignParentTop="true">
 
-        <!-- 그룹 만들기 -->
+        <!-- 개인 목표 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,10 +34,9 @@
                 android:contentDescription="뒤로가기" />
 
             <TextView
-                android:id="@+id/group_make_page"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/group_make_page"
+                android:text="개인 목표"
                 android:fontFamily="@font/bmjua"
                 android:textSize="24sp"
                 android:textColor="#2A3D45"
@@ -59,21 +58,29 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="목표 입력"
+                android:textSize="16sp"
+                android:textColor="#2A3D45"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="@font/bmjua" />
+
             <!-- 그룹 이름 입력 -->
             <EditText
-                android:id="@+id/edittext_group_name"
+                android:id="@+id/edittext_personal_name"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@drawable/edit_text_background"
-                android:hint="@string/edittext_group_name"
+                android:hint="@string/edittext_personal_name"
                 android:fontFamily="@font/bmjua"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:textColor="#2A3D45"
                 android:layout_marginBottom="6dp"/>
 
-            <!-- 문구 + 확인 버튼 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,11 +88,10 @@
                 android:gravity="top|start">
 
                 <TextView
-                    android:id="@+id/group_name_hint"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/group_name_hint"
+                    android:text=""
                     android:fontFamily="@font/bmjua"
                     android:textColor="#888888"
                     android:textSize="12sp"
@@ -107,96 +113,17 @@
                     android:paddingRight="33dp"/>
             </LinearLayout>
 
-            <!-- 카테고리 선택 -->
-            <TextView
-                android:id="@+id/category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/category"
-                android:fontFamily="@font/bmjua"
-                android:textSize="16sp"
-                android:textColor="#2A3D45"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="6dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:weightSum="4"
-                android:layout_marginBottom="2dp">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/category_btn_1"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:text="@string/category_btn_1"
-                    android:fontFamily="@font/bmjua"
-                    android:background="@drawable/rounded_button_background"
-                    android:textColor="#2A3D45"
-                    android:layout_marginEnd="4dp"/>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/category_btn_2"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:text="@string/category_btn_2"
-                    android:fontFamily="@font/bmjua"
-                    android:background="@drawable/rounded_button_background"
-                    android:textColor="#2A3D45"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp"/>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/category_btn_3"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:text="@string/category_btn_3"
-                    android:fontFamily="@font/bmjua"
-                    android:background="@drawable/rounded_button_background"
-                    android:textColor="#2A3D45"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp"/>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/category_btn_4"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:text="@string/category_btn_4"
-                    android:fontFamily="@font/bmjua"
-                    android:background="@drawable/rounded_button_background"
-                    android:textColor="#2A3D45"
-                    android:layout_marginStart="4dp"/>
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/selected_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="선택된 카테고리: 없음"
-                android:textSize="14sp"
-                android:textColor="#2A3D45"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp" />
-
             <!-- 시작 날짜 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="24dp"
                 android:layout_marginBottom="6dp">
 
                 <TextView
-                    android:id="@+id/start_goal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/start_goal"
+                    android:text="시작 날짜"
                     android:textSize="16sp"
                     android:textColor="#2A3D45"
                     android:layout_marginBottom="6dp"
@@ -206,10 +133,10 @@
                     android:id="@+id/button_start_date"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:text="2025-04-12"
                     android:fontFamily="@font/bmjua"
                     android:textColor="#2A3D45"
-                    android:background="@drawable/rounded_gray_button" />
+                    android:background="@drawable/rounded_gray_button"
+                    android:importantForAccessibility="no"/>
             </LinearLayout>
 
             <!-- 알림 설정 -->
@@ -220,10 +147,9 @@
                 android:layout_marginBottom="6dp">
 
                 <TextView
-                    android:id="@+id/goal_routine"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/goal_routine"
+                    android:text="목표 실행 주기"
                     android:textSize="16sp"
                     android:textColor="#2A3D45"
                     android:layout_marginBottom="6dp"
@@ -234,18 +160,43 @@
                     android:id="@+id/button_alarm_setting"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:text="설정 안 됨"
+                    android:text="설정 안 함"
                     android:fontFamily="@font/bmjua"
                     android:textColor="#2A3D45"
                     android:background="@drawable/rounded_gray_button" />
             </LinearLayout>
 
-            <!-- 그룹 소개 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="목표 달성 시간"
+                    android:textSize="16sp"
+                    android:textColor="#2A3D45"
+                    android:layout_marginBottom="6dp"
+                    android:fontFamily="@font/bmjua"
+                    android:layout_marginTop="15dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_goal_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="설정 안 함"
+                    android:fontFamily="@font/bmjua"
+                    android:textColor="#2A3D45"
+                    android:background="@drawable/rounded_gray_button" />
+            </LinearLayout>
+
+            <!-- 상세 목표 -->
             <TextView
-                android:id="@+id/group_introduction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/group_introduction"
+                android:text="상세 설명"
                 android:fontFamily="@font/bmjua"
                 android:textSize="16sp"
                 android:textColor="#2A3D45"
@@ -253,13 +204,13 @@
                 android:layout_marginBottom="6dp" />
 
             <EditText
-                android:id="@+id/edittext_group_description"
+                android:id="@+id/edittext_personal_description"
                 style="@style/customEditTextFontStyle"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:background="@drawable/edit_text_background"
                 android:gravity="top|start"
-                android:hint="@string/edittext_group_description"
+                android:hint="@string/edittext_personal_description"
                 android:fontFamily="@font/bmjua"
                 android:inputType="textMultiLine"
                 android:maxLength="100"
@@ -267,10 +218,10 @@
                 android:textColor="#2A3D45" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_create_group"
+                android:id="@+id/button_create_personal"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:text="@string/group_make_page"
+                android:text="@string/button_create_personal"
                 android:fontFamily="@font/bmjua"
                 android:textColor="#2A3D45"
                 android:textSize="16sp"

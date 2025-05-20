@@ -4,7 +4,6 @@
     <string name="subtitle">즐겁게 경쟁하고, 같이 성장하는 미션 라이프!</string>
     <string name="login_login_button">로그인 하기</string>
     <string name="find_nickname_button">이메일 찾기</string>
-    <string name="find_email_button">비밀번호 찾기</string>
     <string name="signup_button">회원가입</string>
     <string name="find_email_button">비밀번호 찾기</string>
 
@@ -30,15 +29,19 @@
     <string name="personal_goal_1">물 1L 마시기</string>
     <string name="personal_goal_2">열심히 운동</string>
     <string name="add_personal_goals">개인 목표 추가하기</string>
-    
-  <!-- Navigation bar -->
+    <!-- Navigation bar -->
     <string name="nav_home">홈 페이지</string>
     <string name="nav_group">그룹 페이지</string>
     <string name="nav_search">돋보기 페이지</string>
     <string name="nav_pet">펫 키우기 페이지</string>
     <string name="nav_mypage">마이페이지</string>
-  
-<!-- 그룹 페이지 -->
+
+    <!-- 개인 목표 -->
+    <string name="edittext_personal_name">자유롭게 입력하세요</string>
+    <string name="edittext_personal_description">목표에 대한 상세 설명을 입력하세요</string>
+    <string name="button_create_personal">개인 목표 추가하기</string>
+
+    <!-- 그룹 페이지 -->
     <string name="group_page_title">그룹</string>
     <string name="group_crown_button">음</string>
     <string name="delete_group_goals_button">음</string>
@@ -49,7 +52,7 @@
     <string name="group_goal_3">버디퀘스트 화이팅</string>
     <string name="create_room">그룹 만들기</string>
 
-<!-- 그룹 메인 -->
+    <!-- 그룹 메인 -->
     <string name="group_main_title">냠냠냠</string>
     <string name="section_total_ranking">누적 랭킹 </string>
     <string name="section_personal_goal">만보기</string>
@@ -72,6 +75,7 @@
     <string name="group_introduction">그룹 소개</string>
     <string name="edittext_group_description">그룹 설명을 입력하세요 (100자 이내)</string>
 
+
     <!-- 그룹 멤버 페이지 -->
     <string name="group_mamber_title">그룹 멤버</string>
     <string name="profile_image">그룹 멤버 프로필</string>
@@ -85,6 +89,7 @@
     <string name="post_input_contentn">내용 입력</string>
     <string name="add_photo_button">사진 추가하기</string>
     <string name="post_submit_button">게시하기</string>
+
 
     <!-- 그룹 나가기/삭제하기 -->
     <string name="group_exit_title">그룹 나가기</string>
@@ -103,6 +108,8 @@
     <string name="search_group_party_1">인원수</string>
     <string name="group_introduction_1">그룹장이 적은 그룹 설명</string>
     <string name="group_rfp">그룹 참가 요청</string>
+    <string name="button_join_group">그룹 참여하기</string>
+
 
     <!-- 알림 페이지 (alarm_page.xml): 추가됨 -->
     <string name="alarmcontent_1">설정한 목표 잊으신 거 아니죠?</string>
@@ -128,34 +135,35 @@
     <string name="history_delete_2">기록 삭제</string>
 
     <!-- 설정 페이지 -->
-        <string name="setting_title">설정</string>
-        <string name="login_information">정보</string>
-        <string name="email_button">이메일 찾기</string>
-        <string name="alarm_setting">알림</string>
-        <string name="mission_reminder_button">미션 리마인더 알림</string>
-        <string name="member_activity_button">친구 활동 알림</string>
-        <string name="account_information">로그인</string>
-        <string name="logout_button">로그아웃</string>
-        <string name="delete_id_button">회원탈퇴</string>
+    <string name="setting_title">설정</string>
+    <string name="login_information">정보</string>
+    <string name="email_button">이메일 찾기</string>
+    <string name="mission_alarm_setting">미션 알림</string>
+    <string name="group_alarm_setting">그룹 알림</string>
+    <string name="community_alarm_setting">커뮤니티 알림</string>
+    <string name="mission_reminder_text">미션 리마인더</string>
+    <string name="alarm_request_text">그룹 참가 요청 알림</string>
+    <string name="accept_alarm_text">그룹 참가 수락 알림</string>
+    <string name="reject_alarm_text">그룹 참가 거절 알림</string>
+    <string name="post_text">커뮤니티 글 알림</string>
+    <string name="comment_alarm_text">커뮤니티 댓글 알림</string>
+    <string name="like_alarm_text">커뮤니티 좋아요 알림</string>
+    <string name="account_information">로그인</string>
+    <string name="logout_button">로그아웃</string>
+    <string name="delete_id_button">회원탈퇴</string>
 
     <!-- 이메일 찾기 -->
-
     <string name="email_find_title">이메일 찾기</string>
     <string name="nickname_okay_button">확인</string>
     <string name="birthday_okay_button">확인</string>
     <string name="email_search_button">이메일 찾기</string>
     <string name="password_search_button">비밀번호 재설정</string>
-    <string name="password_find_title">비밀번호 재설정</string>
-    <string name="re_email_setting">완료</string>
-    <string name="email_text">이메일은 sebong1090@gmail.com 입니다.</string>
-    <string name="password_search_button">비밀번호 찾기</string>
+    <string name="password_find_title_1">비밀번호 재설정</string>
+    <string name="re_email_setting_1">완료</string>
 
     <!-- 회원 탈퇴: 추가됨 -->
     <string name="delete_account">회원 탈퇴</string>
     <string name="delete_account_warning">회원 탈퇴 시 모든 데이터가 삭제됩니다.</string>
     <string name="confirm_delete_button">탈퇴하기</string>
 
-    <!-- 비밀번호 찾기  -->
-    <string name="password_find_title">비밀번호 찾기</string>
-    <string name="re_email_setting">돌아가기</string>
 </resources>

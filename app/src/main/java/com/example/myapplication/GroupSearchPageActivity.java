@@ -1,11 +1,13 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -18,19 +20,44 @@ public class GroupSearchPageActivity extends AppCompatActivity {
     private TextView categoryTextView;
     private Button groupRfpButton;
 
+    private ImageButton navHome, navGroup, navSearch, navMyPage;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_search_page);
 
+        navHome = findViewById(R.id.nav_home);
+        navGroup = findViewById(R.id.nav_group);
+        navMyPage = findViewById(R.id.nav_mypage);
+        navSearch = findViewById(R.id.nav_search);
+
         // UI 연결
         searchGroupInput = findViewById(R.id.search_group_input_1);
         TextView groupSearchTitle = findViewById(R.id.group_search_title);
         searchButton = findViewById(R.id.search_group_input_button);
-        TextView groupNameHint = findViewById(R.id.group_name_hint);
         categoryTextView = findViewById(R.id.category);
-        groupRfpButton = findViewById(R.id.group_rfp);
+
+        navHome.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupSearchPageActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
+
+        navGroup.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupSearchPageActivity.this, GroupPageActivity.class);
+            startActivity(intent);
+        });
+
+        navSearch.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupSearchPageActivity.this, GroupSearchPageActivity.class);
+            startActivity(intent);
+        });
+
+        navMyPage.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupSearchPageActivity.this, MyPageMainActivity.class);
+            startActivity(intent);
+        });
 
         // 검색 버튼 클릭 이벤트 처리
         searchButton.setOnClickListener(v -> {
@@ -46,11 +73,6 @@ public class GroupSearchPageActivity extends AppCompatActivity {
         // 카테고리 선택 버튼 클릭 이벤트 (category_btn_1 버튼 클릭 시)
         findViewById(R.id.category_btn_1).setOnClickListener(v -> {
             showCategoryPopup();
-        });
-
-        // 그룹 참가 요청 버튼 클릭 이벤트
-        groupRfpButton.setOnClickListener(v -> {
-            Toast.makeText(GroupSearchPageActivity.this, "그룹 참가 요청 완료", Toast.LENGTH_SHORT).show();
         });
     }
 

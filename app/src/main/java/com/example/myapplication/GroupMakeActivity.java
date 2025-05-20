@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.widget.ImageButton;
 import android.text.TextWatcher;
 import android.widget.*;
 import androidx.appcompat.app.AlertDialog;
@@ -26,6 +27,11 @@ public class GroupMakeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_make);
+
+        ImageButton backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> {
+            finish(); //
+        });
 
         // UI 연결
         editTextGroupName = findViewById(R.id.edittext_group_name);

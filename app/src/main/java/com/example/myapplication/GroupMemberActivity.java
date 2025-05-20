@@ -20,6 +20,11 @@ public class GroupMemberActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_member);
 
+        ImageButton backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> {
+            finish(); //
+        });
+
         memberListContainer = findViewById(R.id.member_recycler_view);
         refreshButton = findViewById(R.id.member_refresh_button);
 

@@ -20,8 +20,17 @@
             android:gravity="center"
             android:paddingTop="18dp"
             android:paddingBottom="22dp"
-            android:paddingStart="16dp"
+            android:paddingStart="3dp"
             android:paddingEnd="16dp">
+
+            <ImageButton
+                android:id="@+id/back_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_vertical"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_arrow_back"
+                android:contentDescription="뒤로가기" />
 
             <TextView
                 android:id="@+id/setting_title"
@@ -89,7 +98,7 @@
                 android:paddingBottom="24dp">
 
                 <TextView
-                    android:id="@+id/missim_alarm_setting"
+                    android:id="@+id/mission_alarm_setting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mission_alarm_setting"

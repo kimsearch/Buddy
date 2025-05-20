@@ -183,7 +183,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="2"
-                    android:layout_marginBottom="12dp">
+                    android:layout_marginBottom="3dp">
+
+                    <ImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_profile"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="프로필 이미지" />
 
                     <TextView
                         android:id="@+id/search_group_name_1"
@@ -196,49 +204,7 @@
                         android:textSize="18sp"
                         android:gravity="center"
                         android:layout_gravity="center"/>
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/search_group_party_1"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:src="@drawable/ic_group"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:contentDescription="@string/notification_description"
-                        android:tint="#2A3D45"
-                        android:scaleType="center"
-                        android:padding="12dp"
-                        android:layout_gravity="end"/>
                 </LinearLayout>
-
-                <!-- 그룹 설명 -->
-                <TextView
-                    android:id="@+id/group_introduction_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:background="@drawable/rounded_edit_text"
-                    android:fontFamily="@font/bmjua"
-                    android:gravity="top|start"
-                    android:text="그룹설명"
-                    android:padding="10dp"
-                    android:textColor="#2A3D45" />
-
-                <!-- 그룹 참가 요청하기 버튼 -->
-                <Button
-                    android:id="@+id/group_rfp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#FBF5DA"
-                    android:padding="14dp"
-                    android:text="@string/group_rfp"
-                    android:fontFamily="@font/bmjua"
-                    android:textColor="#2A3D45"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="8dp" />
             </LinearLayout>
 
         </LinearLayout>

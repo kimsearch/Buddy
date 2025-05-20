@@ -41,8 +41,6 @@
         <activity android:name=".CalendarActivity" />
         <activity android:name=".GroupCommunityActivity" />
         <activity android:name=".GroupCommunityWriteActivity" />
-        <activity android:name=".GroupDeleteActivity" />
-        <activity android:name=".GroupExitActivity" />
         <activity android:name=".GroupMainStepActivity" />
         <activity android:name=".GroupMakeActivity" />
         <activity android:name=".GroupMemberActivity" />

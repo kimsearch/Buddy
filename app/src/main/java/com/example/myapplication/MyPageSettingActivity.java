@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -27,6 +28,11 @@ public class MyPageSettingActivity extends AppCompatActivity {
         setContentView(R.layout.mypage_setting);
 
         apiService = Retrofit_client.getInstance().create(Retrofit_interface.class);
+
+        ImageButton backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> {
+            finish(); //
+        });
 
         // 이메일 찾기 버튼
         Button emailButton = findViewById(R.id.email_button);

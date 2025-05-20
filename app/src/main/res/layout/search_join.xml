@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D0F4DE">
+
+    <!-- 상단 헤더 -->
+    <LinearLayout
+        android:id="@+id/header_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="18dp"
+            android:paddingBottom="2dp"
+            android:paddingStart="3dp"
+            android:paddingEnd="16dp">
+
+            <ImageButton
+                android:id="@+id/back_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_vertical"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_arrow_back"
+                android:contentDescription="뒤로가기" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/report_icon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_report"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/notification_description"
+                android:tint="#2A3D45"
+                android:scaleType="center"
+                android:padding="12dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/top_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/header_container"
+        android:layout_above="@id/bottom_card_container"
+        android:gravity="bottom"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="24dp">
+
+        <!-- 카테고리part: "다이어트/만보기" 형식으로 연동되게 해주셔야 돼용 -->
+        <TextView
+            android:id="@+id/category_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            tools:text="다이어트/만보기"
+            android:textSize="16sp"
+            android:textColor="#2A3D45"
+            android:layout_marginBottom="8dp" />
+
+        <!-- 그룹 이름part: "그룹 이름" 연동되게 -->
+        <TextView
+            android:id="@+id/group_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            tools:text="같이 다이어트 해요"
+            android:textSize="22sp"
+            android:textColor="#2A3D45"
+            android:layout_marginBottom="8dp" />
+
+        <!-- 참여자 수, 시작 날짜part: 이것도 연동되게 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/member_count_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                tools:text="참여자 3"
+                android:textSize="16sp"
+                android:textColor="#8e8e8e"
+                android:layout_marginEnd="16dp" />
+
+            <TextView
+                android:id="@+id/start_date_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                tools:text="시작 날짜 2025-06-01"
+                android:textSize="16sp"
+                android:textColor="#8e8e8e" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 카드 -->
+    <RelativeLayout
+        android:id="@+id/bottom_card_container"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/card_rounded"
+        android:padding="24dp">
+
+        <LinearLayout
+            android:id="@+id/profile_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_profile"
+                android:scaleType="centerCrop"
+                android:contentDescription="프로필 이미지" />
+
+            <TextView
+                android:id="@+id/nickname_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text=""
+                tools:text="닉네임"
+                android:textColor="#2A3D45"
+                android:textSize="16sp"
+                android:fontFamily="@font/bmjua" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/group_introduction"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_below="@id/profile_section"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rounded_edit_text"
+            android:fontFamily="@font/bmjua"
+            android:gravity="top|start"
+            android:padding="10dp"
+            android:textColor="#2A3D45" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_join_group"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:text="@string/button_join_group"
+            android:fontFamily="@font/bmjua"
+            android:textColor="#2A3D45"
+            android:textSize="16sp"
+            android:background="@drawable/rounded_yellow_button"
+            android:layout_marginTop="12dp" />
+    </RelativeLayout>
+</RelativeLayout>
+
+
+

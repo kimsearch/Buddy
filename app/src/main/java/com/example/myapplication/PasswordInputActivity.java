@@ -31,7 +31,7 @@ public class PasswordInputActivity extends AppCompatActivity {
 
         emailCheckButton = findViewById(R.id.email_okay_button); // ✅ 새로 추가된 버튼
         passwordChangeButton = findViewById(R.id.password_okay_button);
-        backButton = findViewById(R.id.re_email_setting);
+        backButton = findViewById(R.id.re_email_setting_1);
 
         Retrofit_interface api = Retrofit_client.getInstance().create(Retrofit_interface.class);
 
