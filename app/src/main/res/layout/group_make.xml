@@ -214,6 +214,7 @@
                     android:id="@+id/alarm_timer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="설정 안 됨"
                     android:text="@string/alarm_timer"
                     android:textSize="16sp"
                     android:textColor="#2A3D45"

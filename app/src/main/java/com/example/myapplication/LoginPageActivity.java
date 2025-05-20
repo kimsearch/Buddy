@@ -9,9 +9,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,7 +16,7 @@ import retrofit2.Response;
 public class LoginPageActivity extends AppCompatActivity {
 
     private EditText emailInput, passwordInput;
-    private Button loginButton, findEmailButton, signupButton;
+    private Button loginButton, findEmailButton, findPasswordButton, signupButton;
 
     private Retrofit_interface apiService;
 
@@ -28,11 +25,9 @@ public class LoginPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
 
-        // 자동 로그인 확인
         SharedPreferences prefs = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         String savedEmail = prefs.getString("userEmail", null);
         if (savedEmail != null) {
-            // 이미 로그인된 상태면 바로 MainActivity로 이동
             startActivity(new Intent(LoginPageActivity.this, MainActivity.class));
             finish();
             return;
@@ -42,6 +37,7 @@ public class LoginPageActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.edittext_password_input);
         loginButton = findViewById(R.id.login_login_button);
         findEmailButton = findViewById(R.id.find_email_button);
+        findPasswordButton = findViewById(R.id.find_password_button);
         signupButton = findViewById(R.id.signup_button);
 
         apiService = Retrofit_client.getInstance().create(Retrofit_interface.class);
@@ -57,13 +53,15 @@ public class LoginPageActivity extends AppCompatActivity {
 
             LoginRequest request = new LoginRequest(email, password);
 
-            apiService.login(request).enqueue(new Callback<ResponseBody>() {
+            apiService.login(request).enqueue(new Callback<LoginResponse>() {
                 @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if (response.isSuccessful()) {
-                        // 로그인 성공 시 이메일 저장
+                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        String nickname = response.body().getNickname();  // ✅ 닉네임 받아오기
+
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putString("userEmail", email);
+                        editor.putString("userNickname", nickname); // ✅ 닉네임 저장
                         editor.apply();
 
                         Toast.makeText(LoginPageActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
@@ -75,20 +73,22 @@ public class LoginPageActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                public void onFailure(Call<LoginResponse> call, Throwable t) {
                     Toast.makeText(LoginPageActivity.this, "서버 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         });
 
         findEmailButton.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginPageActivity.this, EmailFindMainActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(LoginPageActivity.this, EmailFindMainActivity.class));
+        });
+
+        findPasswordButton.setOnClickListener(v -> {
+            startActivity(new Intent(LoginPageActivity.this, PasswordInputActivity.class));
         });
 
         signupButton.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginPageActivity.this, JoinPageActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(LoginPageActivity.this, JoinMembershipPageActivity.class));
         });
     }
 }
