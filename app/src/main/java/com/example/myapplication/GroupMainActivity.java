@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageButton;
 
 public class GroupMainActivity extends AppCompatActivity {
 
@@ -19,18 +20,50 @@ public class GroupMainActivity extends AppCompatActivity {
     private EditText goalInputEditText;  // 목표 입력 받는 EditText
     private Button goalInputButton;  // 목표 입력 버튼
 
-    private int totalGoal = 0;   // 목표 누적값
+    private AppCompatImageButton notificationButton1, notificationButton2, notificationButton3;
+    private AppCompatImageButton navHome, navGroup, navMyPage;
 
-    private ImageButton navHome, navGroup, navSearch, navPet, navMyPage;
+
+    private int totalGoal = 0;   // 목표 누적값
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_main);
 
+        notificationButton1 = findViewById(R.id.notification_button_1);
+        notificationButton2 = findViewById(R.id.notification_button_2);
+        notificationButton3 = findViewById(R.id.notification_button_3);
+
+        notificationButton1.setOnClickListener(v ->
+                startActivity(new Intent(GroupMainActivity.this, GroupMemberActivity.class)));
+
+        notificationButton2.setOnClickListener(v ->
+                startActivity(new Intent(GroupMainActivity.this, GroupCommunityActivity.class)));
+
+        notificationButton3.setOnClickListener(v ->
+                startActivity(new Intent(GroupMainActivity.this, AlarmPageActivity.class)));
+
         ImageButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(v -> {
             finish(); //
+        });
+
+        // 하단 네비게이션 버튼 연결
+        navHome = findViewById(R.id.nav_home);
+        navGroup = findViewById(R.id.nav_group);
+        navMyPage = findViewById(R.id.nav_mypage);
+        // navProgress = findViewById(R.id.nav_progress); // 주석 처리: 레이아웃에 없음
+
+        navHome.setOnClickListener(v ->
+                startActivity(new Intent(GroupMainActivity.this, MainActivity.class)));
+
+        navGroup.setOnClickListener(v ->
+                startActivity(new Intent(GroupMainActivity.this, GroupPageActivity.class)));
+
+        navMyPage.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupMainActivity.this, MyPageMainActivity.class);
+            startActivity(intent);
         });
 
         // UI 연결
@@ -38,36 +71,6 @@ public class GroupMainActivity extends AppCompatActivity {
         groupGoalView = findViewById(R.id.group_goal_view);    // 그룹 목표
         goalInputEditText = findViewById(R.id.goal_input_edittext);  // 목표 입력란
         goalInputButton = findViewById(R.id.goal_input_button);  // 목표 입력 버튼
-        navHome = findViewById(R.id.nav_home);
-        navGroup = findViewById(R.id.nav_group);
-        navSearch = findViewById(R.id.nav_search);
-        navPet = findViewById(R.id.nav_pet);
-        navMyPage = findViewById(R.id.nav_mypage);
-
-        navHome.setOnClickListener(v -> {
-            Intent intent = new Intent(GroupMainActivity.this, MainActivity.class);
-            startActivity(intent);
-        });
-
-        navGroup.setOnClickListener(v -> {
-            Intent intent = new Intent(GroupMainActivity.this, GroupPageActivity.class);
-            startActivity(intent);
-        });
-
-        navSearch.setOnClickListener(v -> {
-            Intent intent = new Intent(GroupMainActivity.this, GroupPageActivity.class);
-            startActivity(intent);
-        });
-
-        navPet.setOnClickListener(v -> {
-            Intent intent = new Intent(GroupMainActivity.this, PetActivity.class);
-            startActivity(intent);
-        });
-
-        navMyPage.setOnClickListener(v -> {
-            Intent intent = new Intent(GroupMainActivity.this, MyPageMainActivity.class);
-            startActivity(intent);
-        });
 
         // Intent로 전달된 그룹 이름 및 목표 받기
         Intent intent = getIntent();
