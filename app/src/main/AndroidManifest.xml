@@ -46,8 +46,6 @@
         <activity android:name=".GroupMemberActivity" />
         <activity android:name=".GroupPageActivity" />
         <activity android:name=".SampleLayoutActivity" />
-        <activity android:name=".PetActivity" />
-        <activity android:name=".SearchJoinActivity" />
         <activity android:name=".MyPageMainActivity" />
         <activity android:name=".MyPageSettingActivity" />
         <activity android:name=".PasswordInputActivity" />

@@ -35,7 +35,7 @@ public class JoinPageActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.edittext_password_input);
         passwordConfirmInput = findViewById(R.id.edittext_password_check_input);
         nicknameCheckButton = findViewById(R.id.id_check_button);
-        signupButton = findViewById(R.id.id_check_button);
+        signupButton = findViewById(R.id.login_login_button);
         emailAuthButton = findViewById(R.id.email_auth_button);
         emailVerifyButton = findViewById(R.id.email_verify_button);
         passwordCheckButton = findViewById(R.id.password_check_button);
