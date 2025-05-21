@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fcf2f2">
+
+    <LinearLayout
+        android:id="@+id/header_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:paddingBottom="22dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textColor="#2A3D45"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/pet_info"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_info"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/notification_description"
+                android:tint="#e2e2e2"
+                android:scaleType="center"
+                android:padding="12dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_nav"
+        android:layout_below="@id/header_container"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp">
+
+            <!-- 1. 중앙 텍스트뷰 -->
+            <TextView
+                android:id="@+id/pet_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="버몽이"
+                android:textSize="24sp"
+                android:textColor="#2A3D45"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+            <!-- 2. 움짤 (GIF) 표시용 ImageView -->
+            <ImageView
+                android:id="@+id/pet_gif"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginBottom="25dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="펫 이미지" />
+
+            <!-- 3. 레벨 표시 -->
+            <TextView
+                android:id="@+id/pet_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="레벨 1"
+                android:textSize="20sp"
+                android:textColor="#2A3D45"
+                android:layout_marginBottom="20dp" />
+
+            <!-- 4. 프로그레스 바 -->
+            <ProgressBar
+                android:id="@+id/pet_progress_bar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="300dp"
+                android:layout_height="18dp"
+                android:progress="25"
+                android:max="100"
+                android:progressDrawable="@drawable/progressbar"
+                android:layout_marginBottom="40dp" />
+
+            <LinearLayout
+                android:id="@+id/heart_button_container"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/pet_drawable"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/heart_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_heart_filled"/>
+
+                <TextView
+                    android:id="@+id/heart_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="207"
+                    android:textSize="18sp"
+                    android:textColor="#2A3D45" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <!-- 하단 네비게이션 바 -->
+    <LinearLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#DBDBDB"
+        android:padding="8dp"
+        android:layout_alignParentBottom="true">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_home"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_group"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_group"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_search"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_search"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_pet"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_paw"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="fitCenter"
+            android:padding="12dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_mypage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_mypage"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
+    </LinearLayout>
+</RelativeLayout>

@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageButton alarmButton, calendarButton;
     private Button goal1Button, goal2Button;
-    private ImageButton navHome, navGroup, navSearch,navMyPage;
+    private ImageButton navHome, navGroup, navSearch, navPet, navMyPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
         navMyPage = findViewById(R.id.nav_mypage);
+        navPet = findViewById(R.id.nav_pet);
         navSearch = findViewById(R.id.nav_search);
 
         // 터치 효과 공통 함수
@@ -70,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
 
         navSearch.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, GroupSearchPageActivity.class);
+            startActivity(intent);
+        });
+
+        navPet.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, PetActivity.class);
             startActivity(intent);
         });
 

@@ -274,7 +274,7 @@
             android:padding="12dp" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/nav_alarm"
+            android:id="@+id/nav_pet"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="1"

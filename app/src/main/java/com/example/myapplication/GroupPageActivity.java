@@ -10,7 +10,7 @@ public class GroupPageActivity extends AppCompatActivity {
 
     // UI 요소들 선언
     private AppCompatImageButton notificationBtn, deleteGoal1Btn, deleteGoal2Btn, deleteGoal3Btn;
-    private AppCompatImageButton navHome, navGroup, navSearch, navMyPage;
+    private AppCompatImageButton navHome, navSearch, navPet, navMyPage;
     private Button goal1Btn, goal2Btn, goal3Btn, createRoomBtn;
 
     @Override
@@ -35,8 +35,8 @@ public class GroupPageActivity extends AppCompatActivity {
         createRoomBtn = findViewById(R.id.create_room_button);
 
         navHome = findViewById(R.id.nav_home);
-        navGroup = findViewById(R.id.nav_group);
         navSearch = findViewById(R.id.nav_search);
+        navPet = findViewById(R.id.nav_pet);
         navMyPage = findViewById(R.id.nav_mypage);
     }
 
@@ -60,10 +60,25 @@ public class GroupPageActivity extends AppCompatActivity {
         createRoomBtn.setOnClickListener(v -> navigateTo(GroupMakeActivity.class));
 
         // 하단 내비게이션
-        navHome.setOnClickListener(v -> navigateTo(MainActivity.class));
-        navGroup.setOnClickListener(v -> recreate()); // 현재 페이지 → 새로고침
-        navSearch.setOnClickListener(v -> navigateTo(GroupSearchPageActivity.class));
-        navMyPage.setOnClickListener(v -> navigateTo(MyPageMainActivity.class));
+        navHome.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupPageActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
+
+        navSearch.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupPageActivity.this, GroupSearchPageActivity.class);
+            startActivity(intent);
+        });
+
+        navPet.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupPageActivity.this, PetActivity.class);
+            startActivity(intent);
+        });
+
+        navMyPage.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupPageActivity.this, MyPageMainActivity.class);
+            startActivity(intent);
+        });
     }
 
     // 공통 인텐트 이동 함수

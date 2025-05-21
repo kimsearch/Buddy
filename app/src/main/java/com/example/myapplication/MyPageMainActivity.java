@@ -16,7 +16,7 @@ import androidx.appcompat.widget.AppCompatImageButton;
 public class MyPageMainActivity extends AppCompatActivity {
 
     AppCompatImageButton settingsButton, delete1Button, delete2Button;
-    AppCompatImageButton navHome, navGroup, navSearch, navMyPage;
+    AppCompatImageButton navHome, navGroup, navSearch, navPet, navMyPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class MyPageMainActivity extends AppCompatActivity {
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
         navSearch = findViewById(R.id.nav_search);
+        navPet = findViewById(R.id.nav_pet);
         navMyPage = findViewById(R.id.nav_mypage);
 
         navHome.setOnClickListener(v -> {
@@ -54,7 +55,12 @@ public class MyPageMainActivity extends AppCompatActivity {
         });
 
         navSearch.setOnClickListener(v -> {
-            Intent intent = new Intent(MyPageMainActivity.this, GroupPageActivity.class);
+            Intent intent = new Intent(MyPageMainActivity.this, GroupSearchPageActivity.class);
+            startActivity(intent);
+        });
+
+        navPet.setOnClickListener(v -> {
+            Intent intent = new Intent(MyPageMainActivity.this, PetActivity.class);
             startActivity(intent);
         });
 

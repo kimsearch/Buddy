@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -20,7 +21,7 @@ public class GroupSearchPageActivity extends AppCompatActivity {
     private TextView categoryTextView;
     private Button groupRfpButton;
 
-    private ImageButton navHome, navGroup, navSearch, navMyPage;
+    private ImageButton navHome, navGroup, navSearch, navPet, navMyPage;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -31,6 +32,7 @@ public class GroupSearchPageActivity extends AppCompatActivity {
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
         navMyPage = findViewById(R.id.nav_mypage);
+        navPet = findViewById(R.id.nav_pet);
         navSearch = findViewById(R.id.nav_search);
 
         // UI 연결
@@ -38,6 +40,13 @@ public class GroupSearchPageActivity extends AppCompatActivity {
         TextView groupSearchTitle = findViewById(R.id.group_search_title);
         searchButton = findViewById(R.id.search_group_input_button);
         categoryTextView = findViewById(R.id.category);
+
+        LinearLayout groupItemLayout = findViewById(R.id.group_item_layout);
+        groupItemLayout.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupSearchPageActivity.this, SearchJoinActivity.class);
+            startActivity(intent);
+        });
+
 
         navHome.setOnClickListener(v -> {
             Intent intent = new Intent(GroupSearchPageActivity.this, MainActivity.class);
@@ -51,6 +60,11 @@ public class GroupSearchPageActivity extends AppCompatActivity {
 
         navSearch.setOnClickListener(v -> {
             Intent intent = new Intent(GroupSearchPageActivity.this, GroupSearchPageActivity.class);
+            startActivity(intent);
+        });
+
+        navPet.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupSearchPageActivity.this, PetActivity.class);
             startActivity(intent);
         });
 

@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CalendarActivity extends AppCompatActivity {
 
     private CalendarView calendarView;
-    private ImageButton navHome, navGroup, navSearch, navMyPage;
+    private ImageButton navHome, navGroup, navSearch, navPet, navMyPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,7 @@ public class CalendarActivity extends AppCompatActivity {
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
         navSearch = findViewById(R.id.nav_search);
+        navPet = findViewById(R.id.nav_pet);
         navMyPage = findViewById(R.id.nav_mypage);
 
         calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
@@ -45,6 +46,11 @@ public class CalendarActivity extends AppCompatActivity {
 
         navSearch.setOnClickListener(v -> {
             Intent intent = new Intent(CalendarActivity.this, GroupPageActivity.class);
+            startActivity(intent);
+        });
+
+        navPet.setOnClickListener(v -> {
+            Intent intent = new Intent(CalendarActivity.this, PetActivity.class);
             startActivity(intent);
         });
 

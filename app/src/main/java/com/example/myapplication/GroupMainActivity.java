@@ -21,6 +21,8 @@ public class GroupMainActivity extends AppCompatActivity {
 
     private int totalGoal = 0;   // 목표 누적값
 
+    private ImageButton navHome, navGroup, navSearch, navPet, navMyPage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,36 @@ public class GroupMainActivity extends AppCompatActivity {
         groupGoalView = findViewById(R.id.group_goal_view);    // 그룹 목표
         goalInputEditText = findViewById(R.id.goal_input_edittext);  // 목표 입력란
         goalInputButton = findViewById(R.id.goal_input_button);  // 목표 입력 버튼
+        navHome = findViewById(R.id.nav_home);
+        navGroup = findViewById(R.id.nav_group);
+        navSearch = findViewById(R.id.nav_search);
+        navPet = findViewById(R.id.nav_pet);
+        navMyPage = findViewById(R.id.nav_mypage);
+
+        navHome.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupMainActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
+
+        navGroup.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupMainActivity.this, GroupPageActivity.class);
+            startActivity(intent);
+        });
+
+        navSearch.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupMainActivity.this, GroupPageActivity.class);
+            startActivity(intent);
+        });
+
+        navPet.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupMainActivity.this, PetActivity.class);
+            startActivity(intent);
+        });
+
+        navMyPage.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupMainActivity.this, MyPageMainActivity.class);
+            startActivity(intent);
+        });
 
         // Intent로 전달된 그룹 이름 및 목표 받기
         Intent intent = getIntent();
