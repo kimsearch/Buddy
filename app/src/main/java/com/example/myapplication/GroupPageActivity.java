@@ -3,85 +3,99 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class GroupPageActivity extends AppCompatActivity {
 
-    // UI 요소들 선언
-    private AppCompatImageButton notificationBtn, deleteGoal1Btn, deleteGoal2Btn, deleteGoal3Btn;
-    private AppCompatImageButton navHome, navSearch, navPet, navMyPage;
-    private Button goal1Btn, goal2Btn, goal3Btn, createRoomBtn;
-
+    private AppCompatImageButton notificationBtn, navHome, navSearch, navPet, navMyPage;
+    private RecyclerView recyclerView;
+    private GroupAdapter groupAdapter;
+    private List<Group> groupList;
+    private Button createRoomBtn;
+    private Long myMemberId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_page);
 
-        initViews();       // 뷰 초기화
-        setupListeners();  // 리스너 설정
+        myMemberId = getMyMemberId();
+
+        initViews();
+        setupRecyclerView();
+        setupListeners();
     }
 
-    // 1. View 요소 초기화
+    private Long getMyMemberId() {
+        return getSharedPreferences("loginPrefs", MODE_PRIVATE)
+                .getLong("memberId", -1L);
+    }
+
     private void initViews() {
         notificationBtn = findViewById(R.id.notification_button);
-        deleteGoal1Btn = findViewById(R.id.delete_group_goals_button);
-        deleteGoal2Btn = findViewById(R.id.delete_group_goals_button_1);
-        deleteGoal3Btn = findViewById(R.id.delete_group_goals_button_2);
-
-        goal1Btn = findViewById(R.id.group_goal_button_1);
-        goal2Btn = findViewById(R.id.group_goal_button_2);
-        goal3Btn = findViewById(R.id.group_goal_3);
-        createRoomBtn = findViewById(R.id.create_room_button);
-
         navHome = findViewById(R.id.nav_home);
         navSearch = findViewById(R.id.nav_search);
         navPet = findViewById(R.id.nav_pet);
         navMyPage = findViewById(R.id.nav_mypage);
+        recyclerView = findViewById(R.id.group_recycler_view);
+        createRoomBtn = findViewById(R.id.create_room_button);
     }
 
-    // 2. 리스너 연결
-    private void setupListeners() {
+    private void setupRecyclerView() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // 상단 버튼들
+        Retrofit_interface api = Retrofit_client.getInstance().create(Retrofit_interface.class);
+        api.getMyGroups(myMemberId).enqueue(new Callback<List<Group>>() {
+            @Override
+            public void onResponse(Call<List<Group>> call, Response<List<Group>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    groupList = response.body();
+                    groupAdapter = new GroupAdapter(GroupPageActivity.this, groupList, myMemberId);
+                    recyclerView.setAdapter(groupAdapter);
+                } else {
+                    // 에러 처리: 서버는 연결됐지만 결과 없음
+                    Toast.makeText(GroupPageActivity.this, "그룹 목록을 불러오지 못했습니다", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Group>> call, Throwable t) {
+                // 에러 처리: 서버 연결 실패
+                Toast.makeText(GroupPageActivity.this, "서버 오류: " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
+    private List<Group> getGroupList() {
+        List<Group> list = new ArrayList<>();
+        list.add(new Group(1L, "하루 만보 걷기 챌린지", 18L));
+        list.add(new Group(2L, "같이 다이어트 해요", 19L));
+        list.add(new Group(3L, "버디퀘스트 화이팅", 20L));
+        return list;
+    }
+
+    private void setupListeners() {
         notificationBtn.setOnClickListener(v -> navigateTo(AlarmPageActivity.class));
 
-        // 삭제 버튼 클릭 시 GroupExitActivity로 이동
-        deleteGoal1Btn.setOnClickListener(v -> navigateTo(GroupExitActivity.class));
-        deleteGoal2Btn.setOnClickListener(v -> navigateTo(GroupExitActivity.class));
-        deleteGoal3Btn.setOnClickListener(v -> navigateTo(GroupExitActivity.class));
-
-        // 그룹 목표 버튼들
-        goal1Btn.setOnClickListener(v -> navigateTo(GroupMainStepActivity.class));
-        goal2Btn.setOnClickListener(v -> navigateTo(GroupMainActivity.class));
-        goal3Btn.setOnClickListener(v -> navigateTo(GroupMainActivity.class));
-
-        // 그룹 만들기
+        navHome.setOnClickListener(v -> navigateTo(MainActivity.class));
+        navSearch.setOnClickListener(v -> navigateTo(GroupSearchPageActivity.class));
+        navPet.setOnClickListener(v -> navigateTo(PetActivity.class));
+        navMyPage.setOnClickListener(v -> navigateTo(MyPageMainActivity.class));
         createRoomBtn.setOnClickListener(v -> navigateTo(GroupMakeActivity.class));
-
-        // 하단 내비게이션
-        navHome.setOnClickListener(v -> {
-            Intent intent = new Intent(GroupPageActivity.this, MainActivity.class);
-            startActivity(intent);
-        });
-
-        navSearch.setOnClickListener(v -> {
-            Intent intent = new Intent(GroupPageActivity.this, GroupSearchPageActivity.class);
-            startActivity(intent);
-        });
-
-        navPet.setOnClickListener(v -> {
-            Intent intent = new Intent(GroupPageActivity.this, PetActivity.class);
-            startActivity(intent);
-        });
-
-        navMyPage.setOnClickListener(v -> {
-            Intent intent = new Intent(GroupPageActivity.this, MyPageMainActivity.class);
-            startActivity(intent);
-        });
     }
 
-    // 공통 인텐트 이동 함수
     private void navigateTo(Class<?> targetActivity) {
         startActivity(new Intent(this, targetActivity));
     }

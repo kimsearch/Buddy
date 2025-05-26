@@ -76,13 +76,19 @@ public class GroupMainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String groupName = intent.getStringExtra("groupName");
         String groupGoal = intent.getStringExtra("groupGoal");
+        Long groupId = intent.getLongExtra("groupId", -1L);
 
-        // 그룹 이름과 목표 설정
-        if (groupName != null) {
-            groupMainTitle.setText(groupName);  // 그룹 이름을 텍스트뷰에 설정
+// 그룹 이름과 목표 설정
+        if (groupName != null && !groupName.isEmpty()) {
+            groupMainTitle.setText(groupName);
+        } else {
+            groupMainTitle.setText("이름 없는 그룹");
         }
-        if (groupGoal != null) {
-            groupGoalView.setText(groupGoal);  // 그룹 목표를 텍스트뷰에 설정
+
+        if (groupGoal != null && !groupGoal.isEmpty()) {
+            groupGoalView.setText("그룹 목표: " + groupGoal);
+        } else {
+            groupGoalView.setText("그룹 목표가 없습니다");
         }
 
         // 목표 입력 버튼 클릭 시
