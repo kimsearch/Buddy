@@ -1,11 +1,14 @@
 package com.example.myapplication;
 
+import java.util.List;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface Retrofit_interface {
@@ -57,4 +60,21 @@ public interface Retrofit_interface {
     // 이메일 존재 여부 확인
     @GET("/members/check-email")
     Call<ResponseBody> checkEmail(@Query("email") String email);
+    //그룹 생성
+    @POST("/groups/create")
+    Call<BuddyGroup> createGroup(@Body BuddyGroupDto dto, @Query("memberId") Long memberId);
+
+    @GET("/groups/check-name")
+    Call<ResponseBody> checkGroupName(@Query("name") String name);
+
+    @GET("/groups/my-groups")
+    Call<List<Group>> getMyGroups(@Query("memberId") Long memberId);
+
+    @DELETE("/groups/exit")
+    Call<ResponseBody> exitGroup(@Query("groupId") Long groupId, @Query("memberId") Long memberId);
+
+
+
+
+
 }

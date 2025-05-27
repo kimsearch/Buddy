@@ -57,11 +57,13 @@ public class LoginPageActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                     if (response.isSuccessful() && response.body() != null) {
-                        String nickname = response.body().getNickname();  // ✅ 닉네임 받아오기
+                        String nickname = response.body().getNickname();  // 닉네임 받아오기
+                        Long memberId = response.body().getId();          // memberId 받아오기
 
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putString("userEmail", email);
-                        editor.putString("userNickname", nickname); // ✅ 닉네임 저장
+                        editor.putString("userNickname", nickname);
+                        editor.putLong("memberId", memberId);
                         editor.apply();
 
                         Toast.makeText(LoginPageActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();

@@ -2,8 +2,10 @@ package com.example.myapplication;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.text.TextWatcher;
 import android.widget.*;
@@ -13,13 +15,22 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class GroupMakeActivity extends AppCompatActivity {
 
     private EditText editTextGroupName, editTextGroupDescription;
     private Button buttonStartDate, buttonAlarmSetting, buttonCreateGroup;
     private TextView selectedCategory;
+
+    private Button buttonGroupNameCheck;
+
     private String selectedAlarmSetting = "설정 안 됨";
     private String selectedStartDate = "";
+    private String selectedMainCategory = ""; //선택된 카테고리
     private String selectedSubCategory = "";  // 선택된 서브 카테고리
     private boolean isGoalFrequencySet = false; // Track if goal frequency is set
 
@@ -40,6 +51,8 @@ public class GroupMakeActivity extends AppCompatActivity {
         buttonAlarmSetting = findViewById(R.id.button_alarm_setting);
         buttonCreateGroup = findViewById(R.id.button_create_group);
         selectedCategory = findViewById(R.id.selected_category);
+        buttonGroupNameCheck = findViewById(R.id.button_group_name_check);
+
 
         // Initially disable the create group button
         buttonCreateGroup.setEnabled(false);
@@ -61,37 +74,132 @@ public class GroupMakeActivity extends AppCompatActivity {
             datePickerDialog.show();
         });
 
+        buttonGroupNameCheck = findViewById(R.id.button_group_name_check);
+        editTextGroupName = findViewById(R.id.edittext_group_name);
+
+
+        buttonGroupNameCheck.setOnClickListener(v -> {
+            String nameToCheck = editTextGroupName.getText().toString().trim();
+
+            if (nameToCheck.isEmpty()) {
+                Toast.makeText(this, "그룹 이름을 입력하세요", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Retrofit_interface api = Retrofit_client.getInstance().create(Retrofit_interface.class);
+            api.checkGroupName(nameToCheck).enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    try {
+                        if (response.code() == 409) {
+                            // 이미 존재하는 이름
+                            Toast.makeText(GroupMakeActivity.this, "이미 존재하는 그룹 이름입니다.", Toast.LENGTH_SHORT).show();
+                        } else if (response.isSuccessful() && response.body() != null) {
+                            // 사용 가능한 이름
+                            String msg = response.body().string();
+                            Toast.makeText(GroupMakeActivity.this, msg, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(GroupMakeActivity.this, "오류 발생: " + response.code(), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(GroupMakeActivity.this, "응답 처리 중 오류 발생", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Toast.makeText(GroupMakeActivity.this, "서버 연결 실패: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
+
+
+
+
         // 목표 설정 주기 팝업
         buttonAlarmSetting.setOnClickListener(v -> showAlarmPopup());
 
         // 그룹 만들기 버튼 클릭 시
         buttonCreateGroup.setOnClickListener(v -> {
             String groupName = editTextGroupName.getText().toString().trim();
-            String groupDesc = editTextGroupDescription.getText().toString().trim(); // 그룹 설명 가져오기
+            String groupDesc = editTextGroupDescription.getText().toString().trim();
 
             if (groupName.isEmpty() || groupDesc.isEmpty()) {
                 Toast.makeText(this, "그룹 이름과 설명을 입력하세요", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // 카테고리 선택에 따른 이동 처리
-            Intent intent;
-
-            if ("만보기".equals(selectedSubCategory) || "다이어트".equals(selectedSubCategory)) {
-                intent = new Intent(GroupMakeActivity.this, GroupMainStepActivity.class);
-            } else {
-                intent = new Intent(GroupMakeActivity.this, GroupMainActivity.class);
+            // SharedPreferences에서 memberId 가져오기
+            SharedPreferences prefs = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+            Long memberId = prefs.getLong("memberId", -1L);
+            if (memberId == -1L) {
+                Toast.makeText(this, "로그인이 필요합니다", Toast.LENGTH_SHORT).show();
+                return;
             }
 
-            // 인텐트로 데이터를 전달
-            intent.putExtra("groupName", groupName);
-            intent.putExtra("startDate", selectedStartDate); // 시작 날짜
-            intent.putExtra("alarmSetting", selectedAlarmSetting); // 알림 설정
-            intent.putExtra("goalSubtitle", selectedSubCategory); // 목표 서브타이틀 (만보기, 다이어트 등)
-            intent.putExtra("groupDesc", groupDesc); // 그룹 설명
-            startActivity(intent);
-            finish();
+            //  알림 설정 → 숫자 주기로 변환
+            int cycleDays;
+            switch (selectedAlarmSetting) {
+                case "매일": cycleDays = 1; break;
+                case "매주": cycleDays = 7; break;
+                case "매월": cycleDays = 30; break;
+                default: cycleDays = 0; // "안 함" 또는 예외 처리
+            }
+
+            // ✅ 카테고리 텍스트 가져오기
+
+            Log.d("DTO_DEBUG", "name: " + groupName
+                    + ", category: " + selectedMainCategory
+                    + ", description: " + groupDesc
+                    + ", goalType: " + selectedSubCategory
+                    + ", cycleDays: " + cycleDays);
+            // ✅ 전송할 DTO 만들기
+            BuddyGroupDto dto = new BuddyGroupDto(
+                    groupName,
+                    selectedMainCategory,
+                    cycleDays,
+                    groupDesc,
+                    selectedSubCategory
+            );
+
+            // ✅ Retrofit 호출 (Retrofit_client 사용)
+            Retrofit_interface api = Retrofit_client.getInstance().create(Retrofit_interface.class);
+            api.createGroup(dto, memberId).enqueue(new Callback<BuddyGroup>() {
+                @Override
+                public void onResponse(Call<BuddyGroup> call, Response<BuddyGroup> response) {
+                    if (response.isSuccessful()) {
+                        Toast.makeText(GroupMakeActivity.this, "그룹 생성 완료!", Toast.LENGTH_SHORT).show();
+
+                        // 성공 시 그룹 메인 화면으로 이동
+                        Intent intent;
+                        if ("만보기".equals(selectedSubCategory) || "다이어트".equals(selectedSubCategory)) {
+                            intent = new Intent(GroupMakeActivity.this, GroupMainStepActivity.class);
+                        } else {
+                            intent = new Intent(GroupMakeActivity.this, GroupMainActivity.class);
+                        }
+
+                        intent.putExtra("groupName", groupName);
+                        intent.putExtra("startDate", selectedStartDate);
+                        intent.putExtra("alarmSetting", selectedAlarmSetting);
+                        intent.putExtra("goalSubtitle", selectedSubCategory);
+                        intent.putExtra("groupDesc", groupDesc);
+
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(GroupMakeActivity.this, "그룹 생성 실패 (서버 오류)", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<BuddyGroup> call, Throwable t) {
+                    Toast.makeText(GroupMakeActivity.this, "연결 실패: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         });
+
+
 
         // 그룹 이름에 대한 TextWatcher 추가
         editTextGroupName.addTextChangedListener(new TextWatcher() {
@@ -114,6 +222,8 @@ public class GroupMakeActivity extends AppCompatActivity {
 
         // 카테고리 버튼 클릭 시
         findViewById(R.id.category_btn_1).setOnClickListener(v -> {
+            selectedMainCategory = "다이어트"; // 전역 변수에 대입
+            selectedCategory.setText("선택된 카테고리: " + selectedMainCategory);
             showSubCategoryPopup();
         });
     }
@@ -127,7 +237,7 @@ public class GroupMakeActivity extends AppCompatActivity {
             selectedSubCategory = items[which];
             Toast.makeText(this, selectedSubCategory + " 선택됨", Toast.LENGTH_SHORT).show();
             // 선택된 카테고리 텍스트 뷰 업데이트
-            selectedCategory.setText("선택된 카테고리: " + selectedSubCategory);
+            selectedCategory.setText("카테고리: " + selectedMainCategory + " / 목표: " + selectedSubCategory);
 
             // 선택된 카테고리가 '만보기'일 경우 그룹 목표 입력란을 '걸음 수' 목표로 설정
             if ("만보기".equals(selectedSubCategory)) {

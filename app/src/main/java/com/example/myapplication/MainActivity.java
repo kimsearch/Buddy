@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +21,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+        // 자동 로그인 여부 확인
+        SharedPreferences prefs = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        String savedEmail = prefs.getString("userEmail", null);
+
+        if (savedEmail == null) {
+            // 로그인하지 않은 상태 → 로그인 화면으로 이동
+            Intent intent = new Intent(MainActivity.this, LoginPageActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
+        // 로그인 되어 있으면 정상적으로 화면 구성
 
         alarmButton = findViewById(R.id.notification_button);
         calendarButton = findViewById(R.id.calendar);
