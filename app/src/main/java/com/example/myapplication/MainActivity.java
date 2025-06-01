@@ -11,11 +11,18 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
     private ImageButton alarmButton, calendarButton;
-    private Button goal1Button, goal2Button;
     private ImageButton navHome, navGroup, navSearch, navPet, navMyPage;
 
     @Override
@@ -36,12 +43,34 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        Long myMemberId = prefs.getLong("memberId", -1L);
+
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_home_group_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        Retrofit_interface api = Retrofit_client.getInstance().create(Retrofit_interface.class);
+        api.getMyGroups(myMemberId).enqueue(new Callback<List<Group>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Group>> call, @NonNull Response<List<Group>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Group> groupList = response.body();
+                    HomeGroupAdapter adapter = new HomeGroupAdapter(MainActivity.this, groupList, myMemberId);
+                    recyclerView.setAdapter(adapter);
+                } else {
+                    Toast.makeText(MainActivity.this, "그룹 데이터를 불러오지 못했습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Group>> call, @NonNull Throwable t) {
+                Toast.makeText(MainActivity.this, "서버 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         // 로그인 되어 있으면 정상적으로 화면 구성
 
         alarmButton = findViewById(R.id.notification_button);
         calendarButton = findViewById(R.id.calendar);
-        goal1Button = findViewById(R.id.btnWalkTracker);  // 하루 만보 걷기 챌린지
-        goal2Button = findViewById(R.id.btnDiet);  // 같이 다이어트 해요
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
         navMyPage = findViewById(R.id.nav_mypage);
@@ -64,17 +93,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 클릭 이벤트 3: 그룹 목표 1 → group_main.xml
-        goal1Button.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, GroupMainActivity.class);
-            startActivity(intent);
-        });
-
-        // 클릭 이벤트 4: 그룹 목표 2 → group_main.xml
-        goal2Button.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, GroupMainActivity.class);
-            startActivity(intent);
-        });
 
         navHome.setOnClickListener(v -> {
            Intent intent = new Intent(MainActivity.this, MainActivity.class);

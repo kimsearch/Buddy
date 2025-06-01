@@ -3,6 +3,8 @@ package com.example.myapplication;
 import android.app.AlertDialog;
 import android.content.Intent;
 import androidx.core.content.res.ResourcesCompat;
+
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -18,10 +20,21 @@ public class MyPageMainActivity extends AppCompatActivity {
     AppCompatImageButton settingsButton, delete1Button, delete2Button;
     AppCompatImageButton navHome, navGroup, navSearch, navPet, navMyPage;
 
+    TextView nicknameText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mypage_main);
+
+        nicknameText = findViewById(R.id.nickname_text);
+
+        //닉네임 불러오기
+        SharedPreferences prefs = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        String nickname = prefs.getString("userNickname", "닉네임 없음");
+
+        //닉네임 설정
+        nicknameText.setText(nickname);
 
         // 1. 설정 버튼 → mypage_setting.xml
         settingsButton = findViewById(R.id.settings_title);

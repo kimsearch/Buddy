@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F4F4F4">
@@ -10,8 +11,7 @@
         android:id="@+id/header_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true">
+        android:orientation="vertical">
 
         <!-- 앱 이름 + 알림 -->
         <LinearLayout
@@ -48,7 +48,7 @@
                 android:padding="12dp" />
         </LinearLayout>
 
-        <!-- 나의 목표 현황 -->
+        <!-- 나의 목표 현황 버튼 -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -87,199 +87,89 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- 스크롤 영역 -->
+    <!-- 스크롤 콘텐츠 -->
     <ScrollView
-        android:id="@+id/scroll_area"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/header_container"
-        android:layout_above="@id/bottom_nav"
-        android:background="@android:color/transparent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
             android:orientation="vertical"
-            android:layout_marginBottom="20dp">
+            android:padding="16dp">
 
             <!-- 그룹 목표 -->
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="그룹 목표"
+                android:textColor="#2A3D45"
+                android:textSize="20sp"
+                android:fontFamily="@font/bmjua"
+                android:layout_marginBottom="8dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_home_group_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="15dp">
-
-                <TextView
-                    android:id="@+id/group_goal_title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/group_goals"
-                    android:fontFamily="@font/bmjua"
-                    android:textSize="20sp"
-                    android:textColor="#2A3D45" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/group_goal_section"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="30dp">
-
-                <!-- 그룹 목표 1 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="8dp">
-
-                    <Button
-                        android:id="@+id/btnWalkTracker"
-                        android:layout_width="0dp"
-                        android:layout_height="60dp"
-                        android:layout_weight="1"
-                        android:text="@string/btnWalkTracker"
-                        android:fontFamily="@font/bmjua"
-                        android:textColor="#2A3D45"
-                        android:backgroundTint="#D0F4DE"
-                        android:gravity="start|center_vertical"
-                        android:paddingStart="16dp"/>
-
-                    <View
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/ic_data"
-                        android:importantForAccessibility="no" />
-                </LinearLayout>
-
-                <!-- 그룹 목표 2 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="8dp">
-
-                    <Button
-                        android:id="@+id/btnDiet"
-                        android:layout_width="0dp"
-                        android:layout_height="60dp"
-                        android:layout_weight="1"
-                        android:text="@string/btnDiet"
-                        android:fontFamily="@font/bmjua"
-                        android:textColor="#2A3D45"
-                        android:backgroundTint="#D0F4DE"
-                        android:gravity="start|center_vertical"
-                        android:paddingStart="16dp"/>
-
-                    <View
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/ic_data"
-                        android:importantForAccessibility="no" />
-
-                </LinearLayout>
-            </LinearLayout>
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false"
+                tools:listitem="@layout/item_home_group_row" />
 
             <!-- 개인 목표 -->
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="15dp">
-
-                <TextView
-                    android:id="@+id/personal_goal_title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/personal_goals"
-                    android:fontFamily="@font/bmjua"
-                    android:textSize="20sp"
-                    android:textColor="#2A3D45" />
-            </LinearLayout>
+                android:text="개인 목표"
+                android:textColor="#2A3D45"
+                android:textSize="20sp"
+                android:fontFamily="@font/bmjua"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp" />
 
             <LinearLayout
-                android:id="@+id/personal_goal_section"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- 개인 목표 1 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical">
 
                     <Button
                         android:layout_width="0dp"
                         android:layout_height="60dp"
                         android:layout_weight="1"
-                        android:text="@string/personal_goal_1"
-                        android:fontFamily="@font/bmjua"
+                        android:text="물 1L 마시기"
                         android:textColor="#2A3D45"
+                        android:fontFamily="@font/bmjua"
                         android:backgroundTint="#FBF5DA"
                         android:gravity="start|center_vertical"
-                        android:paddingStart="16dp"/>
+                        android:paddingStart="16dp" />
 
                     <View
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginStart="8dp"
-                        android:background="@drawable/ic_data"
-                        android:importantForAccessibility="no" />
+                        android:background="@drawable/ic_data" />
                 </LinearLayout>
 
-                <!-- 개인 목표 2 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="8dp">
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="60dp"
-                        android:layout_weight="1"
-                        android:text="@string/personal_goal_2"
-                        android:fontFamily="@font/bmjua"
-                        android:textColor="#2A3D45"
-                        android:backgroundTint="#FBF5DA"
-                        android:gravity="start|center_vertical"
-                        android:paddingStart="16dp"/>
-
-                    <View
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/ic_data"
-                        android:importantForAccessibility="no" />
-                </LinearLayout>
-
-                <!-- 개인 목표 추가하기 버튼 -->
                 <Button
                     android:id="@+id/add_goal_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FBF5DA"
-                    android:padding="14dp"
-                    android:text="@string/add_personal_goals"
+                    android:text="개인 목표 추가하기"
                     android:fontFamily="@font/bmjua"
                     android:textColor="#2A3D45"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="80dp"/>
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="80dp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -292,8 +182,7 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:background="#DBDBDB"
-        android:padding="8dp"
-        android:layout_alignParentBottom="true">
+        android:padding="8dp">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_home"
@@ -355,4 +244,5 @@
             android:scaleType="center"
             android:padding="12dp" />
     </LinearLayout>
-</RelativeLayout>
+
+</LinearLayout>

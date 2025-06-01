@@ -72,6 +72,52 @@ public interface Retrofit_interface {
 
     @DELETE("/groups/exit")
     Call<ResponseBody> exitGroup(@Query("groupId") Long groupId, @Query("memberId") Long memberId);
+    //게시글 작성
+    @POST("/api/posts")
+    Call<Post> createPost(
+            @Query("memberId") Long memberId,
+            @Query("groupId") Long groupId,
+            @Query("title") String title,
+            @Query("content") String content,
+            @Query("imageUrl") String imageUrl
+    );
+    //게시글 목록
+    @GET("/api/posts")
+    Call<List<Post>> getPosts(@Query("groupId") Long groupId);
+    //댓글
+    @GET("/api/comments/post/{postId}")
+    Call<List<CommentItem>> getCommentsByPost(@Path("postId") Long postId);
+    //댓글 등록
+    @POST("/api/comments")
+    Call<PostComment> createComment(
+            @Query("postId") Long postId,
+            @Query("memberId") Long memberId,
+            @Query("content") String content
+    );
+    //댓글 삭제
+    @DELETE("/api/comments/{commentId}")
+    Call<Void> deleteComment(@Path("commentId") Long commentId, @Query("memberId") Long memberId);
+
+    //게시글 삭제
+    @DELETE("/api/posts/{postId}")
+    Call<Void> deletePost(@Path("postId") Long postId, @Query("memberId") Long memberId);
+
+    @GET("/api/likes/check")
+    Call<Boolean> hasLiked(@Query("postId") Long postId, @Query("memberId") Long memberId);
+
+    // 좋아요 개수 확인 ✅ 이걸 제대로 지정
+    @GET("/api/likes/count")
+    Call<Long> countLikes(@Query("postId") Long postId);
+
+    // 좋아요 토글
+    @POST("/api/likes")
+    Call<LikeResponse> toggleLike(@Query("postId") Long postId, @Query("memberId") Long memberId);
+
+
+
+
+
+
 
 
 

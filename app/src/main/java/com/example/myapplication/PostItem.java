@@ -9,6 +9,7 @@ public class PostItem {
     private String title;
     private String content;
     private Uri imageUri;
+    private Long postId;
 
     private boolean isLiked = false;
     private int likeCount = 0;
@@ -17,11 +18,19 @@ public class PostItem {
     private List<CommentItem> commentList = new ArrayList<>();
 
     // 생성자
+    public PostItem(Long postId, String title, String content, Uri imageUri) {
+        this.postId = postId;
+        this.title = title;
+        this.content = content;
+        this.imageUri = imageUri;
+    }
+
     public PostItem(String title, String content, Uri imageUri) {
         this.title = title;
         this.content = content;
         this.imageUri = imageUri;
     }
+
 
     // ✅ Getter
     public String getTitle() {
@@ -53,6 +62,7 @@ public class PostItem {
         this.title = title;
     }
 
+
     public void setContent(String content) {
         this.content = content;
     }
@@ -69,10 +79,12 @@ public class PostItem {
         this.likeCount = likeCount;
     }
 
-    public void setCommentList(List<CommentItem> comments) {
-        this.commentList = comments;
+    public void setCommentList(List<CommentItem> commentList) {
+        this.commentList = commentList;
     }
 
+    public Long getPostId() { return postId; }
+    public void setPostId(Long postId) { this.postId = postId; }
     // ✅ 좋아요 수 증가/감소 메서드
     public void incrementLike() {
         this.likeCount++;
