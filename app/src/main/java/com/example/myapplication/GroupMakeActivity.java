@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 import android.text.TextWatcher;
 import android.widget.*;
@@ -34,6 +35,10 @@ public class GroupMakeActivity extends AppCompatActivity {
     private String selectedSubCategory = "";  // 선택된 서브 카테고리
     private boolean isGoalFrequencySet = false; // Track if goal frequency is set
 
+    private EditText editTextGoalValue;
+    private TextView goalValueLabel;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +57,9 @@ public class GroupMakeActivity extends AppCompatActivity {
         buttonCreateGroup = findViewById(R.id.button_create_group);
         selectedCategory = findViewById(R.id.selected_category);
         buttonGroupNameCheck = findViewById(R.id.button_group_name_check);
+        editTextGoalValue = findViewById(R.id.edittext_goal_value);
+        goalValueLabel = findViewById(R.id.goal_value_label);
+
 
 
         // Initially disable the create group button
@@ -124,9 +132,28 @@ public class GroupMakeActivity extends AppCompatActivity {
         buttonCreateGroup.setOnClickListener(v -> {
             String groupName = editTextGroupName.getText().toString().trim();
             String groupDesc = editTextGroupDescription.getText().toString().trim();
+            Integer goalValue = 0;
+            if (editTextGoalValue.getVisibility() == View.VISIBLE) {
+                String input = editTextGoalValue.getText().toString().trim();
+                if (input.isEmpty()) {
+                    Toast.makeText(this, "목표 수치를 입력하세요", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                try {
+                    goalValue = Integer.parseInt(input);
+                } catch (NumberFormatException e) {
+                    Toast.makeText(this, "숫자만 입력하세요", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
 
             if (groupName.isEmpty() || groupDesc.isEmpty()) {
                 Toast.makeText(this, "그룹 이름과 설명을 입력하세요", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (selectedStartDate.isEmpty()) {
+                Toast.makeText(this, "시작 날짜를 선택하세요", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -144,26 +171,25 @@ public class GroupMakeActivity extends AppCompatActivity {
                 case "매일": cycleDays = 1; break;
                 case "매주": cycleDays = 7; break;
                 case "매월": cycleDays = 30; break;
-                default: cycleDays = 0; // "안 함" 또는 예외 처리
+                default: cycleDays = 1; // 기본값 보호
             }
-
-            // ✅ 카테고리 텍스트 가져오기
 
             Log.d("DTO_DEBUG", "name: " + groupName
                     + ", category: " + selectedMainCategory
                     + ", description: " + groupDesc
                     + ", goalType: " + selectedSubCategory
                     + ", cycleDays: " + cycleDays);
-            // ✅ 전송할 DTO 만들기
+
             BuddyGroupDto dto = new BuddyGroupDto(
                     groupName,
                     selectedMainCategory,
                     cycleDays,
                     groupDesc,
-                    selectedSubCategory
+                    selectedSubCategory,
+                    selectedStartDate,
+                    goalValue
             );
 
-            // ✅ Retrofit 호출 (Retrofit_client 사용)
             Retrofit_interface api = Retrofit_client.getInstance().create(Retrofit_interface.class);
             api.createGroup(dto, memberId).enqueue(new Callback<BuddyGroup>() {
                 @Override
@@ -171,7 +197,6 @@ public class GroupMakeActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         Toast.makeText(GroupMakeActivity.this, "그룹 생성 완료!", Toast.LENGTH_SHORT).show();
 
-                        // 성공 시 그룹 메인 화면으로 이동
                         Intent intent;
                         if ("만보기".equals(selectedSubCategory) || "다이어트".equals(selectedSubCategory)) {
                             intent = new Intent(GroupMakeActivity.this, GroupMainStepActivity.class);
@@ -199,9 +224,6 @@ public class GroupMakeActivity extends AppCompatActivity {
             });
         });
 
-
-
-        // 그룹 이름에 대한 TextWatcher 추가
         editTextGroupName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {}
@@ -220,7 +242,6 @@ public class GroupMakeActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {}
         });
 
-        // 카테고리 버튼 클릭 시
         findViewById(R.id.category_btn_1).setOnClickListener(v -> {
             selectedMainCategory = "다이어트"; // 전역 변수에 대입
             selectedCategory.setText("선택된 카테고리: " + selectedMainCategory);
@@ -228,7 +249,6 @@ public class GroupMakeActivity extends AppCompatActivity {
         });
     }
 
-    // 카테고리 선택 팝업
     private void showSubCategoryPopup() {
         String[] items = {"만보기", "섭취 칼로리", "운동 칼로리", "식단"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -236,21 +256,38 @@ public class GroupMakeActivity extends AppCompatActivity {
         builder.setItems(items, (dialog, which) -> {
             selectedSubCategory = items[which];
             Toast.makeText(this, selectedSubCategory + " 선택됨", Toast.LENGTH_SHORT).show();
-            // 선택된 카테고리 텍스트 뷰 업데이트
             selectedCategory.setText("카테고리: " + selectedMainCategory + " / 목표: " + selectedSubCategory);
 
-            // 선택된 카테고리가 '만보기'일 경우 그룹 목표 입력란을 '걸음 수' 목표로 설정
+            // 힌트는 그대로 유지 (기존 코드)
             if ("만보기".equals(selectedSubCategory)) {
                 editTextGroupDescription.setHint("걸음 수 목표 입력");
             } else if ("다이어트".equals(selectedSubCategory)) {
                 editTextGroupDescription.setHint("섭취 칼로리 목표 입력");
             }
 
-            // Enable the create group button only when category is selected
+            // [✅ 새로 추가] 목표 수치 입력란 보여주기
+            if ("만보기".equals(selectedSubCategory)) {
+                goalValueLabel.setVisibility(View.VISIBLE);
+                editTextGoalValue.setVisibility(View.VISIBLE);
+                editTextGoalValue.setHint("예: 10000보");
+            } else if ("섭취 칼로리".equals(selectedSubCategory)) {
+                goalValueLabel.setVisibility(View.VISIBLE);
+                editTextGoalValue.setVisibility(View.VISIBLE);
+                editTextGoalValue.setHint("예: 1800kcal");
+            } else if ("운동 칼로리".equals(selectedSubCategory)) {
+                goalValueLabel.setVisibility(View.VISIBLE);
+                editTextGoalValue.setVisibility(View.VISIBLE);
+                editTextGoalValue.setHint("예: 500kcal");
+            } else {
+                goalValueLabel.setVisibility(View.GONE);
+                editTextGoalValue.setVisibility(View.GONE);
+            }
+
             enableCreateGroupButton();
         });
         builder.show();
     }
+
 
     private void enableCreateGroupButton() {
         if (!selectedSubCategory.isEmpty()) {
@@ -268,19 +305,13 @@ public class GroupMakeActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("알림 설정");
 
-        String[] alarmOptions = {"안 함", "매일", "매주", "매월"};
+        String[] alarmOptions = {"매일", "매주", "매월"};
         builder.setItems(alarmOptions, (dialog, which) -> {
             selectedAlarmSetting = alarmOptions[which];
             buttonAlarmSetting.setText(selectedAlarmSetting);
 
-            // Check if the goal frequency is set to any option other than "안 함"
-            if (!"안 함".equals(selectedAlarmSetting)) {
-                isGoalFrequencySet = true;
-                enableCreateGroupButton();  // Enable the button once the frequency is set
-            } else {
-                isGoalFrequencySet = false;
-                disableCreateGroupButton(); // Disable the button if frequency is not set
-            }
+            isGoalFrequencySet = true;
+            enableCreateGroupButton();
         });
 
         AlertDialog dialog = builder.create();

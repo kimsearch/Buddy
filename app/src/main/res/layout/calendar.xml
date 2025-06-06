@@ -90,6 +90,7 @@
 
                 <!-- 여기에 목표 아이템이 추가될 예정 -->
                 <TextView
+                    android:id="@+id/goal_date_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="여기에 목표가 표시"

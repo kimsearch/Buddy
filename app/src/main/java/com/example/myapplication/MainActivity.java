@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, MyPageMainActivity.class);
             startActivity(intent);
         });
+
     }
 
     // 터치 효과 주기 위한 함수

@@ -112,6 +112,12 @@ public interface Retrofit_interface {
     // 좋아요 토글
     @POST("/api/likes")
     Call<LikeResponse> toggleLike(@Query("postId") Long postId, @Query("memberId") Long memberId);
+    //그룹 멤버 확인
+    @GET("/groups/{groupId}/members")
+    Call<List<GroupMemberItem>> getGroupMembers(@Path("groupId") Long groupId);
+
+    @GET("/groups/calendar/goals")
+    Call<List<CalendarGoalItem>> getCalendarGoals(@Query("memberId") Long memberId);
 
 
 
