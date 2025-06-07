@@ -1,7 +1,5 @@
 package com.example.myapplication;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -24,7 +22,6 @@ public class HomeGroupAdapter extends RecyclerView.Adapter<HomeGroupAdapter.View
         this.context = context;
         this.groupList = groupList;
         this.myMemberId = myMemberId;
-
     }
 
     @NonNull
@@ -40,14 +37,21 @@ public class HomeGroupAdapter extends RecyclerView.Adapter<HomeGroupAdapter.View
         holder.groupNameBtn.setText(group.getName());
 
         holder.groupNameBtn.setOnClickListener(v -> {
+            // 조건 분기: 다이어트 && 만보기 → GroupMainStepActivity로 이동
+            Intent intent;
+            if ("다이어트".equals(group.getCategory()) && "만보기".equals(group.getGoalType())) {
+                intent = new Intent(context, GroupMainStepActivity.class);
+            } else {
+                intent = new Intent(context, GroupMainActivity.class);
+            }
 
+            // groupId SharedPreferences 저장
             context.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
                     .edit()
                     .putLong("groupId", group.getId())
                     .apply();
-            Intent intent = new Intent(context, GroupMainActivity.class);
 
-            // 그룹 정보 전달 (필요한 만큼)
+            // 그룹 정보 전달
             intent.putExtra("groupId", group.getId());
             intent.putExtra("groupName", group.getName());
             intent.putExtra("leaderId", group.getLeaderId());

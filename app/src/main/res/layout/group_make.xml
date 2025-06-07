@@ -240,6 +240,32 @@
                     android:background="@drawable/rounded_gray_button" />
             </LinearLayout>
 
+            <!-- 목표 수치 -->
+            <TextView
+                android:id="@+id/goal_value_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="목표 수치 입력"
+                android:fontFamily="@font/bmjua"
+                android:textSize="16sp"
+                android:textColor="#2A3D45"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="6dp"
+                android:visibility="gone"/>
+
+            <EditText
+                android:id="@+id/edittext_goal_value"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="예: 10000보, 1800kcal"
+                android:inputType="number"
+                android:fontFamily="@font/bmjua"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="#2A3D45"
+                android:visibility="gone"/>
+
             <!-- 그룹 소개 -->
             <TextView
                 android:id="@+id/group_introduction"
