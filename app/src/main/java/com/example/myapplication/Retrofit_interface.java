@@ -119,6 +119,26 @@ public interface Retrofit_interface {
     @GET("/groups/calendar/goals")
     Call<List<CalendarGoalItem>> getCalendarGoals(@Query("memberId") Long memberId);
 
+    @GET("/groups/search")
+    Call<List<GroupSearchResponse>> searchGroups(
+            @Query("query") String query,
+            @Query("memberId") Long memberId
+    );
+
+    @POST("/group-requests/send")
+    Call<Void> sendJoinRequest(@Query("groupId") Long groupId, @Query("memberId") Long memberId);
+
+    @GET("/notifications")
+    Call<List<Alarm>> getNotifications(@Query("memberId") Long memberId);
+
+    @POST("/group-requests/handle")
+    Call<Void> handleJoinRequest(@Body JoinRequestHandleDto dto);
+
+
+
+
+
+
 
 
 

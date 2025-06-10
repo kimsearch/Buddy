@@ -72,10 +72,11 @@
 
                 <EditText
                     android:id="@+id/search_group_input_1"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@id/search_group_input_button"
                     android:paddingStart="12dp"
-                    android:paddingEnd="48dp"
+                    android:paddingEnd="12dp"
                     android:hint="@string/search_group_input_1"
                     android:fontFamily="@font/bmjua"
                     android:textColor="#2A3D45"
@@ -83,7 +84,6 @@
                     android:textSize="16sp"
                     android:background="@android:color/transparent"
                     android:inputType="text" />
-
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/search_group_input_button"
@@ -98,6 +98,7 @@
                     android:scaleType="center"
                     android:padding="12dp" />
             </RelativeLayout>
+
 
 
             <!-- 카테고리 선택 -->
@@ -169,47 +170,16 @@
             </LinearLayout>
 
             <!-- 첫 번째 테두리 레이아웃 (전체 박스) -->
-            <LinearLayout
-                android:id="@+id/group_item_layout"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/group_search_recycler"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/edit_text_background"
-                android:padding="16dp"
-                android:layout_marginTop="16dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:contentDescription="그룹 아이템: 그룹 이름과 프로필 이미지">
-
-                <!-- 그룹이름, 인원수 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2"
-                    android:layout_marginBottom="3dp">
-
-                    <ImageView
-                        android:id="@+id/profile_image"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:src="@drawable/ic_profile"
-                        android:scaleType="centerCrop"
-                        android:contentDescription="프로필 이미지" />
-
-                    <TextView
-                        android:id="@+id/search_group_name_1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="그룹이름"
-                        android:fontFamily="@font/bmjua"
-                        android:textColor="#2A3D45"
-                        android:textSize="18sp"
-                        android:gravity="center"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
-            </LinearLayout>
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_below="@id/header_container"
+                android:layout_above="@id/bottom_nav"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:paddingBottom="16dp" />
 
         </LinearLayout>
     </ScrollView>
