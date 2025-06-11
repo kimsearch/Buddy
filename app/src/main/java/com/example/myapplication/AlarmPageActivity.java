@@ -1,9 +1,13 @@
 // AlarmPageActivity.java
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,40 +15,88 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class AlarmPageActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private AlarmAdapter alarmAdapter;
     private TextView emptyMessageTextView;
     private List<Alarm> alarmList;
+    private ImageButton navHome, navGroup, navSearch, navPet, navMyPage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarm_page);
 
-        // recyclerView: 알림 리스트 보여줄 컴포넌트
-        // emptyMessageTextView: 알림 없을 때 "알림이 없습니다" 텍스트 보여주는 view
         recyclerView = findViewById(R.id.alarm_recycler_view);
         emptyMessageTextView = findViewById(R.id.empty_message);
-
-        // 처음에 빈 알림 리스트 만들고
         alarmList = new ArrayList<>();
-
-        // 테스트용 알림
-        // 메세지만 보여주고 버튼은 안 보여줌
-        alarmList.add(new Alarm("설정한 목표 잊으신 거 아니죠?", Alarm.TYPE_NORMAL));
-        // 메세지, 버튼 둘 다 보여줌
-        alarmList.add(new Alarm("홍길동님이 그룹 참가를 요청했어요", Alarm.TYPE_REQUEST));
-
-        // 빈 알림 리스트 만든 걸 어댑터에 연결
         alarmAdapter = new AlarmAdapter(alarmList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(alarmAdapter);
 
-        // 이 메서드는 알림이 있는지 없는지를 판단해서, 뭘 보여줄지 정함
-        updateEmptyView();
+
+        loadAlarms();
     }
+
+
+    private void loadAlarms() {
+        Long memberId = getSharedPreferences("loginPrefs", MODE_PRIVATE).getLong("memberId", -1L);
+
+        Retrofit_interface api = Retrofit_client.getInstance().create(Retrofit_interface.class);
+        api.getNotifications(memberId).enqueue(new Callback<List<Alarm>>() {
+            @Override
+            public void onResponse(Call<List<Alarm>> call, Response<List<Alarm>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    alarmList.clear();
+                    alarmList.addAll(response.body());
+                    alarmAdapter.notifyDataSetChanged();
+                    updateEmptyView();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Alarm>> call, Throwable t) {
+                Toast.makeText(AlarmPageActivity.this, "알림을 불러오지 못했습니다", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        navHome = findViewById(R.id.nav_home);
+        navGroup = findViewById(R.id.nav_group);
+        navMyPage = findViewById(R.id.nav_mypage);
+        navPet = findViewById(R.id.nav_pet);
+        navSearch = findViewById(R.id.nav_search);
+
+        navHome.setOnClickListener(v -> {
+            Intent intent = new Intent(AlarmPageActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
+
+        navGroup.setOnClickListener(v -> {
+            Intent intent = new Intent(AlarmPageActivity.this, GroupPageActivity.class);
+            startActivity(intent);
+        });
+
+        navSearch.setOnClickListener(v -> {
+            Intent intent = new Intent(AlarmPageActivity.this, GroupSearchPageActivity.class);
+            startActivity(intent);
+        });
+
+        navPet.setOnClickListener(v -> {
+            Intent intent = new Intent(AlarmPageActivity.this, PetActivity.class);
+            startActivity(intent);
+        });
+
+        navMyPage.setOnClickListener(v -> {
+            Intent intent = new Intent(AlarmPageActivity.this, MyPageMainActivity.class);
+            startActivity(intent);
+        });
+    }
+
 
     private void updateEmptyView() {
         if (alarmList.isEmpty()) {

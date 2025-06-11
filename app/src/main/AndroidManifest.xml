@@ -54,6 +54,7 @@
         <activity android:name=".EmailFindSubActivity" />
         <activity android:name=".GroupSearchPageActivity"/>
         <activity android:name=".GroupMainActivity"/>
+        <activity android:name=".SearchJoinActivity"/>
 
     </application>
 
