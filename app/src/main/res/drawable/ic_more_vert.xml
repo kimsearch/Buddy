@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- 첫 번째 점 -->
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M12,5a1.5,1.5 0,1 1,0.001 0z" />
+
+    <!-- 두 번째 점 -->
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M12,12a1.5,1.5 0,1 1,0.001 0z" />
+
+    <!-- 세 번째 점 -->
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M12,19a1.5,1.5 0,1 1,0.001 0z" />
+</vector>
