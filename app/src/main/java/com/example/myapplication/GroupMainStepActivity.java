@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -19,18 +20,29 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+
+import java.util.ArrayList;
+
 public class GroupMainStepActivity extends AppCompatActivity implements SensorEventListener {
 
-    private TextView groupMainTitle;  // 그룹 이름 표시
-    private TextView stepCountView;   // 걸음 수 표시
+    private TextView groupMainTitle;
+    private TextView stepCountView;
+    private TextView groupGoalTextView;
     private SensorManager sensorManager;
     private Sensor stepCounterSensor;
-    private int totalSteps = 0;
-
-    private final int PERMISSION_REQUEST_ACTIVITY_RECOGNITION = 1001;
+    private PieChart pieChart;
 
     private AppCompatImageButton notificationButton1, notificationButton2, notificationButton3;
     private AppCompatImageButton navHome, navGroup, navMyPage;
+
+    private int totalSteps = 0;
+    private final int GOAL_STEPS = 10000; // 목표 걸음 수
+    private final int PERMISSION_REQUEST_ACTIVITY_RECOGNITION = 1001;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -50,14 +62,14 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
         // UI 연결
         groupMainTitle = findViewById(R.id.group_main_title);
         stepCountView = findViewById(R.id.step_count_value);
-        TextView groupGoalTextView = findViewById(R.id.group_goal_view);
+        groupGoalTextView = findViewById(R.id.group_goal_view);
+        pieChart = findViewById(R.id.pieChart);
 
-        // 인텐트로 전달받은 데이터
+        // 인텐트로부터 데이터 수신
         Intent intent = getIntent();
         String groupName = intent.getStringExtra("groupName");
         String groupGoal = intent.getStringExtra("groupGoal");
         Long groupId = intent.getLongExtra("groupId", -1L);
-
 
         if (groupName != null) groupMainTitle.setText(groupName);
         if (groupGoal != null) groupGoalTextView.setText("그룹 목표: " + groupGoal);
@@ -65,9 +77,14 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
         // 권한 요청
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION)
                 != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACTIVITY_RECOGNITION},
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACTIVITY_RECOGNITION},
                     PERMISSION_REQUEST_ACTIVITY_RECOGNITION);
         }
+
+        // PieChart 설정
+        setupPieChart();
+        updatePieChart(0);
 
         // 알림 버튼
         notificationButton1 = findViewById(R.id.notification_button_1);
@@ -86,7 +103,7 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
         notificationButton3.setOnClickListener(v ->
                 startActivity(new Intent(GroupMainStepActivity.this, AlarmPageActivity.class)));
 
-        // 하단 네비게이션
+        // 하단 네비게이션 바
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
         navMyPage = findViewById(R.id.nav_mypage);
@@ -99,7 +116,6 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
 
         navMyPage.setOnClickListener(v ->
                 startActivity(new Intent(GroupMainStepActivity.this, MyPageMainActivity.class)));
-
     }
 
     @Override
@@ -123,6 +139,7 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
         if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
             totalSteps = (int) event.values[0];
             updateStepCount();
+            updatePieChart(totalSteps);
         }
     }
 
@@ -133,6 +150,36 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
 
     private void updateStepCount() {
         stepCountView.setText("걸음 수: " + totalSteps);
+    }
+
+    private void setupPieChart() {
+        pieChart.setUsePercentValues(true);
+        pieChart.setDrawHoleEnabled(true);
+        pieChart.setHoleColor(Color.TRANSPARENT);
+        pieChart.setTransparentCircleRadius(58f);
+        pieChart.setEntryLabelColor(Color.BLACK);
+        pieChart.getLegend().setEnabled(false);
+
+        Description desc = new Description();
+        desc.setText("");
+        pieChart.setDescription(desc);
+    }
+
+    private void updatePieChart(int steps) {
+        float progress = Math.min(steps, GOAL_STEPS);
+        float percentage = (progress / GOAL_STEPS) * 100f;
+
+        ArrayList<PieEntry> entries = new ArrayList<>();
+        entries.add(new PieEntry(percentage, "달성"));
+        entries.add(new PieEntry(100f - percentage, "남음"));
+
+        PieDataSet dataSet = new PieDataSet(entries, "");
+        dataSet.setColors(Color.parseColor("#76C7C0"), Color.parseColor("#D3D3D3"));
+        dataSet.setDrawValues(false);
+
+        PieData data = new PieData(dataSet);
+        pieChart.setData(data);
+        pieChart.invalidate();
     }
 
     @Override

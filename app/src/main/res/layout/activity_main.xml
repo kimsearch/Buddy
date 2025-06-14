@@ -111,7 +111,7 @@
                 android:layout_marginBottom="8dp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_home_group_list"
+                android:id="@+id/group_goal_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false"
@@ -129,48 +129,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="8dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="8dp"
-                    android:gravity="center_vertical">
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="60dp"
-                        android:layout_weight="1"
-                        android:text="물 1L 마시기"
-                        android:textColor="#2A3D45"
-                        android:fontFamily="@font/bmjua"
-                        android:backgroundTint="#FBF5DA"
-                        android:gravity="start|center_vertical"
-                        android:paddingStart="16dp" />
-
-                    <View
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/ic_data" />
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/add_goal_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#FBF5DA"
-                    android:text="개인 목표 추가하기"
-                    android:fontFamily="@font/bmjua"
-                    android:textColor="#2A3D45"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="80dp" />
-            </LinearLayout>
+            <!-- 여기에 그래프 추가 예정 시 공간 확보 -->
         </LinearLayout>
     </ScrollView>
 
@@ -244,5 +203,4 @@
             android:scaleType="center"
             android:padding="12dp" />
     </LinearLayout>
-
 </LinearLayout>

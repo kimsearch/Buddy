@@ -1,14 +1,11 @@
 package com.example.myapplication;
 
-import java.util.List;
-
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface Retrofit_interface {
@@ -60,93 +57,4 @@ public interface Retrofit_interface {
     // 이메일 존재 여부 확인
     @GET("/members/check-email")
     Call<ResponseBody> checkEmail(@Query("email") String email);
-    //그룹 생성
-    @POST("/groups/create")
-    Call<BuddyGroup> createGroup(@Body BuddyGroupDto dto, @Query("memberId") Long memberId);
-
-    @GET("/groups/check-name")
-    Call<ResponseBody> checkGroupName(@Query("name") String name);
-
-    @GET("/groups/my-groups")
-    Call<List<Group>> getMyGroups(@Query("memberId") Long memberId);
-
-    @DELETE("/groups/exit")
-    Call<ResponseBody> exitGroup(@Query("groupId") Long groupId, @Query("memberId") Long memberId);
-    //게시글 작성
-    @POST("/api/posts")
-    Call<Post> createPost(
-            @Query("memberId") Long memberId,
-            @Query("groupId") Long groupId,
-            @Query("title") String title,
-            @Query("content") String content,
-            @Query("imageUrl") String imageUrl
-    );
-    //게시글 목록
-    @GET("/api/posts")
-    Call<List<Post>> getPosts(@Query("groupId") Long groupId);
-    //댓글
-    @GET("/api/comments/post/{postId}")
-    Call<List<CommentItem>> getCommentsByPost(@Path("postId") Long postId);
-    //댓글 등록
-    @POST("/api/comments")
-    Call<PostComment> createComment(
-            @Query("postId") Long postId,
-            @Query("memberId") Long memberId,
-            @Query("content") String content
-    );
-    //댓글 삭제
-    @DELETE("/api/comments/{commentId}")
-    Call<Void> deleteComment(@Path("commentId") Long commentId, @Query("memberId") Long memberId);
-
-    //게시글 삭제
-    @DELETE("/api/posts/{postId}")
-    Call<Void> deletePost(@Path("postId") Long postId, @Query("memberId") Long memberId);
-
-    @GET("/api/likes/check")
-    Call<Boolean> hasLiked(@Query("postId") Long postId, @Query("memberId") Long memberId);
-
-    // 좋아요 개수 확인 ✅ 이걸 제대로 지정
-    @GET("/api/likes/count")
-    Call<Long> countLikes(@Query("postId") Long postId);
-
-    // 좋아요 토글
-    @POST("/api/likes")
-    Call<LikeResponse> toggleLike(@Query("postId") Long postId, @Query("memberId") Long memberId);
-    //그룹 멤버 확인
-    @GET("/groups/{groupId}/members")
-    Call<List<GroupMemberItem>> getGroupMembers(@Path("groupId") Long groupId);
-
-    @GET("/groups/calendar/goals")
-    Call<List<CalendarGoalItem>> getCalendarGoals(@Query("memberId") Long memberId);
-
-    @GET("/groups/search")
-    Call<List<GroupSearchResponse>> searchGroups(
-            @Query("query") String query,
-            @Query("memberId") Long memberId
-    );
-
-    @POST("/group-requests/send")
-    Call<Void> sendJoinRequest(@Query("groupId") Long groupId, @Query("memberId") Long memberId);
-
-    @GET("/notifications")
-    Call<List<Alarm>> getNotifications(@Query("memberId") Long memberId);
-
-    @POST("/group-requests/handle")
-    Call<Void> handleJoinRequest(@Body JoinRequestHandleDto dto);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
