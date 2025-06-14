@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -36,20 +37,12 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
     private Sensor stepCounterSensor;
     private PieChart pieChart;
 
-
     private AppCompatImageButton notificationButton1, notificationButton2, notificationButton3;
     private AppCompatImageButton navHome, navGroup, navMyPage;
 
     private int totalSteps = 0;
     private final int GOAL_STEPS = 10000; // 목표 걸음 수
     private final int PERMISSION_REQUEST_ACTIVITY_RECOGNITION = 1001;
-
-
-
-    private int totalSteps = 0;
-    private final int GOAL_STEPS = 10000; // 목표 걸음 수 (예시)
-    private final int PERMISSION_REQUEST_ACTIVITY_RECOGNITION = 1001;
-
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -72,18 +65,11 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
         groupGoalTextView = findViewById(R.id.group_goal_view);
         pieChart = findViewById(R.id.pieChart);
 
-
         // 인텐트로부터 데이터 수신
         Intent intent = getIntent();
         String groupName = intent.getStringExtra("groupName");
         String groupGoal = intent.getStringExtra("groupGoal");
         Long groupId = intent.getLongExtra("groupId", -1L);
-
-        // 인텐트로부터 그룹 이름/목표 수신
-        Intent intent = getIntent();
-        String groupName = intent.getStringExtra("groupName");
-        String groupGoal = intent.getStringExtra("groupGoal");
-
 
         if (groupName != null) groupMainTitle.setText(groupName);
         if (groupGoal != null) groupGoalTextView.setText("그룹 목표: " + groupGoal);
@@ -95,10 +81,6 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
                     new String[]{Manifest.permission.ACTIVITY_RECOGNITION},
                     PERMISSION_REQUEST_ACTIVITY_RECOGNITION);
         }
-
-        // PieChart 설정
-        setupPieChart();
-        updatePieChart(0);
 
         // 알림 버튼
         notificationButton1 = findViewById(R.id.notification_button_1);
@@ -134,7 +116,6 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
         // PieChart 기본 설정
         setupPieChart();
         updatePieChart(0); // 초기값
-
     }
 
     @Override
