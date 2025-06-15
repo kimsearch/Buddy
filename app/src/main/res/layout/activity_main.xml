@@ -244,5 +244,4 @@
             android:scaleType="center"
             android:padding="12dp" />
     </LinearLayout>
-
 </LinearLayout>

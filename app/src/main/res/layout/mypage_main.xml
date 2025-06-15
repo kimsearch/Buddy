@@ -107,14 +107,15 @@
                     android:fontFamily="@font/bmjua"
                     android:layout_marginBottom="12dp"/>
 
-                <FrameLayout
-                    android:id="@+id/total_ranking_graph_placeholder"
+                <!-- 이 부분이 핵심: 그래프 추가 -->
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/monthlyLineChart"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:background="@drawable/rounded_graph_background"
-                    android:layout_marginBottom="16dp"
+                    android:layout_height="200dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_graph_background"/>
             </LinearLayout>
 
             <!-- 이전 기록 회색 처리 -->

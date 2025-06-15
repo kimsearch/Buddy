@@ -19,6 +19,7 @@
         android:paddingStart="16dp"/>
 
     <View
+        android:id="@+id/progressIcon"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"

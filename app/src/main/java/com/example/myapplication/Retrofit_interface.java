@@ -134,16 +134,20 @@ public interface Retrofit_interface {
     @POST("/group-requests/handle")
     Call<Void> handleJoinRequest(@Body JoinRequestHandleDto dto);
 
+    @POST("/api/group-goal-log/update-step")
+    Call<Void> updateStepLog(@Body GroupGoalLogRequest request);
 
+    @GET("/api/group-goal-log/progress")
+    Call<GoalProgressResponse> getGoalProgress(
+            @Query("groupId") Long groupId,
+            @Query("memberId") Long memberId
+    );
 
+    @GET("/api/group-goal-log/ranking/{groupId}")
+    Call<List<RankingItem>> getRanking(@Path("groupId") Long groupId);
 
-
-
-
-
-
-
-
+    @GET("/api/group-goal-log/history")
+    Call<List<StepHistoryItem>> getWeeklyStepHistory(@Query("groupId") Long groupId, @Query("memberId") Long memberId);
 
 
 
