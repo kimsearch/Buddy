@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,7 +24,7 @@ public class GroupCommunityActivity extends AppCompatActivity implements PostAda
     private static final int EDIT_REQUEST_CODE = 2;
 
     ImageButton btnMypage, btnWritePost;
-    ImageButton navHome, navGroup, navSearch, navAlarm, navMyPage;
+    ImageButton navHome, navGroup, navSearch, navPet, navMyPage;
 
     private RecyclerView recyclerView;
     private PostAdapter adapter;
@@ -34,6 +35,7 @@ public class GroupCommunityActivity extends AppCompatActivity implements PostAda
 
     private int editingPosition = -1;  // 수정 중인 포지션 저장용
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,13 +65,13 @@ public class GroupCommunityActivity extends AppCompatActivity implements PostAda
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
         navSearch = findViewById(R.id.nav_search);
-        navAlarm = findViewById(R.id.nav_alarm);
+        navPet = findViewById(R.id.nav_pet);
         navMyPage = findViewById(R.id.nav_mypage);
 
         navHome.setOnClickListener(view -> startActivity(new Intent(this, MainActivity.class)));
         navGroup.setOnClickListener(view -> startActivity(new Intent(this, GroupPageActivity.class)));
-        navSearch.setOnClickListener(view -> startActivity(new Intent(this, SampleLayoutActivity.class)));
-        navAlarm.setOnClickListener(view -> startActivity(new Intent(this, AlarmPageActivity.class)));
+        navSearch.setOnClickListener(view -> startActivity(new Intent(this, GroupSearchPageActivity.class)));
+        navPet.setOnClickListener(view -> startActivity(new Intent(this, PetActivity.class)));
         navMyPage.setOnClickListener(view -> startActivity(new Intent(this, MyPageMainActivity.class)));
         loadPostsFromServer();
     }
