@@ -30,7 +30,7 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
     private final int PERMISSION_REQUEST_ACTIVITY_RECOGNITION = 1001;
 
     private AppCompatImageButton notificationButton1, notificationButton2, notificationButton3;
-    private AppCompatImageButton navHome, navGroup, navMyPage;
+    private AppCompatImageButton navHome, navGroup, navSearch, navPet, navMyPage;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -89,6 +89,8 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
         // 하단 네비게이션
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
+        navSearch = findViewById(R.id.nav_search);
+        navPet = findViewById(R.id.nav_pet);
         navMyPage = findViewById(R.id.nav_mypage);
 
         navHome.setOnClickListener(v ->
@@ -97,6 +99,11 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
         navGroup.setOnClickListener(v ->
                 startActivity(new Intent(GroupMainStepActivity.this, GroupPageActivity.class)));
 
+        navSearch.setOnClickListener(v ->
+                startActivity(new Intent(GroupMainStepActivity.this, GroupSearchPageActivity.class)));
+
+        navPet.setOnClickListener(v ->
+                startActivity(new Intent(GroupMainStepActivity.this, PetActivity.class)));
         navMyPage.setOnClickListener(v ->
                 startActivity(new Intent(GroupMainStepActivity.this, MyPageMainActivity.class)));
 
