@@ -122,6 +122,8 @@ public interface Retrofit_interface {
     @GET("/groups/search")
     Call<List<GroupSearchResponse>> searchGroups(
             @Query("query") String query,
+            @Query("categoryMain") String categoryMain,
+            @Query("categorySub") String categorySub,
             @Query("memberId") Long memberId
     );
 

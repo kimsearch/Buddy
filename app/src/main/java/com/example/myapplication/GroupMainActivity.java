@@ -43,7 +43,7 @@ public class GroupMainActivity extends AppCompatActivity implements SensorEventL
     private EditText goalInputEditText;
     private Button goalInputButton;
 
-    private AppCompatImageButton navHome, navGroup, navMyPage;
+    private AppCompatImageButton navHome, navGroup,navSearch, navPet, navMyPage;
     private PieChart pieChart;
     private BarChart barChart;
     private RecyclerView rankingRecyclerView;
@@ -82,6 +82,8 @@ public class GroupMainActivity extends AppCompatActivity implements SensorEventL
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
         navMyPage = findViewById(R.id.nav_mypage);
+        navSearch = findViewById(R.id.nav_search);
+        navPet = findViewById(R.id.nav_pet);
 
         Intent intent = getIntent();
         String groupName = intent.getStringExtra("groupName");
@@ -123,6 +125,8 @@ public class GroupMainActivity extends AppCompatActivity implements SensorEventL
         navHome.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
         navGroup.setOnClickListener(v -> startActivity(new Intent(this, GroupPageActivity.class)));
         navMyPage.setOnClickListener(v -> startActivity(new Intent(this, MyPageMainActivity.class)));
+        navSearch.setOnClickListener(v -> startActivity(new Intent(GroupMainActivity.this, GroupSearchPageActivity.class)));
+        navPet.setOnClickListener(v -> startActivity(new Intent(GroupMainActivity.this, PetActivity.class)));
     }
 
     private void updatePieChart(float value) {

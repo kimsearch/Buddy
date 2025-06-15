@@ -57,7 +57,7 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
     private PieChart pieChart;
 
     private AppCompatImageButton notificationButton1, notificationButton2, notificationButton3;
-    private AppCompatImageButton navHome, navGroup, navMyPage;
+    private AppCompatImageButton navHome, navGroup, navSearch, navPet, navMyPage;
 
     private SharedPreferences prefs;
     private int stepOffset = 0;
@@ -149,6 +149,8 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
         navMyPage = findViewById(R.id.nav_mypage);
+        navSearch = findViewById(R.id.nav_search);
+        navPet = findViewById(R.id.nav_pet);
 
         navHome.setOnClickListener(v ->
                 startActivity(new Intent(GroupMainStepActivity.this, MainActivity.class)));
@@ -158,6 +160,10 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
 
         navMyPage.setOnClickListener(v ->
                 startActivity(new Intent(GroupMainStepActivity.this, MyPageMainActivity.class)));
+        navSearch.setOnClickListener(v ->
+                startActivity(new Intent(GroupMainStepActivity.this, GroupSearchPageActivity.class)));
+        navPet.setOnClickListener(v ->
+                startActivity(new Intent(GroupMainStepActivity.this, PetActivity.class)));
 
         // PieChart 기본 설정
         setupPieChart();
