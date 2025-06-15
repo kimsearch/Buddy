@@ -36,6 +36,18 @@ public class HomeGroupAdapter extends RecyclerView.Adapter<HomeGroupAdapter.View
         Group group = groupList.get(position);
         holder.groupNameBtn.setText(group.getName());
 
+        // 🔸 목표 달성률에 따라 아이콘 변경
+        float percent = group.getProgressPercent();  // 0~100 사이 값이라고 가정
+        if (percent < 25) {
+            holder.progressIcon.setBackgroundResource(R.drawable.ic_progress_none);
+        } else if (percent < 50) {
+            holder.progressIcon.setBackgroundResource(R.drawable.ic_progress_quarter);
+        } else if (percent < 100) {
+            holder.progressIcon.setBackgroundResource(R.drawable.ic_progress_half);
+        } else {
+            holder.progressIcon.setBackgroundResource(R.drawable.ic_progress_full);
+        }
+
         holder.groupNameBtn.setOnClickListener(v -> {
             // 조건 분기: 다이어트 && 만보기 → GroupMainStepActivity로 이동
             Intent intent;
@@ -68,10 +80,12 @@ public class HomeGroupAdapter extends RecyclerView.Adapter<HomeGroupAdapter.View
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         Button groupNameBtn;
+        View progressIcon;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             groupNameBtn = itemView.findViewById(R.id.btnGroupName);
+            progressIcon = itemView.findViewById(R.id.progressIcon); // XML에 반드시 id 부여!
         }
     }
 }

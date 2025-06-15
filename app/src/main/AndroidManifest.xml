@@ -55,6 +55,8 @@
         <activity android:name=".GroupSearchPageActivity"/>
         <activity android:name=".GroupMainActivity"/>
         <activity android:name=".SearchJoinActivity"/>
+        <receiver android:name=".StepResetReceiver" />
+
 
     </application>
 
