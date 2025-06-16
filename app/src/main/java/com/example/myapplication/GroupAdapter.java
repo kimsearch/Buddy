@@ -66,7 +66,13 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
                 ", leaderId: " + group.getLeaderId() + ", myId: " + myMemberId);
 
         holder.groupNameButton.setOnClickListener(v -> {
-            Intent intent = new Intent(context, GroupMainActivity.class);
+            Intent intent;
+
+            if ("다이어트".equals(group.getCategory()) && "만보기".equals(group.getGoalType())) {
+                intent = new Intent(context, GroupMainStepActivity.class);
+            } else {
+                intent = new Intent(context, GroupMainActivity.class);
+            }
 
             // 그룹 정보 전달 (필요한 만큼)
             intent.putExtra("groupId", group.getId());

@@ -6,6 +6,14 @@ public class Group {
     private Long leaderId;
     private String goalType;
     private String category;
+    private float progressPercent;
+    public float getProgressPercent() {
+        return progressPercent;
+    }
+
+    public void setProgressPercent(float progressPercent) {
+        this.progressPercent = progressPercent;
+    }
 
 
     public Group() {}
