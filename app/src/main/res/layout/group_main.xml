@@ -50,7 +50,7 @@
                 android:layout_height="48dp"
                 android:src="@drawable/ic_group"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/notification_description"
+                android:contentDescription="그룹 멤버"
                 android:tint="#2A3D45"
                 android:scaleType="center"
                 android:padding="12dp" />
@@ -61,7 +61,7 @@
                 android:layout_height="48dp"
                 android:src="@drawable/ic_speech_bubble"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/notification_description"
+                android:contentDescription="그룹 커뮤니티"
                 android:tint="#2A3D45"
                 android:scaleType="center"
                 android:padding="12dp" />
@@ -72,11 +72,10 @@
                 android:layout_height="48dp"
                 android:src="@drawable/ic_alarm"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/notification_description"
+                android:contentDescription="알림"
                 android:tint="#2A3D45"
                 android:scaleType="center"
                 android:padding="12dp" />
-
         </LinearLayout>
     </LinearLayout>
 
@@ -96,7 +95,7 @@
             android:orientation="vertical"
             android:layout_marginBottom="20dp">
 
-            <!-- 그룹 목표 (그룹 이름 바로 아래) -->
+            <!-- 그룹 목표 -->
             <TextView
                 android:id="@+id/group_goal_view"
                 android:layout_width="match_parent"
@@ -107,124 +106,91 @@
                 android:layout_marginBottom="16dp"/>
 
             <!-- 누적 랭킹 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="누적 랭킹"
+                android:textSize="20sp"
+                android:textColor="#2A3D45"
+                android:fontFamily="@font/bmjua"
+                android:layout_marginBottom="12dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rankingRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="24dp"
+                android:background="#EDEDED"
+                android:padding="12dp"
+                android:clipToPadding="false" />
+
+            <!-- 오늘 목표 기록 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="오늘 목표 기록"
+                android:textSize="20sp"
+                android:textColor="#2A3D45"
+                android:fontFamily="@font/bmjua"
+                android:layout_marginBottom="12dp"/>
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="match_parent"
+                android:layout_height="157dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_graph_background" />
+
             <LinearLayout
-                android:id="@+id/section_total_ranking"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
                 android:layout_marginBottom="24dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/section_total_ranking"
-                    android:textSize="20sp"
+                <EditText
+                    android:id="@+id/goal_input_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:hint="목표 걸음 수 입력"
+                    android:inputType="number"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:background="@drawable/edit_text_background"
                     android:textColor="#2A3D45"
-                    android:fontFamily="@font/bmjua"
-                    android:layout_marginBottom="12dp"/>
+                    android:textSize="16sp" />
 
-                <FrameLayout
-                    android:id="@+id/total_ranking_graph_placeholder"
-                    android:layout_width="match_parent"
-                    android:layout_height="158dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/rounded_graph_background" />
+                <Button
+                    android:id="@+id/goal_input_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="입력"
+                    android:textColor="#2A3D45"
+                    android:backgroundTint="#D0F4DE"
+                    android:layout_marginStart="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"/>
             </LinearLayout>
 
-            <!-- 내 목표 달성 -->
-            <LinearLayout
-                android:id="@+id/section_personal_goal"
-                android:layout_width="match_parent"
+            <!-- 누적 + 최근 3일 기록을 하나의 그래프에 표시 -->
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="24dp">
+                android:text="이전 기록"
+                android:textSize="20sp"
+                android:textColor="#2A3D45"
+                android:fontFamily="@font/bmjua"
+                android:layout_marginBottom="12dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="오늘 목표 기록"
-                    android:textSize="20sp"
-                    android:textColor="#2A3D45"
-                    android:fontFamily="@font/bmjua"
-                    android:layout_marginBottom="12dp"/>
-
-                <FrameLayout
-                    android:id="@+id/personal_goal_graph_placeholder"
-                    android:layout_width="match_parent"
-                    android:layout_height="157dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/rounded_graph_background" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp">
-
-                    <EditText
-                        android:id="@+id/goal_input_edittext"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_weight="1"
-                        android:hint="@string/goal_input_edittext"
-                        android:fontFamily="@font/bmjua"
-                        android:inputType="number"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp"
-                        android:background="@drawable/edit_text_background"
-                        android:textColor="#2A3D45"
-                        android:textSize="16sp" />
-
-                    <Button
-                        android:id="@+id/goal_input_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:text="@string/goal_input_button"
-                        android:fontFamily="@font/bmjua"
-                        android:textColor="#2A3D45"
-                        android:backgroundTint="#D0F4DE"
-                        android:layout_marginStart="12dp"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- 이전 기록 보기 -->
-            <LinearLayout
-                android:id="@+id/section_history"
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barChart"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="70dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/section_history"
-                    android:textSize="20sp"
-                    android:textColor="#2A3D45"
-                    android:fontFamily="@font/bmjua"
-                    android:layout_marginBottom="12dp"/>
-
-                <FrameLayout
-                    android:id="@+id/history_graph_placeholder"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="@drawable/rounded_graph_background"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp" />
-            </LinearLayout>
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_graph_background" />
         </LinearLayout>
     </ScrollView>
-
 
     <!-- 하단 네비게이션 바 -->
     <LinearLayout
@@ -245,7 +211,6 @@
             android:src="@drawable/ic_home"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
-            android:importantForAccessibility="no"
             android:scaleType="center"
             android:padding="12dp"/>
 
@@ -257,7 +222,6 @@
             android:src="@drawable/ic_group"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
-            android:importantForAccessibility="no"
             android:scaleType="center"
             android:padding="12dp" />
 
@@ -269,7 +233,6 @@
             android:src="@drawable/ic_search"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
-            android:importantForAccessibility="no"
             android:scaleType="center"
             android:padding="12dp" />
 
@@ -281,7 +244,6 @@
             android:src="@drawable/ic_paw"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
-            android:importantForAccessibility="no"
             android:scaleType="fitCenter"
             android:padding="12dp" />
 
@@ -293,7 +255,6 @@
             android:src="@drawable/ic_mypage"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
-            android:importantForAccessibility="no"
             android:scaleType="center"
             android:padding="12dp" />
     </LinearLayout>

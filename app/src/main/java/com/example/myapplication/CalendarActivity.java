@@ -13,8 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -70,10 +72,15 @@ public class CalendarActivity extends AppCompatActivity {
     // ✅ 선택한 날짜에 해당하는 목표 표시
     private void updateGoalPeriodText(LocalDate selectedDate) {
         StringBuilder result = new StringBuilder();
+        Set<String> shownSet = new HashSet<>();
 
         for (CalendarGoalItem item : goalItemList) {
             LocalDate[] period = item.getPeriodForDate(selectedDate);
             if (period == null) continue;
+
+            String key = item.title + "_" + period[0];  // 중복 방지 키
+            if (shownSet.contains(key)) continue;
+            shownSet.add(key);
 
             LocalDate periodStart = period[0];
             LocalDate periodEnd = period[1];
@@ -111,6 +118,7 @@ public class CalendarActivity extends AppCompatActivity {
             goalPeriodText.setText(result.toString().trim());
         }
     }
+
 
     // ✅ 서버에서 목표 데이터 가져오기
     private void loadCalendarGoals(Long memberId) {

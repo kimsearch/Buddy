@@ -85,7 +85,7 @@
             android:orientation="vertical"
             android:layout_marginBottom="20dp">
 
-            <!-- 그룹 목표 (그룹 이름 바로 아래) -->
+            <!-- 그룹 목표 -->
             <TextView
                 android:id="@+id/group_goal_view"
                 android:layout_width="match_parent"
@@ -112,17 +112,17 @@
                     android:fontFamily="@font/bmjua"
                     android:layout_marginBottom="12dp"/>
 
-                <FrameLayout
-                    android:id="@+id/total_ranking_graph_placeholder"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rankingRecyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="130dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/rounded_graph_background" />
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="#EDEDED"
+                    android:padding="12dp"
+                    android:clipToPadding="false" />
             </LinearLayout>
 
-            <!-- 내 목표 달성 추가 부분 (만보기) -->
+            <!-- 걸음 수 -->
             <LinearLayout
                 android:id="@+id/section_personal_goal_step"
                 android:layout_width="match_parent"
@@ -130,7 +130,6 @@
                 android:orientation="vertical"
                 android:layout_marginBottom="24dp">
 
-                <!-- 걸음 수 (중앙 배치) -->
                 <TextView
                     android:id="@+id/step_count_value"
                     android:layout_width="wrap_content"
@@ -141,7 +140,8 @@
                     android:gravity="center"
                     android:layout_marginBottom="16dp" />
             </LinearLayout>
-            <!-- 내 목표 달성 추가 부분 -->
+
+            <!-- 내 목표 달성 (PieChart) -->
             <LinearLayout
                 android:id="@+id/section_personal_goal"
                 android:layout_width="match_parent"
@@ -158,8 +158,8 @@
                     android:fontFamily="@font/bmjua"
                     android:layout_marginBottom="12dp"/>
 
-                <FrameLayout
-                    android:id="@+id/personal_goal_graph_placeholder"
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChart"
                     android:layout_width="match_parent"
                     android:layout_height="157dp"
                     android:layout_marginStart="8dp"
@@ -168,7 +168,7 @@
                     android:background="@drawable/rounded_graph_background" />
             </LinearLayout>
 
-            <!-- 이전 기록 보기 -->
+            <!-- 이전 기록 (BarChart) -->
             <LinearLayout
                 android:id="@+id/section_history"
                 android:layout_width="match_parent"
@@ -185,14 +185,14 @@
                     android:fontFamily="@font/bmjua"
                     android:layout_marginBottom="12dp"/>
 
-                <FrameLayout
-                    android:id="@+id/history_graph_placeholder"
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChart"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:background="@drawable/rounded_graph_background"
-                    android:layout_marginBottom="16dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp" />
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_graph_background" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
