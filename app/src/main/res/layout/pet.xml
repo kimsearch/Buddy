@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="#fcf2f2">
 
+    <!-- 헤더 -->
     <LinearLayout
         android:id="@+id/header_container"
         android:layout_width="match_parent"
@@ -16,35 +17,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:paddingTop="18dp"
             android:paddingBottom="22dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp">
 
+            <!-- ✅ 튜토리얼 안내 텍스트 (추가됨) -->
             <TextView
+                android:id="@+id/pet_tutorial"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textColor="#2A3D45"
                 android:layout_weight="1"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"/>
+                android:text="버몽이가 자랄 수 있게 먹이를 주세요!\n\n- 먹이는 목표를 달성할 때마다 자동으로 지급됩니다.\n- 하루 최대 10개 지급. 5일 연속 목표 달성 시 추가 보너스!"
+                android:textSize="12sp"
+                android:textColor="#2A3D45"
+                android:visibility="gone"
+                android:padding="8dp"
+                android:background="#eeeeaa"
+                android:fontFamily="@font/bmjua"
+                android:layout_marginEnd="8dp" />
 
+            <!-- 오른쪽 도움말 버튼 -->
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/pet_info"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/ic_info"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/notification_description"
+                android:contentDescription="버몽이 도움말"
                 android:tint="#e2e2e2"
                 android:scaleType="center"
                 android:padding="12dp" />
-
         </LinearLayout>
     </LinearLayout>
 
+    <!-- 스크롤 영역 -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -100,6 +108,7 @@
                 android:progressDrawable="@drawable/progressbar"
                 android:layout_marginBottom="40dp" />
 
+            <!-- 5. 하트 수 및 버튼 -->
             <LinearLayout
                 android:id="@+id/heart_button_container"
                 android:layout_width="150dp"
@@ -126,10 +135,8 @@
                     android:textSize="18sp"
                     android:textColor="#2A3D45" />
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
-
 
     <!-- 하단 네비게이션 바 -->
     <LinearLayout

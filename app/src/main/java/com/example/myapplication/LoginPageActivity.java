@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputType;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ public class LoginPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
 
+
         SharedPreferences prefs = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         String savedEmail = prefs.getString("userEmail", null);
         if (savedEmail != null) {
@@ -40,6 +42,7 @@ public class LoginPageActivity extends AppCompatActivity {
         findPasswordButton = findViewById(R.id.find_password_button);
         signupButton = findViewById(R.id.signup_button);
 
+        passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         apiService = Retrofit_client.getInstance().create(Retrofit_interface.class);
 
         loginButton.setOnClickListener(v -> {

@@ -219,6 +219,7 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
                 if (response.isSuccessful() && response.body() != null) {
                     int record = response.body().getRecordValue();
                     int goal = response.body().getGoalValue();
+                    groupGoalTextView.setText("그룹 목표: " + goal + "보");
                     updatePieChart(record, goal);
                 } else {
                     Log.e("PieChart", "서버 응답 실패: " + response.code());
