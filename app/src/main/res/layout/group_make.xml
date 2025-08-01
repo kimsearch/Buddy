@@ -206,7 +206,7 @@
                     android:id="@+id/button_start_date"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:text="2025-04-12"
+                    android:text="설정 안 됨"
                     android:fontFamily="@font/bmjua"
                     android:textColor="#2A3D45"
                     android:background="@drawable/rounded_gray_button" />

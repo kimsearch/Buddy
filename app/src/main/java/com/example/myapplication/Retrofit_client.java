@@ -24,7 +24,7 @@ public class Retrofit_client {
                     .build();
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://자기 ip 사용:8080/") // 에뮬레이터에서 로컬 서버 접속용
+                    .baseUrl("http://10.0.2.2:8080/") // 에뮬레이터에서 로컬 서버 접속용
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();

@@ -42,6 +42,8 @@
         <activity android:name=".GroupCommunityActivity" />
         <activity android:name=".GroupCommunityWriteActivity" />
         <activity android:name=".GroupMainStepActivity" />
+        <activity android:name=".GroupMainIntakeActivity" />
+        <activity android:name=".GroupMainBurnedActivity" />
         <activity android:name=".GroupExitActivity" />
         <activity android:name=".GroupMakeActivity" />
         <activity android:name=".GroupMemberActivity" />
