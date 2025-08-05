@@ -233,6 +233,7 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
         });
     }
 
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -287,6 +288,16 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
 
         if (memberId == -1L || groupId == -1L) return;
 
+        // ✅ 오늘 날짜 기반 키 생성
+        String today = java.time.LocalDate.now().toString(); // 예: "2025-07-31"
+        String key = "savedStep_" + today + "_" + groupId + "_" + memberId;
+
+        SharedPreferences stepPrefs = getSharedPreferences("stepPrefs", MODE_PRIVATE);
+        if (stepPrefs.getBoolean(key, false)) {
+            Log.d("걸음 저장", "이미 오늘 저장된 기록 있음 → 서버 전송 생략");
+            return;
+        }
+
         GroupGoalLogRequest request = new GroupGoalLogRequest(groupId, memberId, todaySteps);
 
         Retrofit_interface api = Retrofit_client.getInstance().create(Retrofit_interface.class);
@@ -295,6 +306,7 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Log.d("걸음 저장", "서버에 저장 완료");
+                    stepPrefs.edit().putBoolean(key, true).apply(); // ✅ 저장 완료 표시
                 } else {
                     Log.e("걸음 저장", "서버 응답 실패: " + response.code());
                 }
@@ -306,6 +318,8 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
             }
         });
     }
+
+
 
 
     private void setupPieChart() {

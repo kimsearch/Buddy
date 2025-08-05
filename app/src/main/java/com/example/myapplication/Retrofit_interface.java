@@ -151,8 +151,6 @@ public interface Retrofit_interface {
     @GET("/api/group-goal-log/history")
     Call<List<StepHistoryItem>> getWeeklyStepHistory(@Query("groupId") Long groupId, @Query("memberId") Long memberId);
 
-
-
-
-
+    @GET("/members/feed-count")
+    Call<Integer> getFeedCount(@Query("memberId") Long memberId);
 }

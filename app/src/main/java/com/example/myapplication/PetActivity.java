@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -14,7 +15,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.content.ContextCompat;
+
 import com.bumptech.glide.Glide;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PetActivity extends AppCompatActivity {
 
@@ -41,19 +47,45 @@ public class PetActivity extends AppCompatActivity {
 
         // 뷰 연결
         petGif = findViewById(R.id.pet_gif);
-
         heartIcon = findViewById(R.id.heart_icon);
         heartCountText = findViewById(R.id.heart_count);
         petLevelText = findViewById(R.id.pet_level);
         progressBar = findViewById(R.id.pet_progress_bar);
-        tutorialText = findViewById(R.id.pet_tutorial);  // 추가된 튜토리얼 텍스트뷰
+        tutorialText = findViewById(R.id.pet_tutorial);
 
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
         navSearch = findViewById(R.id.nav_search);
         navMyPage = findViewById(R.id.nav_mypage);
 
-        updateUI();
+
+        SharedPreferences prefs = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        long memberId = prefs.getLong("memberId", -1);
+
+        if (memberId != -1) {
+            Retrofit_interface apiService = Retrofit_client.getInstance().create(Retrofit_interface.class);
+            Call<Integer> call = apiService.getFeedCount(memberId);
+            call.enqueue(new Callback<Integer>() {
+                @Override
+                public void onResponse(Call<Integer> call, Response<Integer> response) {
+                    if (response.isSuccessful()) {
+                        currentHeartCount = response.body();
+                    } else {
+                        Toast.makeText(PetActivity.this, "먹이 정보를 불러오지 못했습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                    updateUI();
+                }
+
+                @Override
+                public void onFailure(Call<Integer> call, Throwable t) {
+                    Toast.makeText(PetActivity.this, "서버 연결 실패", Toast.LENGTH_SHORT).show();
+                    updateUI();
+                }
+            });
+        } else {
+            Toast.makeText(this, "로그인 정보가 없습니다.", Toast.LENGTH_SHORT).show();
+            updateUI();
+        }
 
         // 먹이 주기 버튼
         LinearLayout heartContainer = findViewById(R.id.heart_button_container);
@@ -95,7 +127,7 @@ public class PetActivity extends AppCompatActivity {
         int progressPercent = (int) (((float) currentExp / maxExp) * 100);
         progressBar.setProgress(progressPercent);
 
-        // 그래프용 이미지 연동
+        // 레벨별 펫 이미지 설정
         switch (level) {
             case 1:
                 petGif.setImageResource(R.drawable.p_cat1);
