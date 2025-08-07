@@ -68,6 +68,7 @@
                 android:background="@drawable/edit_text_background"
                 android:hint="@string/edittext_group_name"
                 android:fontFamily="@font/bmjua"
+                android:textSize="16sp"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:textColor="#2A3D45"
@@ -123,7 +124,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center"
                 android:weightSum="4"
                 android:layout_marginBottom="2dp">
 
@@ -147,7 +147,6 @@
                     android:fontFamily="@font/bmjua"
                     android:background="@drawable/rounded_button_background"
                     android:textColor="#2A3D45"
-                    android:layout_marginStart="4dp"
                     android:layout_marginEnd="4dp"/>
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -159,7 +158,6 @@
                     android:fontFamily="@font/bmjua"
                     android:background="@drawable/rounded_button_background"
                     android:textColor="#2A3D45"
-                    android:layout_marginStart="4dp"
                     android:layout_marginEnd="4dp"/>
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -171,7 +169,7 @@
                     android:fontFamily="@font/bmjua"
                     android:background="@drawable/rounded_button_background"
                     android:textColor="#2A3D45"
-                    android:layout_marginStart="4dp"/>
+                    android:layout_marginEnd="4dp"/>
             </LinearLayout>
 
             <TextView
@@ -287,6 +285,7 @@
                 android:gravity="top|start"
                 android:hint="@string/edittext_group_description"
                 android:fontFamily="@font/bmjua"
+                android:textSize="16sp"
                 android:inputType="textMultiLine"
                 android:maxLength="100"
                 android:padding="10dp"

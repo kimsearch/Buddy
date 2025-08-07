@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,28 +13,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class GroupMainWeightActivity extends AppCompatActivity {
+public class GroupMainBudgetBookActivity extends AppCompatActivity {
 
     private TextView groupMainTitle;
     private TextView groupGoalView;
-    private EditText goalInputEditText;
-    private Button goalInputButton;
+    private Button successButton, failureButton;
 
     private AppCompatImageButton navHome, navGroup, navSearch, navPet, navMyPage;
-    private PieChart pieChart;
     private BarChart barChart;
     private RecyclerView rankingRecyclerView;
 
@@ -46,13 +39,12 @@ public class GroupMainWeightActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.group_main_weight);
+        setContentView(R.layout.group_main_budget_book);
 
         groupMainTitle = findViewById(R.id.group_main_title);
         groupGoalView = findViewById(R.id.group_goal_view);
-        goalInputEditText = findViewById(R.id.goal_input_edittext);
-        goalInputButton = findViewById(R.id.goal_input_button);
-        pieChart = findViewById(R.id.pieChart);
+        successButton = findViewById(R.id.success_button);
+        failureButton = findViewById(R.id.failure_button);
         barChart = findViewById(R.id.barChart);
         rankingRecyclerView = findViewById(R.id.rankingRecyclerView);
 
@@ -72,59 +64,28 @@ public class GroupMainWeightActivity extends AppCompatActivity {
         rankingRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         rankingRecyclerView.setAdapter(rankingAdapter);
 
-        updatePieChart(0f);
+        successButton.setOnClickListener(v -> {
+            Toast.makeText(this, "🎉 오늘 목표를 성공했습니다!", Toast.LENGTH_SHORT).show();
+            dailyProgressMap.put(getTodayDate(), 100f);  // 100% 달성
+            updateBarChart();
+        });
+
+        failureButton.setOnClickListener(v -> {
+            Toast.makeText(this, "😢 오늘 목표를 실패했습니다.", Toast.LENGTH_SHORT).show();
+            dailyProgressMap.put(getTodayDate(), 0f);  // 0% 달성
+            updateBarChart();
+        });
+
         if (dailyProgressMap.isEmpty()) {
             dailyProgressMap.put(getTodayDate(), 0f);
         }
         updateBarChart();
-
-        goalInputButton.setOnClickListener(v -> {
-            String inputText = goalInputEditText.getText().toString().trim();
-            if (!inputText.isEmpty()) {
-                try {
-                    float value = Float.parseFloat(inputText);
-                    float percentage = Math.min(100f, (value / 10000f) * 100f);
-                    updatePieChart(percentage);
-                    String today = getTodayDate();
-                    dailyProgressMap.put(today, percentage);
-
-                    updateBarChart();
-                    Toast.makeText(this, "기록 완료: " + value + "보", Toast.LENGTH_SHORT).show();
-                    goalInputEditText.setText("");
-                } catch (NumberFormatException e) {
-                    Toast.makeText(this, "숫자를 정확히 입력해주세요.", Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                Toast.makeText(this, "목표를 입력하세요.", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         navHome.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
         navGroup.setOnClickListener(v -> startActivity(new Intent(this, GroupPageActivity.class)));
         navMyPage.setOnClickListener(v -> startActivity(new Intent(this, MyPageMainActivity.class)));
         navSearch.setOnClickListener(v -> startActivity(new Intent(this, GroupSearchPageActivity.class)));
         navPet.setOnClickListener(v -> startActivity(new Intent(this, PetActivity.class)));
-    }
-
-    private void updatePieChart(float value) {
-        List<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(value, "달성"));
-        entries.add(new PieEntry(100 - value, "남은 목표"));
-        PieDataSet dataSet = new PieDataSet(entries, "");
-        dataSet.setSliceSpace(3f);
-        dataSet.setSelectionShift(5f);
-        dataSet.setColors(value >= 80 ? Color.rgb(76, 175, 80) : value >= 50 ? Color.rgb(255, 193, 7) : Color.rgb(244, 67, 54), Color.LTGRAY);
-
-        PieData pieData = new PieData(dataSet);
-        pieData.setValueTextSize(14f);
-        pieData.setValueTextColor(Color.WHITE);
-
-        pieChart.setData(pieData);
-        pieChart.setUsePercentValues(true);
-        pieChart.setDrawEntryLabels(false);
-        pieChart.getDescription().setEnabled(false);
-        pieChart.getLegend().setEnabled(false);
-        pieChart.invalidate();
     }
 
     private void updateBarChart() {

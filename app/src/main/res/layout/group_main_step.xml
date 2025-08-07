@@ -168,7 +168,7 @@
                     android:background="@drawable/rounded_graph_background" />
             </LinearLayout>
 
-            <!-- 이전 기록 (BarChart) -->
+            <!-- 이전 기록 -->
             <LinearLayout
                 android:id="@+id/section_history"
                 android:layout_width="match_parent"

@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import androidx.appcompat.widget.AppCompatButton;
 import android.text.TextWatcher;
 import android.widget.*;
 import androidx.appcompat.app.AlertDialog;
@@ -243,14 +244,23 @@ public class GroupMakeActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.category_btn_1).setOnClickListener(v -> {
-            selectedMainCategory = "다이어트"; // 전역 변수에 대입
+            selectedMainCategory = "다이어트";
             selectedCategory.setText("선택된 카테고리: " + selectedMainCategory);
             showSubCategoryPopup();
         });
+
+        findViewById(R.id.category_btn_2).setOnClickListener(v -> {
+            selectedMainCategory = "재테크";
+            selectedCategory.setText("선택된 카테고리: " + selectedMainCategory);
+            showFinanceSubCategoryPopup();
+        });
+
+        // 여기에 공부, 취미 카테고리 추가 예정
     }
 
+    // 세부 카테고리
     private void showSubCategoryPopup() {
-        String[] items = {"만보기", "섭취 칼로리", "운동 칼로리", "식단"};
+        String[] items = {"만보기", "섭취 칼로리", "운동 칼로리", "몸무게"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("세부 카테고리 선택");
         builder.setItems(items, (dialog, which) -> {
@@ -278,6 +288,10 @@ public class GroupMakeActivity extends AppCompatActivity {
                 goalValueLabel.setVisibility(View.VISIBLE);
                 editTextGoalValue.setVisibility(View.VISIBLE);
                 editTextGoalValue.setHint("예: 500kcal");
+            } else if ("몸무게".equals(selectedSubCategory)) {
+                goalValueLabel.setVisibility(View.VISIBLE);
+                editTextGoalValue.setVisibility(View.VISIBLE);
+                editTextGoalValue.setHint("예: 50kg");
             } else {
                 goalValueLabel.setVisibility(View.GONE);
                 editTextGoalValue.setVisibility(View.GONE);
@@ -288,11 +302,46 @@ public class GroupMakeActivity extends AppCompatActivity {
         builder.show();
     }
 
+    private void showFinanceSubCategoryPopup() {
+        String[] items = {"저축", "소비", "가계부", "부수입"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("세부 카테고리 선택");
+        builder.setItems(items, (dialog, which) -> {
+            selectedSubCategory = items[which];
+            Toast.makeText(this, selectedSubCategory + " 선택됨", Toast.LENGTH_SHORT).show();
+            selectedCategory.setText("카테고리: " + selectedMainCategory + " / 목표: " + selectedSubCategory);
 
+            if ("저축".equals(selectedSubCategory)) {
+                goalValueLabel.setVisibility(View.VISIBLE);
+                editTextGoalValue.setVisibility(View.VISIBLE);
+                editTextGoalValue.setHint("예: 10,000");
+            } else if ("소비".equals(selectedSubCategory)) {
+                goalValueLabel.setVisibility(View.VISIBLE);
+                editTextGoalValue.setVisibility(View.VISIBLE);
+                editTextGoalValue.setHint("예: 30,000");
+            } else if ("가계부".equals(selectedSubCategory)) {
+                goalValueLabel.setVisibility(View.VISIBLE);
+                editTextGoalValue.setVisibility(View.VISIBLE);
+                editTextGoalValue.setHint("예: 몰라 뭐라고 적지");
+            } else if ("부수입".equals(selectedSubCategory)) {
+                goalValueLabel.setVisibility(View.VISIBLE);
+                editTextGoalValue.setVisibility(View.VISIBLE);
+                editTextGoalValue.setHint("예: 700,000");
+            } else {
+                goalValueLabel.setVisibility(View.GONE);
+                editTextGoalValue.setVisibility(View.GONE);
+            }
+
+            enableCreateGroupButton();
+        });
+        builder.show();
+    }
+
+// enableCreateGroupButton() 조건 강화
     private void enableCreateGroupButton() {
-        if (!selectedSubCategory.isEmpty()) {
+        if (!selectedSubCategory.isEmpty() && !selectedStartDate.isEmpty() && isGoalFrequencySet) {
             buttonCreateGroup.setEnabled(true);
-            buttonCreateGroup.setAlpha(1f);  // Make it visible
+            buttonCreateGroup.setAlpha(1f);
         }
     }
 

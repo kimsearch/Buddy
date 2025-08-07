@@ -134,46 +134,38 @@
                 android:fontFamily="@font/bmjua"
                 android:layout_marginBottom="12dp"/>
 
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/pieChart"
-                android:layout_width="match_parent"
-                android:layout_height="157dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/rounded_graph_background" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="24dp">
+                android:gravity="center"
+                android:layout_marginBottom="24dp"
+                android:weightSum="2">
 
-                <EditText
-                    android:id="@+id/goal_input_edittext"
+                <Button
+                    android:id="@+id/success_button"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:inputType="number"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
-                    android:background="@drawable/edit_text_background"
+                    android:text="성공"
                     android:textColor="#2A3D45"
-                    android:textSize="16sp" />
+                    android:backgroundTint="#c0e7bb"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/bmjua" />
 
                 <Button
-                    android:id="@+id/goal_input_button"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/failure_button"
+                    android:layout_width="0dp"
                     android:layout_height="48dp"
-                    android:text="입력"
-                    android:fontFamily="@font/bmjua"
+                    android:layout_weight="1"
+                    android:text="실패"
                     android:textColor="#2A3D45"
-                    android:backgroundTint="#D0F4DE"
-                    android:layout_marginStart="12dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"/>
+                    android:backgroundTint="#f3c2bd"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/bmjua" />
             </LinearLayout>
 
-            <!-- 누적 + 최근 3일 기록을 하나의 그래프에 표시 -->
+            <!-- 이전 기록 -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

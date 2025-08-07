@@ -27,7 +27,7 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class GroupMainWeightActivity extends AppCompatActivity {
+public class GroupMainSavingsActivity extends AppCompatActivity {
 
     private TextView groupMainTitle;
     private TextView groupGoalView;
@@ -46,7 +46,7 @@ public class GroupMainWeightActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.group_main_weight);
+        setContentView(R.layout.group_main_savings);
 
         groupMainTitle = findViewById(R.id.group_main_title);
         groupGoalView = findViewById(R.id.group_goal_view);
