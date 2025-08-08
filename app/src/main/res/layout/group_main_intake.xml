@@ -166,6 +166,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:text="입력"
+                    android:fontFamily="@font/bmjua"
                     android:textColor="#2A3D45"
                     android:backgroundTint="#D0F4DE"
                     android:layout_marginStart="12dp"
@@ -173,7 +174,7 @@
                     android:paddingRight="16dp"/>
             </LinearLayout>
 
-            <!-- 누적 + 최근 3일 기록을 하나의 그래프에 표시 -->
+            <!-- 이전 기록 -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

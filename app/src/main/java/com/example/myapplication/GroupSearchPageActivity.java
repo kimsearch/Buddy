@@ -109,6 +109,7 @@ public class GroupSearchPageActivity extends AppCompatActivity {
 
         // 카테고리 선택 팝업
         findViewById(R.id.category_btn_1).setOnClickListener(v -> showCategoryPopup());
+        findViewById(R.id.category_btn_2).setOnClickListener(v -> showFinanceSubCategoryPopup());
     }
 
     private Long getMyMemberId() {
@@ -144,7 +145,6 @@ public class GroupSearchPageActivity extends AppCompatActivity {
                 });
     }
 
-
     private void showCategoryPopup() {
         String[] subCategories = {"만보기", "섭취 칼로리", "운동 칼로리", "식단"};
         String categoryMain = "다이어트"; // 고정
@@ -167,4 +167,25 @@ public class GroupSearchPageActivity extends AppCompatActivity {
         builder.show();
     }
 
+    private void showFinanceSubCategoryPopup() {
+        String[] subCategories = {"저축", "소비", "가계부", "부수입"};
+        String categoryMain = "재테크"; //
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("재테크 - 카테고리 선택");
+
+        builder.setItems(subCategories, (dialog, which) -> {
+            selectedMainCategory = categoryMain;
+            selectedSubCategory = subCategories[which];
+
+            categoryTextView.setText("선택된 카테고리: " + selectedMainCategory + " - " + selectedSubCategory);
+
+            String query = searchGroupInput.getText().toString().trim();
+            searchGroups(query, selectedMainCategory, selectedSubCategory);
+        });
+
+        builder.show();
+    }
 }
+
+
