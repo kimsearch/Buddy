@@ -37,6 +37,7 @@ public class GroupPageActivity extends AppCompatActivity {
         setupListeners();
     }
 
+    //GroupAdpater 사용해서 그룹 목록 보여줌
     private Long getMyMemberId() {
         return getSharedPreferences("loginPrefs", MODE_PRIVATE)
                 .getLong("memberId", -1L);
@@ -77,14 +78,6 @@ public class GroupPageActivity extends AppCompatActivity {
         });
     }
 
-
-    private List<Group> getGroupList() {
-        List<Group> list = new ArrayList<>();
-        list.add(new Group(1L, "하루 만보 걷기 챌린지", 18L));
-        list.add(new Group(2L, "같이 다이어트 해요", 19L));
-        list.add(new Group(3L, "버디퀘스트 화이팅", 20L));
-        return list;
-    }
 
     private void setupListeners() {
         notificationBtn.setOnClickListener(v -> navigateTo(AlarmPageActivity.class));

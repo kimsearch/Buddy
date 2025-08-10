@@ -70,6 +70,8 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
 
             if ("다이어트".equals(group.getCategory()) && "만보기".equals(group.getGoalType())) {
                 intent = new Intent(context, GroupMainStepActivity.class);
+            } else if("재테크".equals(group.getCategory()) && "부수입".equals(group.getGoalType())) {
+                intent = new Intent(context, GroupMainSideHustleActivity.class);
             } else {
                 intent = new Intent(context, GroupMainActivity.class);
             }

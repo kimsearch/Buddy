@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton alarmButton, calendarButton;
     private ImageButton navHome, navGroup, navSearch, navPet, navMyPage;
 
+    //HomeGroupAdapter 사용해서 그룹 목록 보여줌
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -36,7 +36,7 @@ public class HomeGroupAdapter extends RecyclerView.Adapter<HomeGroupAdapter.View
         Group group = groupList.get(position);
         holder.groupNameBtn.setText(group.getName());
 
-        // 🔸 목표 달성률에 따라 아이콘 변경
+        // 목표 달성률에 따라 아이콘 변경
         float percent = group.getProgressPercent();  // 0~100 사이 값이라고 가정
         if (percent < 25) {
             holder.progressIcon.setBackgroundResource(R.drawable.ic_progress_none);
@@ -53,6 +53,9 @@ public class HomeGroupAdapter extends RecyclerView.Adapter<HomeGroupAdapter.View
             Intent intent;
             if ("다이어트".equals(group.getCategory()) && "만보기".equals(group.getGoalType())) {
                 intent = new Intent(context, GroupMainStepActivity.class);
+            } else if ("재테크".equals(group.getCategory()) && "부수입".equals(group.getGoalType())) {
+                intent = new Intent(context, GroupMainSideHustleActivity.class);
+
             } else {
                 intent = new Intent(context, GroupMainActivity.class);
             }

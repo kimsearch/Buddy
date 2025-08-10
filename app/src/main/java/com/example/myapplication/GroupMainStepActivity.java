@@ -16,6 +16,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +59,7 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
 
     private AppCompatImageButton notificationButton1, notificationButton2, notificationButton3;
     private AppCompatImageButton navHome, navGroup, navSearch, navPet, navMyPage;
+    private ImageButton backButton;
 
     private SharedPreferences prefs;
     private int stepOffset = 0;
@@ -107,7 +109,7 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
 
         // UI 연결
         groupMainTitle = findViewById(R.id.group_main_title);
-        stepCountView = findViewById(R.id.step_count_value);
+        stepCountView = findViewById(R.id.step_count_value); //내 걸음수
         groupGoalTextView = findViewById(R.id.group_goal_view);
         pieChart = findViewById(R.id.pieChart);
 
@@ -132,6 +134,8 @@ public class GroupMainStepActivity extends AppCompatActivity implements SensorEv
         notificationButton1 = findViewById(R.id.notification_button_1);
         notificationButton2 = findViewById(R.id.notification_button_2);
         notificationButton3 = findViewById(R.id.notification_button_3);
+        backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> finish());
 
         notificationButton1.setOnClickListener(v -> {
             Intent intent1 = new Intent(GroupMainStepActivity.this, GroupMemberActivity.class);
