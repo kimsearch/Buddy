@@ -123,6 +123,23 @@
                 android:background="#EDEDED"
                 android:padding="12dp"
                 android:clipToPadding="false" />
+            <LinearLayout
+                android:id="@+id/section_personal_goal_hustle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="24dp">
+
+                <TextView
+                    android:id="@+id/side_hustle_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="부수입: 0"
+                    android:textSize="24sp"
+                    android:textColor="#2A3D45"
+                    android:gravity="center"
+                    android:layout_marginBottom="16dp" />
+            </LinearLayout>
 
             <!-- 오늘 목표 기록 -->
             <TextView

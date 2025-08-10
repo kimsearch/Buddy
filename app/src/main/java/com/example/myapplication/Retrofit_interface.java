@@ -139,18 +139,28 @@ public interface Retrofit_interface {
     @POST("/api/group-goal-log/update-step")
     Call<Void> updateStepLog(@Body GroupGoalLogRequest request);
 
+    //목표 달성률 api
     @GET("/api/group-goal-log/progress")
     Call<GoalProgressResponse> getGoalProgress(
             @Query("groupId") Long groupId,
             @Query("memberId") Long memberId
     );
 
+    //랭킹 차트 API
     @GET("/api/group-goal-log/ranking/{groupId}")
     Call<List<RankingItem>> getRanking(@Path("groupId") Long groupId);
 
     @GET("/api/group-goal-log/history")
     Call<List<StepHistoryItem>> getWeeklyStepHistory(@Query("groupId") Long groupId, @Query("memberId") Long memberId);
-
+    //펫 먹이
     @GET("/members/feed-count")
     Call<Integer> getFeedCount(@Query("memberId") Long memberId);
+    //부수입 입력해서 서버에 저장
+    @POST("/api/group-goal-log/update-income")
+    Call<Void> updateIncome(@Body IncomeLogRequest req);
+
+    //일주일 간 기록 보여주는 API
+    @GET("/api/group-goal-log/record-history")
+   Call<List<StepHistoryItem>> getWeeklyRecordHistory(@Query("groupId") Long groupId, @Query("memberId") Long memberId);
+
 }

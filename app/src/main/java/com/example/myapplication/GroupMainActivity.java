@@ -12,6 +12,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,8 @@ public class GroupMainActivity extends AppCompatActivity implements SensorEventL
     private Button goalInputButton;
 
     private AppCompatImageButton navHome, navGroup,navSearch, navPet, navMyPage;
+    private AppCompatImageButton notificationButton1, notificationButton2, notificationButton3;
+    private ImageButton backButton;
     private PieChart pieChart;
     private BarChart barChart;
     private RecyclerView rankingRecyclerView;
@@ -88,8 +91,28 @@ public class GroupMainActivity extends AppCompatActivity implements SensorEventL
         Intent intent = getIntent();
         String groupName = intent.getStringExtra("groupName");
         String groupGoal = intent.getStringExtra("groupGoal");
+        Long groupId = intent.getLongExtra("groupId", -1L);
         if (groupName != null) groupMainTitle.setText(groupName);
         if (groupGoal != null) groupGoalView.setText(groupGoal);
+
+        // 알림 버튼
+        notificationButton1 = findViewById(R.id.notification_button_1);
+        notificationButton2 = findViewById(R.id.notification_button_2);
+        notificationButton3 = findViewById(R.id.notification_button_3);
+        backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> finish());
+
+        notificationButton1.setOnClickListener(v -> {
+            Intent intent1 = new Intent(GroupMainActivity.this, GroupMemberActivity.class);
+            intent1.putExtra("groupId", groupId);
+            startActivity(intent1);
+        });
+
+        notificationButton2.setOnClickListener(v ->
+                startActivity(new Intent(GroupMainActivity.this, GroupCommunityActivity.class)));
+
+        notificationButton3.setOnClickListener(v ->
+                startActivity(new Intent(GroupMainActivity.this, AlarmPageActivity.class)));
 
         rankingAdapter = new RankingAdapter(this, rankingList);
         rankingRecyclerView.setLayoutManager(new LinearLayoutManager(this));
