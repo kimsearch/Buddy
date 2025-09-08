@@ -29,7 +29,7 @@ public class PasswordInputActivity extends AppCompatActivity {
         newPasswordInput = findViewById(R.id.edittext_password_1_name);
         confirmPasswordInput = findViewById(R.id.edittext_password_2_name);
 
-        emailCheckButton = findViewById(R.id.email_okay_button); // ✅ 새로 추가된 버튼
+        emailCheckButton = findViewById(R.id.email_okay_button);
         passwordChangeButton = findViewById(R.id.password_okay_button);
         backButton = findViewById(R.id.re_email_setting_1);
 
@@ -104,7 +104,7 @@ public class PasswordInputActivity extends AppCompatActivity {
 
         // 🔙 돌아가기 버튼
         backButton.setOnClickListener(v -> {
-            startActivity(new Intent(PasswordInputActivity.this, MyPageSettingActivity.class));
+            startActivity(new Intent(PasswordInputActivity.this, MyPageSettingsActivity.class));
             finish();
         });
     }

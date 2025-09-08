@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F4">
+    android:background="#f9f9f9">
 
-    <!-- 헤더 -->
     <LinearLayout
         android:id="@+id/header_container"
         android:layout_width="match_parent"
@@ -29,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/delete_account"
                 android:fontFamily="@font/bmjua"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:textColor="#2A3D45"
                 android:layout_weight="1"
                 android:paddingStart="8dp"
@@ -65,24 +64,21 @@
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:textColor="#999999"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:layout_marginBottom="8dp" />
 
-            <!-- 경고 문구 -->
             <TextView
                 android:id="@+id/delete_account_warning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/delete_account_warning"
                 android:textColor="#FF0000"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:fontFamily="@font/bmjua"
                 android:paddingStart="10dp"
                 android:paddingEnd="12dp"/>
         </LinearLayout>
 
-
-        <!-- 탈퇴 버튼 -->
         <Button
             android:id="@+id/confirm_delete_button"
             android:layout_width="wrap_content"

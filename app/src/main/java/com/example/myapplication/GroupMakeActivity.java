@@ -268,14 +268,6 @@ public class GroupMakeActivity extends AppCompatActivity {
             Toast.makeText(this, selectedSubCategory + " 선택됨", Toast.LENGTH_SHORT).show();
             selectedCategory.setText("카테고리: " + selectedMainCategory + " / 목표: " + selectedSubCategory);
 
-            // 힌트는 그대로 유지 (기존 코드)
-            if ("만보기".equals(selectedSubCategory)) {
-                editTextGroupDescription.setHint("걸음 수 목표 입력");
-            } else if ("다이어트".equals(selectedSubCategory)) {
-                editTextGroupDescription.setHint("섭취 칼로리 목표 입력");
-            }
-
-            // [✅ 새로 추가] 목표 수치 입력란 보여주기
             if ("만보기".equals(selectedSubCategory)) {
                 goalValueLabel.setVisibility(View.VISIBLE);
                 editTextGoalValue.setVisibility(View.VISIBLE);
@@ -322,7 +314,6 @@ public class GroupMakeActivity extends AppCompatActivity {
             } else if ("가계부".equals(selectedSubCategory)) {
                 goalValueLabel.setVisibility(View.VISIBLE);
                 editTextGoalValue.setVisibility(View.VISIBLE);
-                editTextGoalValue.setHint("예: 몰라 뭐라고 적지");
             } else if ("부수입".equals(selectedSubCategory)) {
                 goalValueLabel.setVisibility(View.VISIBLE);
                 editTextGoalValue.setVisibility(View.VISIBLE);

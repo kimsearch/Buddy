@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f9f9f9">
+
+    <LinearLayout
+        android:id="@+id/header_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="18dp"
+            android:paddingBottom="22dp"
+            android:paddingStart="3dp"
+            android:paddingEnd="16dp">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/back_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_arrow_back"
+                android:contentDescription="뒤로가기" />
+
+            <TextView
+                android:id="@+id/setting_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/setting_title"
+                android:fontFamily="@font/bmjua"
+                android:textSize="22sp"
+                android:textColor="#2A3D45"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header_container"
+        android:layout_above="@id/bottom_nav"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="24dp">
+
+            <LinearLayout
+                android:id="@+id/row_mission_alarm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/mission_alarm_setting"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/mission_alarm_setting"
+                    android:fontFamily="@font/bmjua"
+                    android:textSize="18sp"
+                    android:textColor="#2A3D45" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_mission_alarm"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_chevron_right"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/mission_alarm_setting"
+                    android:tint="#2A3D45"
+                    android:scaleType="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/row_group_alarm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/group_alarm_setting"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/group_alarm_setting"
+                    android:fontFamily="@font/bmjua"
+                    android:textSize="18sp"
+                    android:textColor="#2A3D45" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_group_alarm"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="12dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/group_alarm_setting"
+                    android:scaleType="center"
+                    android:src="@drawable/ic_chevron_right"
+                    android:tint="#2A3D45" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/row_community_alarm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/community_alarm_setting"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/community_alarm_setting"
+                    android:fontFamily="@font/bmjua"
+                    android:textSize="18sp"
+                    android:textColor="#2A3D45" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_community_alarm"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_chevron_right"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/community_alarm_setting"
+                    android:tint="#2A3D45"
+                    android:scaleType="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/row_account_information"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/account_information"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/account_management"
+                    android:fontFamily="@font/bmjua"
+                    android:textSize="18sp"
+                    android:textColor="#2A3D45" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_account_information"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_chevron_right"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/account_information"
+                    android:tint="#2A3D45"
+                    android:scaleType="center" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#e8e8e8"
+        android:padding="8dp"
+        android:layout_alignParentBottom="true">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_home"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_group"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_group"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_search"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_nav_search"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_pet"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_paw"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="fitCenter"
+            android:padding="12dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_mypage"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_mypage"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#2A3D45"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
+    </LinearLayout>
+</RelativeLayout>

@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="#D0F4DE"
+    android:background="#f9f9f9"
     tools:context=".JoinPageActivity">
 
-    <!-- Title (회원가입) -->
     <TextView
         android:id="@+id/login_signup_title"
         android:layout_width="wrap_content"
@@ -19,10 +18,8 @@
         android:text="@string/login_signup_title"
         android:fontFamily="@font/bmjua"
         android:textColor="#2A3D45"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textSize="24sp" />
 
-    <!-- 닉네임 입력, 중복확인 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +32,7 @@
             android:layout_height="48dp"
             android:layout_weight="2"
             android:layout_marginEnd="8dp"
-            android:background="@drawable/rounded_edittext"
+            android:background="@drawable/bg_white_rounded"
             android:hint="닉네임"
             android:fontFamily="@font/bmjua"
             android:textSize="14sp"
@@ -49,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:backgroundTint="#FBF5DA"
+            android:backgroundTint="#D0F4DE"
             android:textSize="14sp"
             android:gravity="center"
             android:padding="12dp"
@@ -58,13 +55,12 @@
             android:textColor="@android:color/black" />
     </LinearLayout>
 
-    <!-- 생년월일 -->
     <EditText
         android:id="@+id/edittext_birth_input"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_edittext"
+        android:background="@drawable/bg_white_rounded"
         android:hint="생년월일(yyyy-mm-dd)"
         android:fontFamily="@font/bmjua"
         android:textSize="14sp"
@@ -73,7 +69,6 @@
         android:gravity="center_vertical"
         android:textColor="@android:color/black" />
 
-    <!-- 이메일 입력 + 인증번호 전송 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -86,7 +81,7 @@
             android:layout_height="48dp"
             android:layout_weight="2"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/rounded_edittext"
+            android:background="@drawable/bg_white_rounded"
             android:hint="이메일"
             android:fontFamily="@font/bmjua"
             android:textSize="14sp"
@@ -101,7 +96,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:backgroundTint="#FBF5DA"
+            android:backgroundTint="#D0F4DE"
             android:textSize="14sp"
             android:padding="12dp"
             android:text="인증번호 전송"
@@ -109,7 +104,6 @@
             android:textColor="@android:color/black" />
     </LinearLayout>
 
-    <!-- 인증번호 입력 및 확인 버튼 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -122,7 +116,7 @@
             android:layout_height="48dp"
             android:layout_weight="2"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/rounded_edittext"
+            android:background="@drawable/bg_white_rounded"
             android:hint="인증번호 입력"
             android:fontFamily="@font/bmjua"
             android:textSize="14sp"
@@ -136,7 +130,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:backgroundTint="#FBF5DA"
+            android:backgroundTint="#D0F4DE"
             android:textSize="14sp"
             android:padding="12dp"
             android:text="확인"
@@ -144,14 +138,12 @@
             android:textColor="@android:color/black" />
     </LinearLayout>
 
-
-    <!-- 비밀번호 입력 -->
     <EditText
         android:id="@+id/edittext_password_input"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_edittext"
+        android:background="@drawable/bg_white_rounded"
         android:hint="비밀번호"
         android:fontFamily="@font/bmjua"
         android:textSize="14sp"
@@ -161,7 +153,6 @@
         android:gravity="center_vertical"
         android:textColor="@android:color/black" />
 
-    <!-- 비밀번호 확인 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -174,13 +165,14 @@
             android:layout_height="48dp"
             android:layout_weight="2"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/rounded_edittext"
+            android:background="@drawable/bg_white_rounded"
             android:hint="비밀번호 재입력"
             android:fontFamily="@font/bmjua"
             android:textSize="14sp"
             android:inputType="textPassword"
             android:paddingVertical="6dp"
-            android:paddingHorizontal="12dp"            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:gravity="center_vertical"
             android:textColor="@android:color/black" />
 
         <Button
@@ -188,7 +180,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:backgroundTint="#FBF5DA"
+            android:backgroundTint="#D0F4DE"
             android:textSize="14sp"
             android:padding="12dp"
             android:text="@string/password_check_button"
@@ -196,7 +188,6 @@
             android:textColor="@android:color/black" />
     </LinearLayout>
 
-    <!-- 회원가입 버튼 -->
     <Button
         android:id="@+id/login_login_button"
         android:layout_width="200dp"

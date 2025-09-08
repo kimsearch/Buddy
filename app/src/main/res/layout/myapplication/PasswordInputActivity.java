@@ -104,7 +104,7 @@ public class PasswordInputActivity extends AppCompatActivity {
 
         // 🔙 돌아가기 버튼
         backButton.setOnClickListener(v -> {
-            startActivity(new Intent(PasswordInputActivity.this, MyPageSettingActivity.class));
+            startActivity(new Intent(PasswordInputActivity.this, Dd.class));
             finish();
         });
     }

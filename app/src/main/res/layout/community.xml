@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F4">
+    android:background="#f9f9f9">
 
-    <!-- 헤더 -->
     <LinearLayout
         android:id="@+id/header_container"
         android:layout_width="match_parent"
@@ -30,9 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/group_community_title"
-            android:textSize="20sp"
-            android:textColor="#2A3D45"
-            android:textStyle="bold"/>
+            android:textSize="22sp"
+            android:textColor="#2A3D45"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_mypage"
@@ -44,7 +42,6 @@
             android:padding="6dp"/>
     </LinearLayout>
 
-    <!-- 게시물 영역 -->
     <ScrollView
         android:id="@+id/post_scroll_view"
         android:layout_width="match_parent"
@@ -131,7 +128,7 @@
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:background="#DBDBDB"
+        android:background="#e8e8e8"
         android:padding="8dp"
         android:layout_alignParentBottom="true">
 
@@ -166,7 +163,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_search"
+            android:src="@drawable/ic_nav_search"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
             android:importantForAccessibility="no"

@@ -57,13 +57,18 @@
         <activity android:name=".SampleLayoutActivity" />
         <activity android:name=".PetActivity" />
         <activity android:name=".MyPageMainActivity" />
-        <activity android:name=".MyPageSettingActivity" />
+        <activity android:name=".MyPageSettingsActivity" />
+        <activity android:name=".MissionAlarmActivity" />
+        <activity android:name=".GroupAlarmActivity" />
+        <activity android:name=".CommunityAlarmActivity" />
+        <activity android:name=".AccountManagementActivity" />
         <activity android:name=".PasswordInputActivity" />
         <activity android:name=".EmailFindMainActivity" />
         <activity android:name=".EmailFindSubActivity" />
         <activity android:name=".GroupSearchPageActivity"/>
         <activity android:name=".SearchJoinActivity"/>
         <receiver android:name=".StepResetReceiver" />
+
 
 
     </application>

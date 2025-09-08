@@ -2,14 +2,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp"
+    android:padding="4dp"
     android:gravity="center_vertical"
-    android:background="#F4F4F4">
+    android:background="#f9f9f9">
 
     <Button
         android:id="@+id/btnGroupName"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="55dp"
         android:layout_weight="1"
         android:text="그룹 이름"
         android:fontFamily="@font/bmjua"
@@ -22,7 +22,7 @@
         android:id="@+id/progressIcon"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:background="@drawable/ic_data"
         android:importantForAccessibility="no" />
 </LinearLayout>

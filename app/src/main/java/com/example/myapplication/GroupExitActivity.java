@@ -1,13 +1,16 @@
 package com.example.myapplication;
 
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -38,6 +41,11 @@ public class GroupExitActivity extends AppCompatActivity {
         Intent intent = getIntent();
         groupId = intent.getLongExtra("groupId", -1L);
 
+        // 기본 유효성 체크
+        if (myMemberId == -1L || groupId == -1L) {
+            Toast.makeText(this, "잘못된 접근입니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+        }
+
         // "그룹 나가기" 버튼 클릭
         confirmExitButton.setOnClickListener(view -> showExitConfirmationDialog());
 
@@ -46,15 +54,32 @@ public class GroupExitActivity extends AppCompatActivity {
     }
 
     private void showExitConfirmationDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle("그룹 나가기")
-                .setMessage("정말 그룹을 나가시겠습니까?\n이 작업은 되돌릴 수 없습니다.")
-                .setPositiveButton("나가기", (dialog, which) -> sendExitRequestToServer(groupId, myMemberId))
-                .setNegativeButton("취소", (dialog, which) -> navigateToGroupPage())
-                .show();
+        // 1) 커스텀 뷰 inflate
+        LayoutInflater inflater = getLayoutInflater();
+        View customView = inflater.inflate(R.layout.dialog_exit, null);
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(customView)
+                .setPositiveButton("나가기", (d, which) -> {
+                    if (groupId != -1L && myMemberId != -1L) {
+                        sendExitRequestToServer(groupId, myMemberId);
+                    } else {
+                        Toast.makeText(this, "그룹 정보를 확인할 수 없습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("취소", (d, which) -> navigateToGroupPage())
+                .create();
+
+        dialog.show();
+
+        Typeface bmjua = ResourcesCompat.getFont(this, R.font.bmjua);
+        Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+        if (positiveButton != null && bmjua != null) positiveButton.setTypeface(bmjua);
+        if (negativeButton != null && bmjua != null) negativeButton.setTypeface(bmjua);
     }
 
-    // ✅ 서버로 탈퇴 요청 보내는 메서드 (신규)
+    // ✅ 서버로 탈퇴 요청 보내는 메서드
     private void sendExitRequestToServer(Long groupId, Long memberId) {
         Retrofit_interface api = Retrofit_client.getInstance().create(Retrofit_interface.class);
         api.exitGroup(groupId, memberId).enqueue(new Callback<ResponseBody>() {

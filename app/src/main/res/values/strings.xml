@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- 로그인 -->
-    <string name="subtitle">즐겁게 경쟁하고, 같이 성장하는 미션 라이프!</string>
-    <string name="login_login_button">로그인 하기</string>
+    <string name="subtitle">즐겁게 경쟁하고 같이 성장하는 미션 라이프!</string>
+    <string name="login_login_button">로그인</string>
     <string name="find_nickname_button">이메일 찾기</string>
     <string name="signup_button">회원가입</string>
     <string name="find_email_button">비밀번호 찾기</string>
@@ -38,7 +38,7 @@
 
     <!-- 개인 목표 -->
     <string name="edittext_personal_name">자유롭게 입력하세요</string>
-    <string name="edittext_personal_description">목표에 대한 상세 설명을 입력하세요</string>
+    <string name="edittext_personal_description">상세 설명을 입력하세요 (100자 이내)</string>
     <string name="button_create_personal">개인 목표 추가하기</string>
 
     <!-- 그룹 페이지 -->
@@ -90,7 +90,6 @@
     <string name="add_photo_button">사진 추가하기</string>
     <string name="post_submit_button">게시하기</string>
 
-
     <!-- 그룹 나가기/삭제하기 -->
     <string name="group_exit_title">그룹 나가기</string>
     <string name="cancel_exit_button">취소</string>
@@ -109,7 +108,6 @@
     <string name="group_introduction_1">그룹장이 적은 그룹 설명</string>
     <string name="group_rfp">그룹 참가 요청</string>
     <string name="button_join_group">그룹 참여하기</string>
-
 
     <!-- 알림 페이지 (alarm_page.xml): 추가됨 -->
     <string name="alarmcontent_1">설정한 목표 잊으신 거 아니죠?</string>
@@ -136,7 +134,7 @@
 
     <!-- 설정 페이지 -->
     <string name="setting_title">설정</string>
-    <string name="login_information">정보</string>
+    <string name="account_management">계정 설정</string>
     <string name="email_button">이메일 찾기</string>
     <string name="mission_alarm_setting">미션 알림</string>
     <string name="group_alarm_setting">그룹 알림</string>
@@ -150,7 +148,7 @@
     <string name="like_alarm_text">커뮤니티 좋아요 알림</string>
     <string name="account_information">로그인</string>
     <string name="logout_button">로그아웃</string>
-    <string name="delete_id_button">회원탈퇴</string>
+    <string name="delete_id_button">회원 탈퇴</string>
 
     <!-- 이메일 찾기 -->
     <string name="email_find_title">이메일 찾기</string>
@@ -166,4 +164,6 @@
     <string name="delete_account_warning">회원 탈퇴 시 모든 데이터가 삭제됩니다.</string>
     <string name="confirm_delete_button">탈퇴하기</string>
 
+    <!-- 설정 -->
+    <string name="email_btn">이메일 찾기</string>
 </resources>

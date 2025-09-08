@@ -3,4 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="custom_info_color">#2A3D45</color>
+    <color name="calendar_arrow">#2A3D45</color>
+    <color name="calendar_selection">#FBF5DA</color>
 </resources>

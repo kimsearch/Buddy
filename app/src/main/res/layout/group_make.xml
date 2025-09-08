@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F4">
+    android:background="#f9f9f9">
 
-    <!-- 헤더 -->
     <LinearLayout
         android:id="@+id/header_container"
         android:layout_width="match_parent"
@@ -13,7 +12,6 @@
         android:orientation="vertical"
         android:layout_alignParentTop="true">
 
-        <!-- 그룹 만들기 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/group_make_page"
                 android:fontFamily="@font/bmjua"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:textColor="#2A3D45"
                 android:layout_weight="1"
                 android:paddingStart="8dp"
@@ -59,7 +57,6 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- 그룹 이름 입력 -->
             <EditText
                 android:id="@+id/edittext_group_name"
                 android:layout_width="match_parent"
@@ -68,13 +65,12 @@
                 android:background="@drawable/edit_text_background"
                 android:hint="@string/edittext_group_name"
                 android:fontFamily="@font/bmjua"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:textColor="#2A3D45"
                 android:layout_marginBottom="6dp"/>
 
-            <!-- 문구 + 확인 버튼 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -108,7 +104,6 @@
                     android:paddingRight="33dp"/>
             </LinearLayout>
 
-            <!-- 카테고리 선택 -->
             <TextView
                 android:id="@+id/category"
                 android:layout_width="wrap_content"
@@ -176,13 +171,12 @@
                 android:id="@+id/selected_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="선택된 카테고리: 없음"
+                android:text="세부 카테고리: 없음"
                 android:textSize="14sp"
                 android:textColor="#2A3D45"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginBottom="12dp" />
 
-            <!-- 시작 날짜 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -210,7 +204,6 @@
                     android:background="@drawable/rounded_gray_button" />
             </LinearLayout>
 
-            <!-- 알림 설정 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -238,7 +231,6 @@
                     android:background="@drawable/rounded_gray_button" />
             </LinearLayout>
 
-            <!-- 목표 수치 -->
             <TextView
                 android:id="@+id/goal_value_label"
                 android:layout_width="wrap_content"
@@ -264,7 +256,6 @@
                 android:textColor="#2A3D45"
                 android:visibility="gone"/>
 
-            <!-- 그룹 소개 -->
             <TextView
                 android:id="@+id/group_introduction"
                 android:layout_width="wrap_content"
@@ -285,7 +276,7 @@
                 android:gravity="top|start"
                 android:hint="@string/edittext_group_description"
                 android:fontFamily="@font/bmjua"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:inputType="textMultiLine"
                 android:maxLength="100"
                 android:padding="10dp"
@@ -295,13 +286,13 @@
                 android:id="@+id/button_create_group"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:text="@string/group_make_page"
-                android:fontFamily="@font/bmjua"
-                android:textColor="#2A3D45"
-                android:textSize="16sp"
-                android:background="@drawable/rounded_yellow_button"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="24dp"/>
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/rounded_yellow_button"
+                android:fontFamily="@font/bmjua"
+                android:text="@string/group_make_page"
+                android:textColor="#2A3D45"
+                android:textSize="14sp" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

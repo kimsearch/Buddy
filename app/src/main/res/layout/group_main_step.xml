@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F4">
+    android:background="#f9f9f9">
 
-    <!-- 헤더 -->
     <LinearLayout
         android:id="@+id/header_container"
         android:layout_width="match_parent"
@@ -37,7 +36,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="그룹 이름"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:textColor="#2A3D45"
                 android:layout_weight="1"
                 android:paddingStart="8dp"
@@ -206,14 +205,13 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- 하단 네비게이션 바 -->
     <LinearLayout
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:background="#DBDBDB"
+        android:background="#e8e8e8"
         android:padding="8dp"
         android:layout_alignParentBottom="true">
 
@@ -246,7 +244,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_search"
+            android:src="@drawable/ic_nav_search"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
             android:importantForAccessibility="no"
