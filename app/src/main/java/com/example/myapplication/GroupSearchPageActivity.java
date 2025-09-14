@@ -186,7 +186,7 @@ public class GroupSearchPageActivity extends AppCompatActivity {
     }
 
     private void showStudySubCategoryPopup() {
-        String[] subCategories = {"학습 시간", "문제 풀이 수", "복습 체크", "시험 점수 체크"};
+        String[] subCategories = {"학습 시간", "문제 풀이 수", "복습 체크", "목표 점수"};
         String categoryMain = "공부"; //
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

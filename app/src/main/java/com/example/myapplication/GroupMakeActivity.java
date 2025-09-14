@@ -331,7 +331,7 @@ public class GroupMakeActivity extends AppCompatActivity {
     }
 
     private void showStudySubCategoryPopup() {
-        String[] items = {"학습 시간", "문제 풀이 수", "복습 체크", "시험 점수 체크"};
+        String[] items = {"학습 시간", "문제 풀이 수", "복습 체크", "목표 점수"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("세부 카테고리 선택");
         builder.setItems(items, (dialog, which) -> {
@@ -350,7 +350,7 @@ public class GroupMakeActivity extends AppCompatActivity {
             } else if ("복습 체크".equals(selectedSubCategory)) {
                 goalValueLabel.setVisibility(View.GONE);
                 editTextGoalValue.setVisibility(View.GONE);
-            } else if ("시험 점수 체크".equals(selectedSubCategory)) {
+            } else if ("목표 점수".equals(selectedSubCategory)) {
                 goalValueLabel.setVisibility(View.VISIBLE);
                 editTextGoalValue.setVisibility(View.VISIBLE);
                 editTextGoalValue.setHint("예: 90 (점)");
