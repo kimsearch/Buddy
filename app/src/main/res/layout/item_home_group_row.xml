@@ -13,7 +13,7 @@
         android:layout_weight="1"
         android:text="그룹 이름"
         android:fontFamily="@font/bmjua"
-        android:textColor="#2A3D45"
+        android:textColor="#202124"
         android:backgroundTint="#D0F4DE"
         android:gravity="start|center_vertical"
         android:paddingStart="16dp"/>

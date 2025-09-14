@@ -29,7 +29,7 @@
                 android:text="@string/delete_account"
                 android:fontFamily="@font/bmjua"
                 android:textSize="22sp"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:layout_weight="1"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"/>
@@ -86,7 +86,7 @@
             android:text="@string/confirm_delete_button"
             android:fontFamily="@font/bmjua"
             android:backgroundTint="#f1a6a6"
-            android:textColor="#2A3D45"
+            android:textColor="#202124"
             android:paddingStart="40dp"
             android:paddingEnd="40dp"
             android:layout_gravity="center_horizontal" />

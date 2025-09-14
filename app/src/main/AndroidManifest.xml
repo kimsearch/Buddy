@@ -50,6 +50,13 @@
         <activity android:name=".GroupMainIntakeActivity" />
         <activity android:name=".GroupMainBurnedActivity" />
         <activity android:name=".GroupMainWeightActivity" />
+        <activity android:name=".GroupMainStudyTimeActivity" />
+        <activity android:name=".GroupMainStudyProgressActivity" />
+        <activity android:name=".GroupMainReviewCheckActivity" />
+        <activity android:name=".GroupMainGoalScoreActivity" />
+        <activity android:name=".GroupMainGoalBooksActivity" />
+        <activity android:name=".GroupMainGoalMinutesActivity" />
+        <activity android:name=".GroupMainTimeLogActivity" />
         <activity android:name=".GroupExitActivity" />
         <activity android:name=".GroupMakeActivity" />
         <activity android:name=".GroupMemberActivity" />

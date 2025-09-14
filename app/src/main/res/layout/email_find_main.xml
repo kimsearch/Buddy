@@ -38,7 +38,7 @@
                 android:text="@string/email_find_title"
                 android:fontFamily="@font/bmjua"
                 android:textSize="22sp"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:layout_weight="1"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"/>
@@ -63,17 +63,17 @@
                 android:id="@+id/edittext_nickname"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="2"
                 android:background="@drawable/bg_white_rounded"
-                android:hint="닉네임 입력"
                 android:enabled="true"
                 android:focusable="true"
                 android:fontFamily="@font/bmjua"
+                android:hint="닉네임 입력"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:textColor="#999999"
-                android:textSize="14sp"
-                android:layout_marginEnd="8dp" />
+                android:textSize="14sp" />
 
             <Button
                 android:id="@+id/nickname_okay_button"
@@ -83,7 +83,7 @@
                 android:text="@string/nickname_okay_button"
                 android:fontFamily="@font/bmjua"
                 android:backgroundTint="#D0F4DE"
-                android:textColor="#2A3D45" />
+                android:textColor="#202124" />
         </LinearLayout>
 
         <LinearLayout
@@ -116,7 +116,7 @@
                 android:text="@string/birthday_okay_button"
                 android:fontFamily="@font/bmjua"
                 android:backgroundTint="#D0F4DE"
-                android:textColor="#2A3D45" />
+                android:textColor="#202124" />
         </LinearLayout>
 
         <Button
@@ -126,7 +126,7 @@
             android:text="@string/email_search_button"
             android:fontFamily="@font/bmjua"
             android:backgroundTint="#FBF5DA"
-            android:textColor="#2A3D45"
+            android:textColor="#202124"
             android:paddingStart="40dp"
             android:paddingEnd="40dp"
             android:layout_gravity="center_horizontal" />

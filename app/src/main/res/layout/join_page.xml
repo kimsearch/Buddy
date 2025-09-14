@@ -17,8 +17,8 @@
         android:layout_marginBottom="70dp"
         android:text="@string/login_signup_title"
         android:fontFamily="@font/bmjua"
-        android:textColor="#2A3D45"
-        android:textSize="24sp" />
+        android:textColor="#202124"
+        android:textSize="22sp" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -41,7 +41,7 @@
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:text="@string/email_find_title"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:textSize="22sp" />
         </LinearLayout>
     </LinearLayout>
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:text="~님의 이메일은 sebong1090@gmail.com입니다"
             android:textSize="14sp"
-            android:textColor="#2A3D45"
+            android:textColor="#202124"
             android:fontFamily="@font/bmjua"
             android:layout_marginBottom="16dp" />
 
@@ -82,7 +82,7 @@
             android:text="@string/password_search_button"
             android:fontFamily="@font/bmjua"
             android:backgroundTint="#FBF5DA"
-            android:textColor="#2A3D45"
+            android:textColor="#202124"
             android:paddingStart="40dp"
             android:paddingEnd="40dp"
             android:layout_gravity="center_horizontal" />

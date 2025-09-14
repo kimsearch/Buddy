@@ -13,11 +13,11 @@
         android:id="@+id/post_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="@string/post_title"
+        android:textColor="#202124"
         android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="#2A3D45"
-        android:layout_marginBottom="16dp" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/post_input_title"
@@ -50,7 +50,7 @@
         android:text="@string/add_photo_button"
         android:fontFamily="@font/bmjua"
         android:backgroundTint="#D0F4DE"
-        android:textColor="#2A3D45"
+        android:textColor="#202124"
         android:padding="12dp"
         android:layout_marginBottom="12dp" />
 
@@ -67,9 +67,9 @@
         android:id="@+id/post_submit_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/post_submit_button"
-        android:fontFamily="@font/bmjua"
         android:backgroundTint="#FDFFB6"
-        android:textColor="#2A3D45"
-        android:padding="12dp" />
+        android:fontFamily="@font/bmjua"
+        android:padding="12dp"
+        android:text="@string/post_submit_button"
+        android:textColor="#202124" />
 </LinearLayout>

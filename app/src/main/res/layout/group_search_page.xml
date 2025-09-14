@@ -29,7 +29,7 @@
                 android:text="@string/group_search_title"
                 android:fontFamily="@font/bmjua"
                 android:textSize="22sp"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:layout_weight="1"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp" />
@@ -75,7 +75,7 @@
                     android:layout_toStartOf="@id/search_group_input_button"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:hint="@string/search_group_input_1"
+                    android:hint="그룹 검색"
                     android:fontFamily="@font/bmjua"
                     android:textColor="#2A3D45"
                     android:textColorHint="#999999"
@@ -105,7 +105,7 @@
                 android:text="카테고리 선택"
                 android:fontFamily="@font/bmjua"
                 android:textSize="16sp"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="6dp" />
 
@@ -125,7 +125,7 @@
                     android:text="@string/category_btn_1"
                     android:fontFamily="@font/bmjua"
                     android:background="@drawable/rounded_button_background"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:layout_marginEnd="4dp" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -136,7 +136,7 @@
                     android:text="@string/category_btn_2"
                     android:fontFamily="@font/bmjua"
                     android:background="@drawable/rounded_button_background"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="4dp" />
 
@@ -148,7 +148,7 @@
                     android:text="@string/category_btn_3"
                     android:fontFamily="@font/bmjua"
                     android:background="@drawable/rounded_button_background"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="4dp" />
 
@@ -160,7 +160,7 @@
                     android:text="@string/category_btn_4"
                     android:fontFamily="@font/bmjua"
                     android:background="@drawable/rounded_button_background"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:layout_marginStart="4dp"
                     />
             </LinearLayout>
@@ -189,36 +189,36 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_home"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_home"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:importantForAccessibility="no"
             android:scaleType="center"
             android:padding="12dp" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_group"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_group"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:importantForAccessibility="no"
             android:scaleType="center"
             android:padding="12dp" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_search"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_nav_search"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:importantForAccessibility="no"
             android:contentDescription="그룹 검색 페이지로 이동"
             android:scaleType="center"
@@ -226,12 +226,12 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_pet"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_paw"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:importantForAccessibility="no"
             android:contentDescription="펫 키우기 페이지로 이동"
             android:scaleType="fitCenter"
@@ -239,12 +239,12 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_mypage"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_mypage"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:importantForAccessibility="no"
             android:scaleType="center"
             android:padding="12dp" />

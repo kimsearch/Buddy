@@ -123,14 +123,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="오늘 목표 기록"
+                android:text="Timer"
                 android:textSize="18sp"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:fontFamily="@font/bmjua"
                 android:layout_marginBottom="12dp"/>
 
             <LinearLayout
-                android:id="@+id/study_record_card"
+                android:id="@+id/reading_goal_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -146,29 +146,168 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center"
+                    android:layout_marginTop="6dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_read_minus"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:text="−"
+                        android:textSize="20sp"
+                        android:textColor="#202124"
+                        android:backgroundTint="#D0F4DE"
+                        android:contentDescription="읽기 시간 감소" />
+
+                    <LinearLayout
+                        android:layout_width="220dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:background="@drawable/edit_text_background"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp">
+
+                        <EditText
+                            android:id="@+id/et_read_minutes"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:inputType="number"
+                            android:maxLength="3"
+                            android:hint="0"
+                            android:textColor="#202124"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:background="@android:color/transparent"
+                            android:padding="0dp" />
+
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_read_plus"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:text="+"
+                        android:textSize="20sp"
+                        android:textColor="#202124"
+                        android:backgroundTint="#D0F4DE"
+                        android:contentDescription="읽기 시간 증가" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/preset_10"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="10분"
+                        android:textAllCaps="false"
+                        android:textColor="#202124"
+                        android:backgroundTint="#EAF6F2"
+                        android:fontFamily="@font/bmjua"
+                        android:contentDescription="10분으로 설정"
+                        android:layout_marginEnd="6dp"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/preset_20"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="20분"
+                        android:textAllCaps="false"
+                        android:textColor="#202124"
+                        android:backgroundTint="#EAF6F2"
+                        android:fontFamily="@font/bmjua"
+                        android:contentDescription="20분으로 설정"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="6dp"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/preset_30"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="30분"
+                        android:textAllCaps="false"
+                        android:textColor="#202124"
+                        android:backgroundTint="#EAF6F2"
+                        android:fontFamily="@font/bmjua"
+                        android:contentDescription="30분으로 설정"
+                        android:layout_marginStart="6dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        android:id="@+id/tv_read_progress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="오늘 0 / 0분"
+                        android:textSize="14sp"
+                        android:textColor="#202124"
+                        android:fontFamily="@font/bmjua" />
+
+                    <ProgressBar
+                        android:id="@+id/pb_read_progress"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="6dp"
+                        android:max="100"
+                        android:progress="0"
+                        android:progressTint="#76C7C0"
+                        android:indeterminate="false"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
                     android:weightSum="2">
 
                     <Button
-                        android:id="@+id/success_button"
+                        android:id="@+id/btn_read_start"
                         android:layout_width="0dp"
                         android:layout_height="48dp"
                         android:layout_weight="1"
-                        android:text="성공"
+                        android:text="타이머 시작"
+                        android:textAllCaps="false"
                         android:textColor="#202124"
-                        android:backgroundTint="#c0e7bb"
+                        android:backgroundTint="#D0F4DE"
+                        android:fontFamily="@font/bmjua"
                         android:layout_marginEnd="8dp"
-                        android:fontFamily="@font/bmjua" />
+                        android:contentDescription="독서 타이머 시작" />
 
                     <Button
-                        android:id="@+id/failure_button"
+                        android:id="@+id/btn_read_done"
                         android:layout_width="0dp"
                         android:layout_height="48dp"
                         android:layout_weight="1"
-                        android:text="실패"
+                        android:text="완료"
+                        android:textAllCaps="false"
                         android:textColor="#202124"
-                        android:backgroundTint="#f3c2bd"
+                        android:backgroundTint="#D0F4DE"
+                        android:fontFamily="@font/bmjua"
                         android:layout_marginStart="8dp"
-                        android:fontFamily="@font/bmjua" />
+                        android:contentDescription="독서 완료" />
                 </LinearLayout>
             </LinearLayout>
 

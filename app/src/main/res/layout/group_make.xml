@@ -38,7 +38,7 @@
                 android:text="@string/group_make_page"
                 android:fontFamily="@font/bmjua"
                 android:textSize="22sp"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:layout_weight="1"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"/>
@@ -68,7 +68,7 @@
                 android:textSize="14sp"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:layout_marginBottom="6dp"/>
 
             <LinearLayout
@@ -97,7 +97,7 @@
                     android:text="@string/button_group_name_checke"
                     android:fontFamily="@font/bmjua"
                     android:textSize="14sp"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:minHeight="0dp"
                     android:minWidth="0dp"
                     android:paddingLeft="33dp"
@@ -111,7 +111,7 @@
                 android:text="@string/category"
                 android:fontFamily="@font/bmjua"
                 android:textSize="16sp"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="6dp" />
 
@@ -130,7 +130,7 @@
                     android:text="@string/category_btn_1"
                     android:fontFamily="@font/bmjua"
                     android:background="@drawable/rounded_button_background"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:layout_marginEnd="4dp"/>
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -141,7 +141,7 @@
                     android:text="@string/category_btn_2"
                     android:fontFamily="@font/bmjua"
                     android:background="@drawable/rounded_button_background"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:layout_marginEnd="4dp"/>
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -152,7 +152,7 @@
                     android:text="@string/category_btn_3"
                     android:fontFamily="@font/bmjua"
                     android:background="@drawable/rounded_button_background"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:layout_marginEnd="4dp"/>
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -163,7 +163,7 @@
                     android:text="@string/category_btn_4"
                     android:fontFamily="@font/bmjua"
                     android:background="@drawable/rounded_button_background"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:layout_marginEnd="4dp"/>
             </LinearLayout>
 
@@ -173,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:text="세부 카테고리: 없음"
                 android:textSize="14sp"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="12dp" />
 
@@ -190,7 +190,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/start_goal"
                     android:textSize="16sp"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:layout_marginBottom="6dp"
                     android:fontFamily="@font/bmjua" />
 
@@ -200,7 +200,7 @@
                     android:layout_height="48dp"
                     android:text="설정 안 됨"
                     android:fontFamily="@font/bmjua"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:background="@drawable/rounded_gray_button" />
             </LinearLayout>
 
@@ -216,7 +216,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/goal_routine"
                     android:textSize="16sp"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:layout_marginBottom="6dp"
                     android:fontFamily="@font/bmjua"
                     android:layout_marginTop="15dp"/>
@@ -227,7 +227,7 @@
                     android:layout_height="48dp"
                     android:text="설정 안 됨"
                     android:fontFamily="@font/bmjua"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:background="@drawable/rounded_gray_button" />
             </LinearLayout>
 
@@ -263,7 +263,7 @@
                 android:text="@string/group_introduction"
                 android:fontFamily="@font/bmjua"
                 android:textSize="16sp"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="6dp" />
 
@@ -280,7 +280,7 @@
                 android:inputType="textMultiLine"
                 android:maxLength="100"
                 android:padding="10dp"
-                android:textColor="#2A3D45" />
+                android:textColor="#202124" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_create_group"
@@ -291,7 +291,7 @@
                 android:background="@drawable/rounded_yellow_button"
                 android:fontFamily="@font/bmjua"
                 android:text="@string/group_make_page"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:textSize="14sp" />
         </LinearLayout>
     </ScrollView>

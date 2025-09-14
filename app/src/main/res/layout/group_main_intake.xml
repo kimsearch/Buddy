@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:text="그룹 이름"
                 android:textSize="22sp"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:layout_weight="1"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"/>
@@ -77,7 +77,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- 스크롤 영역 -->
     <ScrollView
         android:id="@+id/scroll_area"
         android:layout_width="match_parent"
@@ -93,23 +92,21 @@
             android:orientation="vertical"
             android:layout_marginBottom="20dp">
 
-            <!-- 그룹 목표 -->
             <TextView
                 android:id="@+id/group_goal_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="그룹 목표는 여기에 표시됩니다."
                 android:textSize="12sp"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:layout_marginBottom="16dp"/>
 
-            <!-- 누적 랭킹 -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="누적 랭킹"
-                android:textSize="20sp"
-                android:textColor="#2A3D45"
+                android:textSize="18sp"
+                android:textColor="#202124"
                 android:fontFamily="@font/bmjua"
                 android:layout_marginBottom="12dp"/>
 
@@ -120,15 +117,15 @@
                 android:layout_marginBottom="24dp"
                 android:background="#EDEDED"
                 android:padding="12dp"
-                android:clipToPadding="false" />
+                android:clipToPadding="false"
+                android:contentDescription="누적 랭킹"/>
 
-            <!-- 오늘 목표 기록 -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="오늘 목표 기록"
-                android:textSize="20sp"
-                android:textColor="#2A3D45"
+                android:textSize="18sp"
+                android:textColor="#202124"
                 android:fontFamily="@font/bmjua"
                 android:layout_marginBottom="12dp"/>
 
@@ -156,7 +153,7 @@
                     android:paddingEnd="12dp"
                     android:background="@drawable/edit_text_background"
                     android:importantForAccessibility="no"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:textSize="16sp" />
 
                 <Button
@@ -165,20 +162,19 @@
                     android:layout_height="48dp"
                     android:text="입력"
                     android:fontFamily="@font/bmjua"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:backgroundTint="#D0F4DE"
                     android:layout_marginStart="12dp"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"/>
             </LinearLayout>
 
-            <!-- 이전 기록 -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="이전 기록"
-                android:textSize="20sp"
-                android:textColor="#2A3D45"
+                android:textSize="18sp"
+                android:textColor="#202124"
                 android:fontFamily="@font/bmjua"
                 android:layout_marginBottom="12dp"/>
 
@@ -203,57 +199,62 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_home"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_home"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:scaleType="center"
-            android:padding="12dp"/>
+            android:padding="12dp"
+            android:contentDescription="홈"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_group"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_group"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:scaleType="center"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:contentDescription="그룹"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_search"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_nav_search"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:scaleType="center"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:contentDescription="검색"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_pet"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_paw"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:scaleType="fitCenter"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:contentDescription="펫"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_mypage"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_mypage"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:scaleType="center"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:contentDescription="마이페이지"/>
     </LinearLayout>
 </RelativeLayout>

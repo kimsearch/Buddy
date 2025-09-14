@@ -41,7 +41,7 @@
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:text="@string/group_exit_title"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:textSize="22sp" />
         </LinearLayout>
     </LinearLayout>
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:text="그룹을 나가면 그동안의 기록은 삭제됩니다.\n또한 그룹의 방장일 경우, 그룹이 삭제됩니다."
                 android:textSize="14sp"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:fontFamily="@font/bmjua"
                 android:layout_marginBottom="16dp" />
 
@@ -93,7 +93,7 @@
                 android:text="@string/cancel_exit_button"
                 android:fontFamily="@font/bmjua"
                 android:backgroundTint="#e8e8e8"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:padding="12dp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

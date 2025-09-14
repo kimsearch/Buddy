@@ -37,7 +37,7 @@
                 android:text="개인 목표"
                 android:fontFamily="@font/bmjua"
                 android:textSize="22sp"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:layout_weight="1"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"/>
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:text="목표 입력"
                 android:textSize="16sp"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:layout_marginBottom="6dp"
                 android:fontFamily="@font/bmjua" />
 
@@ -104,7 +104,7 @@
                     android:text="@string/button_group_name_checke"
                     android:fontFamily="@font/bmjua"
                     android:textSize="14sp"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:minHeight="0dp"
                     android:minWidth="0dp"
                     android:paddingLeft="33dp"
@@ -122,7 +122,7 @@
                     android:layout_height="wrap_content"
                     android:text="시작 날짜"
                     android:textSize="16sp"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:layout_marginBottom="6dp"
                     android:fontFamily="@font/bmjua" />
 
@@ -132,7 +132,7 @@
                     android:layout_height="48dp"
                     android:text="설정 안 됨"
                     android:fontFamily="@font/bmjua"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:background="@drawable/rounded_gray_button"
                     android:importantForAccessibility="no"/>
             </LinearLayout>
@@ -148,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:text="목표 실행 주기"
                     android:textSize="16sp"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:layout_marginBottom="6dp"
                     android:fontFamily="@font/bmjua"
                     android:layout_marginTop="15dp"/>
@@ -159,7 +159,7 @@
                     android:layout_height="48dp"
                     android:text="설정 안 됨"
                     android:fontFamily="@font/bmjua"
-                    android:textColor="#2A3D45"
+                    android:textColor="#202124"
                     android:background="@drawable/rounded_gray_button" />
             </LinearLayout>
 
@@ -169,7 +169,7 @@
                 android:text="상세 설명"
                 android:fontFamily="@font/bmjua"
                 android:textSize="16sp"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="6dp" />
 
@@ -194,7 +194,7 @@
                 android:layout_height="48dp"
                 android:text="@string/button_create_personal"
                 android:fontFamily="@font/bmjua"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:textSize="14sp"
                 android:background="@drawable/rounded_yellow_button"
                 android:layout_marginTop="10dp"

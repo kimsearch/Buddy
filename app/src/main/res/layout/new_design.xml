@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp">
+
+    <!-- 근무 날짜 라벨 -->
+    <TextView
+        android:id="@+id/label_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="근무 날짜 (복수 선택 가능)"
+        android:textColor="#9AA0A6"
+        android:textSize="12sp"
+        android:fontFamily="@font/bmjua"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="8dp" />
+
+    <!-- 날짜 선택 행 -->
+    <LinearLayout
+        android:id="@+id/row_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/label_date"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="6dp"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="09.11 (목)"
+            android:textSize="22sp"
+            android:textColor="#202124"
+            android:fontFamily="@font/bmjua" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_date_expand"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="10dp"
+            android:contentDescription="날짜 펼치기"
+            android:tint="#2A3D45"
+            android:src="@drawable/ic_chevron_down" />
+    </LinearLayout>
+
+    <!-- 얇은 구분선 -->
+    <View
+        android:id="@+id/divider_top"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/row_date"
+        android:background="#E0E0E0" />
+
+    <!-- 근무 시간 라벨 -->
+    <TextView
+        android:id="@+id/label_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider_top"
+        android:layout_marginTop="16dp"
+        android:text="근무 시간"
+        android:textColor="#9AA0A6"
+        android:textSize="12sp"
+        android:fontFamily="@font/bmjua" />
+
+    <!-- 시간 선택 행 -->
+    <LinearLayout
+        android:id="@+id/row_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/label_time"
+        android:orientation="vertical"
+        android:paddingTop="8dp"
+        android:paddingBottom="10dp">
+
+        <!-- 시간 텍스트: 시작 - 종료 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_start_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.2"
+                android:text="10:30"
+                android:textSize="22sp"
+                android:textColor="#202124"
+                android:fontFamily="@font/bmjua"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tv_dash"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:text=" - "
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="#757575"
+                android:fontFamily="@font/bmjua" />
+
+            <TextView
+                android:id="@+id/tv_end_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.2"
+                android:text="19:30"
+                android:textSize="22sp"
+                android:textColor="#202124"
+                android:gravity="end"
+                android:fontFamily="@font/bmjua"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp" />
+        </LinearLayout>
+
+        <!-- 밑줄: 시작시간 파랑 / 종료시간 회색 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_marginTop="6dp">
+
+            <View
+                android:id="@+id/underline_start"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1.2"
+                android:background="#2962FF" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="0.6"
+                android:background="@android:color/transparent" />
+
+            <View
+                android:id="@+id/underline_end"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1.2"
+                android:background="#E0E0E0" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 하단 구분선(선택) -->
+    <View
+        android:id="@+id/divider_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/row_time"
+        android:background="#E0E0E0" />
+
+</RelativeLayout>

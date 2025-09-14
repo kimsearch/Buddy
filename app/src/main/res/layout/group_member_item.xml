@@ -25,8 +25,8 @@
         android:layout_marginStart="16dp"
         android:layout_weight="1"
         android:text="닉네임"
-        android:textSize="18sp"
-        android:textColor="#2A3D45"/>
+        android:textSize="14sp"
+        android:textColor="#202124"/>
 
     <ImageView
         android:id="@+id/crown_icon"

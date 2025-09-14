@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         android:text="1위"
         android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#2A3D45"
+        android:textColor="#202124"
         android:gravity="center" />
 
     <LinearLayout
@@ -29,8 +28,7 @@
             android:layout_height="wrap_content"
             android:text="홍길동"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#2A3D45" />
+            android:textColor="#202124" />
 
         <ProgressBar
             android:id="@+id/progressBar"
