@@ -9,7 +9,6 @@
     android:background="#D0F4DE"
     tools:context=".LoginPageActivity">
 
-    <!-- Large LogoImage -->
     <ImageView
         android:id="@+id/logo_image"
         android:layout_width="200dp"
@@ -17,7 +16,6 @@
         android:layout_marginTop="10dp"
         android:src="@drawable/buddyquest" />
 
-    <!-- Subtitle -->
     <TextView
         android:id="@+id/subtitle"
         android:layout_width="wrap_content"
@@ -25,10 +23,9 @@
         android:layout_marginBottom="24dp"
         android:gravity="center"
         android:text="@string/subtitle"
-        android:textColor="#2A3D45"
+        android:textColor="#202124"
         android:textSize="18sp" />
 
-    <!-- 이메일 입력 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,7 +45,6 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <!-- 비밀번호 입력 -->
     <EditText
         android:id="@+id/edittext_password_input"
         android:layout_width="match_parent"
@@ -62,21 +58,19 @@
         android:textSize="14sp"
         android:layout_marginBottom="24dp" />
 
-    <!-- 로그인 버튼 -->
+
     <Button
         android:id="@+id/login_login_button"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/login_login_button"
-        android:fontFamily="@font/bmjua"
+        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#FBF5DA"
-        android:textColor="@android:color/black"
+        android:fontFamily="@font/bmjua"
         android:padding="12dp"
-        android:layout_gravity="center_horizontal" />
+        android:text="@string/login_login_button"
+        android:textColor="@android:color/black" />
 
-
-    <!-- 닉네임/비밀번호/회원가입 버튼 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -90,11 +84,12 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
+            android:layout_marginEnd="8dp"
             android:text="@string/find_nickname_button"
             android:fontFamily="@font/bmjua"
             android:textSize="14sp"
             android:backgroundTint="#80FFFFFF"
-            android:textColor="#2A3D45"
+            android:textColor="#202124"
             android:padding="8dp"
             android:minHeight="40dp"
             android:layout_marginStart="0dp"
@@ -106,11 +101,12 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
+            android:layout_marginEnd="8dp"
             android:text="@string/find_email_button"
             android:fontFamily="@font/bmjua"
             android:textSize="14sp"
             android:backgroundTint="#80FFFFFF"
-            android:textColor="#2A3D45"
+            android:textColor="#202124"
             android:padding="8dp"
             android:minHeight="40dp"
             android:layout_marginStart="0dp"
@@ -126,7 +122,7 @@
             android:fontFamily="@font/bmjua"
             android:textSize="14sp"
             android:backgroundTint="#80FFFFFF"
-            android:textColor="#2A3D45"
+            android:textColor="#202124"
             android:padding="8dp"
             android:minHeight="40dp"
             android:layout_marginStart="0dp"

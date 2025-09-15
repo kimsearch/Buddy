@@ -37,26 +37,22 @@ public class MyPageMainActivity extends AppCompatActivity {
 
         nicknameText = findViewById(R.id.nickname_text);
 
-        // 닉네임 불러오기
         SharedPreferences prefs = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         String nickname = prefs.getString("userNickname", "닉네임 없음");
         nicknameText.setText(nickname);
 
-        // 1. 설정 버튼 → mypage_setting.xml
         settingsButton = findViewById(R.id.settings_title);
         settingsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MyPageMainActivity.this, MyPageSettingActivity.class);
+            Intent intent = new Intent(MyPageMainActivity.this, MyPageSettingsActivity.class);
             startActivity(intent);
         });
 
-        // 2. 삭제 팝업
         delete1Button = findViewById(R.id.history_delete_1);
         delete2Button = findViewById(R.id.history_delete_2);
 
         delete1Button.setOnClickListener(v -> showDeleteDialog());
         delete2Button.setOnClickListener(v -> showDeleteDialog());
 
-        // 3~5. 네비게이션 바 연결
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
         navSearch = findViewById(R.id.nav_search);
@@ -84,10 +80,9 @@ public class MyPageMainActivity extends AppCompatActivity {
         });
 
         navMyPage.setOnClickListener(v -> {
-            // 현재 페이지 → 아무 작업 안 함
+
         });
 
-        // 6. 그래프 초기화
         monthlyLineChart = findViewById(R.id.monthlyLineChart);
         drawMonthlyChart();
     }
@@ -107,11 +102,9 @@ public class MyPageMainActivity extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
 
-        // 배경 둥글게 설정
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
 
-        // 팝업 내부 글꼴 적용
         Typeface customFont = ResourcesCompat.getFont(this, R.font.bmjua);
         TextView messageView = dialog.findViewById(android.R.id.message);
         TextView titleView = dialog.findViewById(getResources().getIdentifier("alertTitle", "id", "android"));

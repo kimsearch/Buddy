@@ -5,10 +5,7 @@ import android.content.Intent;
 import androidx.core.content.res.ResourcesCompat;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -26,7 +23,7 @@ public class MyPageMainActivity extends AppCompatActivity {
         // 1. 설정 버튼 → mypage_setting.xml
         settingsButton = findViewById(R.id.settings_title);
         settingsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MyPageMainActivity.this, MyPageSettingActivity.class);
+            Intent intent = new Intent(MyPageMainActivity.this, MypageSettings.class);
             startActivity(intent);
         });
 

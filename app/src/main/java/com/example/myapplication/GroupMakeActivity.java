@@ -32,9 +32,9 @@ public class GroupMakeActivity extends AppCompatActivity {
 
     private String selectedAlarmSetting = "설정 안 됨";
     private String selectedStartDate = "";
-    private String selectedMainCategory = ""; //선택된 카테고리
-    private String selectedSubCategory = "";  // 선택된 서브 카테고리
-    private boolean isGoalFrequencySet = false; // Track if goal frequency is set
+    private String selectedMainCategory = "";
+    private String selectedSubCategory = "";
+    private boolean isGoalFrequencySet = false;
 
     private EditText editTextGoalValue;
     private TextView goalValueLabel;
@@ -50,7 +50,6 @@ public class GroupMakeActivity extends AppCompatActivity {
             finish(); //
         });
 
-        // UI 연결
         editTextGroupName = findViewById(R.id.edittext_group_name);
         editTextGroupDescription = findViewById(R.id.edittext_group_description);
         buttonStartDate = findViewById(R.id.button_start_date);
@@ -61,13 +60,9 @@ public class GroupMakeActivity extends AppCompatActivity {
         editTextGoalValue = findViewById(R.id.edittext_goal_value);
         goalValueLabel = findViewById(R.id.goal_value_label);
 
-
-
-        // Initially disable the create group button
         buttonCreateGroup.setEnabled(false);
         buttonCreateGroup.setAlpha(0.5f); // Show it as disabled
 
-        // 시작 날짜 버튼 클릭 시
         buttonStartDate.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
             DatePickerDialog datePickerDialog = new DatePickerDialog(this,
@@ -101,10 +96,10 @@ public class GroupMakeActivity extends AppCompatActivity {
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     try {
                         if (response.code() == 409) {
-                            // 이미 존재하는 이름
+
                             Toast.makeText(GroupMakeActivity.this, "이미 존재하는 그룹 이름입니다.", Toast.LENGTH_SHORT).show();
                         } else if (response.isSuccessful() && response.body() != null) {
-                            // 사용 가능한 이름
+
                             String msg = response.body().string();
                             Toast.makeText(GroupMakeActivity.this, msg, Toast.LENGTH_SHORT).show();
                         } else {
@@ -125,11 +120,8 @@ public class GroupMakeActivity extends AppCompatActivity {
 
 
 
-
-        // 목표 설정 주기 팝업
         buttonAlarmSetting.setOnClickListener(v -> showAlarmPopup());
 
-        // 그룹 만들기 버튼 클릭 시
         buttonCreateGroup.setOnClickListener(v -> {
             String groupName = editTextGroupName.getText().toString().trim();
             String groupDesc = editTextGroupDescription.getText().toString().trim();
@@ -255,7 +247,17 @@ public class GroupMakeActivity extends AppCompatActivity {
             showFinanceSubCategoryPopup();
         });
 
-        // 여기에 공부, 취미 카테고리 추가 예정
+        findViewById(R.id.category_btn_3).setOnClickListener(v -> {
+            selectedMainCategory = "공부";
+            selectedCategory.setText("선택된 카테고리: " + selectedMainCategory);
+            showStudySubCategoryPopup();
+        });
+
+        findViewById(R.id.category_btn_4).setOnClickListener(v -> {
+            selectedMainCategory = "독서";
+            selectedCategory.setText("선택된 카테고리: " + selectedMainCategory);
+            showReadingSubCategoryPopup();
+        });
     }
 
     // 세부 카테고리
@@ -268,14 +270,6 @@ public class GroupMakeActivity extends AppCompatActivity {
             Toast.makeText(this, selectedSubCategory + " 선택됨", Toast.LENGTH_SHORT).show();
             selectedCategory.setText("카테고리: " + selectedMainCategory + " / 목표: " + selectedSubCategory);
 
-            // 힌트는 그대로 유지 (기존 코드)
-            if ("만보기".equals(selectedSubCategory)) {
-                editTextGroupDescription.setHint("걸음 수 목표 입력");
-            } else if ("다이어트".equals(selectedSubCategory)) {
-                editTextGroupDescription.setHint("섭취 칼로리 목표 입력");
-            }
-
-            // [✅ 새로 추가] 목표 수치 입력란 보여주기
             if ("만보기".equals(selectedSubCategory)) {
                 goalValueLabel.setVisibility(View.VISIBLE);
                 editTextGoalValue.setVisibility(View.VISIBLE);
@@ -322,7 +316,6 @@ public class GroupMakeActivity extends AppCompatActivity {
             } else if ("가계부".equals(selectedSubCategory)) {
                 goalValueLabel.setVisibility(View.VISIBLE);
                 editTextGoalValue.setVisibility(View.VISIBLE);
-                editTextGoalValue.setHint("예: 몰라 뭐라고 적지");
             } else if ("부수입".equals(selectedSubCategory)) {
                 goalValueLabel.setVisibility(View.VISIBLE);
                 editTextGoalValue.setVisibility(View.VISIBLE);
@@ -337,7 +330,70 @@ public class GroupMakeActivity extends AppCompatActivity {
         builder.show();
     }
 
-// enableCreateGroupButton() 조건 강화
+    private void showStudySubCategoryPopup() {
+        String[] items = {"학습 시간", "문제 풀이 수", "복습 체크", "목표 점수"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("세부 카테고리 선택");
+        builder.setItems(items, (dialog, which) -> {
+            selectedSubCategory = items[which];
+            Toast.makeText(this, selectedSubCategory + " 선택됨", Toast.LENGTH_SHORT).show();
+            selectedCategory.setText("카테고리: " + selectedMainCategory + " / 목표: " + selectedSubCategory);
+
+            if ("학습 시간".equals(selectedSubCategory)) {
+                goalValueLabel.setVisibility(View.VISIBLE);
+                editTextGoalValue.setVisibility(View.VISIBLE);
+                editTextGoalValue.setHint("예: 90 (분)");
+            } else if ("문제 풀이 수".equals(selectedSubCategory)) {
+                goalValueLabel.setVisibility(View.VISIBLE);
+                editTextGoalValue.setVisibility(View.VISIBLE);
+                editTextGoalValue.setHint("예: 50 (문제)");
+            } else if ("복습 체크".equals(selectedSubCategory)) {
+                goalValueLabel.setVisibility(View.GONE);
+                editTextGoalValue.setVisibility(View.GONE);
+            } else if ("목표 점수".equals(selectedSubCategory)) {
+                goalValueLabel.setVisibility(View.VISIBLE);
+                editTextGoalValue.setVisibility(View.VISIBLE);
+                editTextGoalValue.setHint("예: 90 (점)");
+            } else {
+                goalValueLabel.setVisibility(View.GONE);
+                editTextGoalValue.setVisibility(View.GONE);
+            }
+
+            enableCreateGroupButton();
+        });
+        builder.show();
+    }
+
+    private void showReadingSubCategoryPopup() {
+        String[] items = {"목표 권수", "목표 시간", "읽은 시간"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("세부 카테고리 선택");
+        builder.setItems(items, (dialog, which) -> {
+            selectedSubCategory = items[which];
+            Toast.makeText(this, selectedSubCategory + " 선택됨", Toast.LENGTH_SHORT).show();
+            selectedCategory.setText("카테고리: " + selectedMainCategory + " / 목표: " + selectedSubCategory);
+
+            if ("목표 권수".equals(selectedSubCategory)) {
+                goalValueLabel.setVisibility(View.VISIBLE);
+                editTextGoalValue.setVisibility(View.VISIBLE);
+            } else if ("목표 시간".equals(selectedSubCategory)) {
+                goalValueLabel.setVisibility(View.VISIBLE);
+                editTextGoalValue.setVisibility(View.VISIBLE);
+            } else if ("읽은 시간".equals(selectedSubCategory)) {
+                goalValueLabel.setVisibility(View.VISIBLE);
+                editTextGoalValue.setVisibility(View.VISIBLE);
+            } else {
+                goalValueLabel.setVisibility(View.GONE);
+                editTextGoalValue.setVisibility(View.GONE);
+            }
+
+            enableCreateGroupButton();
+        });
+        builder.show();
+    }
+
+
+    // enableCreateGroupButton() 조건 강화
     private void enableCreateGroupButton() {
         if (!selectedSubCategory.isEmpty() && !selectedStartDate.isEmpty() && isGoalFrequencySet) {
             buttonCreateGroup.setEnabled(true);

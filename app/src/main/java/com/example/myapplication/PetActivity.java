@@ -1,22 +1,19 @@
 package com.example.myapplication;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.TranslateAnimation;
-import android.widget.*;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.core.content.ContextCompat;
-
-import com.bumptech.glide.Glide;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,12 +28,13 @@ public class PetActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private TextView tutorialText;
 
-    private ImageButton navHome, navGroup, navSearch, navMyPage;
+    private AppCompatImageButton navHome, navGroup, navSearch, navMyPage;
 
     private int currentHeartCount = 207;
     private int currentExp = 0;
     private int level = 1;
     private boolean isTutorialVisible = false;
+    private boolean isAnimating = false;
 
     private final int[] requiredExp = {0, 20, 20, 20, 20};
 
@@ -58,7 +56,7 @@ public class PetActivity extends AppCompatActivity {
         navSearch = findViewById(R.id.nav_search);
         navMyPage = findViewById(R.id.nav_mypage);
 
-
+        // 서버에서 먹이 개수 가져오기
         SharedPreferences prefs = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         long memberId = prefs.getLong("memberId", -1);
 
@@ -68,7 +66,7 @@ public class PetActivity extends AppCompatActivity {
             call.enqueue(new Callback<Integer>() {
                 @Override
                 public void onResponse(Call<Integer> call, Response<Integer> response) {
-                    if (response.isSuccessful()) {
+                    if (response.isSuccessful() && response.body() != null) {
                         currentHeartCount = response.body();
                     } else {
                         Toast.makeText(PetActivity.this, "먹이 정보를 불러오지 못했습니다.", Toast.LENGTH_SHORT).show();
@@ -95,24 +93,20 @@ public class PetActivity extends AppCompatActivity {
                 currentExp++;
 
                 int maxExp = requiredExp[Math.min(level, requiredExp.length - 1)];
-
                 if (currentExp >= maxExp && level < 5) {
                     level++;
                     currentExp = 0;
                     Toast.makeText(this, "레벨업!", Toast.LENGTH_SHORT).show();
                 }
-
                 updateUI();
             } else {
                 Toast.makeText(this, "먹이가 부족합니다!", Toast.LENGTH_SHORT).show();
             }
         });
 
-        // 튜토리얼 버튼
         AppCompatImageButton infoBtn = findViewById(R.id.pet_info);
         infoBtn.setOnClickListener(v -> toggleTutorial());
 
-        // 하단 네비게이션
         navHome.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
         navGroup.setOnClickListener(v -> startActivity(new Intent(this, GroupPageActivity.class)));
         navSearch.setOnClickListener(v -> startActivity(new Intent(this, GroupSearchPageActivity.class)));
@@ -127,7 +121,7 @@ public class PetActivity extends AppCompatActivity {
         int progressPercent = (int) (((float) currentExp / maxExp) * 100);
         progressBar.setProgress(progressPercent);
 
-        // 레벨별 펫 이미지 설정
+        // 레벨별 펫 이미지
         switch (level) {
             case 1:
                 petGif.setImageResource(R.drawable.p_cat1);
@@ -148,17 +142,34 @@ public class PetActivity extends AppCompatActivity {
     }
 
     private void toggleTutorial() {
-        if (isTutorialVisible) {
-            TranslateAnimation slideOut = new TranslateAnimation(0, -tutorialText.getWidth(), 0, 0);
-            slideOut.setDuration(300);
-            tutorialText.startAnimation(slideOut);
-            tutorialText.setVisibility(View.GONE);
+        if (isAnimating) return;
+
+        if (tutorialText.getVisibility() == View.VISIBLE) {
+            isAnimating = true;
+            tutorialText.animate()
+                    .alpha(0f)
+                    .setDuration(180)
+                    .setInterpolator(new DecelerateInterpolator())
+                    .withEndAction(() -> {
+                        tutorialText.setVisibility(View.INVISIBLE); // 자리 유지!
+                        tutorialText.setAlpha(1f);
+                        isAnimating = false;
+                        isTutorialVisible = false;
+                    })
+                    .start();
         } else {
+            tutorialText.setAlpha(0f);
             tutorialText.setVisibility(View.VISIBLE);
-            TranslateAnimation slideIn = new TranslateAnimation(-tutorialText.getWidth(), 0, 0, 0);
-            slideIn.setDuration(300);
-            tutorialText.startAnimation(slideIn);
+            isAnimating = true;
+            tutorialText.animate()
+                    .alpha(1f)
+                    .setDuration(180)
+                    .setInterpolator(new DecelerateInterpolator())
+                    .withEndAction(() -> {
+                        isAnimating = false;
+                        isTutorialVisible = true;
+                    })
+                    .start();
         }
-        isTutorialVisible = !isTutorialVisible;
     }
 }

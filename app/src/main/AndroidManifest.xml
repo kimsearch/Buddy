@@ -50,6 +50,13 @@
         <activity android:name=".GroupMainIntakeActivity" />
         <activity android:name=".GroupMainBurnedActivity" />
         <activity android:name=".GroupMainWeightActivity" />
+        <activity android:name=".GroupMainStudyTimeActivity" />
+        <activity android:name=".GroupMainStudyProgressActivity" />
+        <activity android:name=".GroupMainReviewCheckActivity" />
+        <activity android:name=".GroupMainGoalScoreActivity" />
+        <activity android:name=".GroupMainGoalBooksActivity" />
+        <activity android:name=".GroupMainGoalMinutesActivity" />
+        <activity android:name=".GroupMainTimeLogActivity" />
         <activity android:name=".GroupExitActivity" />
         <activity android:name=".GroupMakeActivity" />
         <activity android:name=".GroupMemberActivity" />
@@ -57,13 +64,18 @@
         <activity android:name=".SampleLayoutActivity" />
         <activity android:name=".PetActivity" />
         <activity android:name=".MyPageMainActivity" />
-        <activity android:name=".MyPageSettingActivity" />
+        <activity android:name=".MyPageSettingsActivity" />
+        <activity android:name=".MissionAlarmActivity" />
+        <activity android:name=".GroupAlarmActivity" />
+        <activity android:name=".CommunityAlarmActivity" />
+        <activity android:name=".AccountManagementActivity" />
         <activity android:name=".PasswordInputActivity" />
         <activity android:name=".EmailFindMainActivity" />
         <activity android:name=".EmailFindSubActivity" />
         <activity android:name=".GroupSearchPageActivity"/>
         <activity android:name=".SearchJoinActivity"/>
         <receiver android:name=".StepResetReceiver" />
+
 
 
     </application>

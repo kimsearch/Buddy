@@ -42,7 +42,6 @@ public class GroupMainBudgetBookActivity extends AppCompatActivity {
         setContentView(R.layout.group_main_budget_book);
 
         groupMainTitle = findViewById(R.id.group_main_title);
-        groupGoalView = findViewById(R.id.group_goal_view);
         successButton = findViewById(R.id.success_button);
         failureButton = findViewById(R.id.failure_button);
         barChart = findViewById(R.id.barChart);

@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F4"
+    android:background="#f9f9f9"
     tools:context=".GroupCommunityActivity">
 
-    <!-- 상단 헤더 -->
     <LinearLayout
         android:id="@+id/header_container"
         android:layout_width="match_parent"
@@ -22,21 +21,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/group_community_title"
-            android:textSize="20sp"
-            android:textColor="#2A3D45"
-            android:textStyle="bold"/>
+            android:textSize="22sp"
+            android:textColor="#202124" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_mypage"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:src="@drawable/ic_mypage"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
-            android:padding="6dp"/>
+            android:padding="6dp"
+            android:contentDescription="멤버"/>
     </LinearLayout>
 
-    <!-- 🔹 RecyclerView로 게시글 목록 표시 -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_posts"
         android:layout_width="match_parent"
@@ -45,9 +43,9 @@
         android:layout_below="@+id/header_container"
         android:padding="16dp"
         android:clipToPadding="false"
-        tools:listitem="@layout/item_post" />
+        tools:listitem="@layout/item_post"
+        android:contentDescription="게시글"/>
 
-    <!-- 글쓰기 버튼 -->
     <ImageButton
         android:id="@+id/btn_write_post"
         android:layout_width="56dp"
@@ -58,75 +56,79 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/ic_edit"
         android:src="@drawable/ic_edit"
-        android:tint="#FFFFFF"
         android:elevation="6dp"
-        android:backgroundTint="#2A3D45"/>
+        android:backgroundTint="#2A3D45"
+        android:contentDescription="글쓰기 버튼"/>
 
-    <!-- 하단 네비게이션 -->
     <LinearLayout
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:background="#DBDBDB"
+        android:background="#e8e8e8"
         android:padding="8dp"
         android:layout_alignParentBottom="true">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_home"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_home"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:scaleType="center"
-            android:padding="12dp"/>
+            android:padding="12dp"
+            android:contentDescription="홈"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_group"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_group"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:scaleType="center"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:contentDescription="그룹"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_search"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_search"
+            android:src="@drawable/ic_nav_search"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#2A3D45"
             android:scaleType="center"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:contentDescription="검색"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_pet"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_paw"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:scaleType="fitCenter"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:contentDescription="펫"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_mypage"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_mypage"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:scaleType="center"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:contentDescription="마이페이지"/>
     </LinearLayout>
 
 </RelativeLayout>

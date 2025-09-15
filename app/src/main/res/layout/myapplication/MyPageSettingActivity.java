@@ -14,14 +14,14 @@ public class MyPageSettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mypage_setting);
+        setContentView(R.layout.dd);
 
         // 1. 이메일 찾기 버튼
         Button emailButton = findViewById(R.id.email_button);
         emailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MyPageSettingActivity.this, EmailFindMainActivity.class);
+                Intent intent = new Intent(Dd.this, EmailFindMainActivity.class);
                 startActivity(intent);
             }
         });
@@ -31,7 +31,7 @@ public class MyPageSettingActivity extends AppCompatActivity {
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MyPageSettingActivity.this, MainActivity.class);
+                Intent intent = new Intent(Dd.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -41,7 +41,7 @@ public class MyPageSettingActivity extends AppCompatActivity {
         groupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MyPageSettingActivity.this, GroupPageActivity.class);
+                Intent intent = new Intent(Dd.this, GroupPageActivity.class);
                 startActivity(intent);
             }
         });
@@ -51,7 +51,7 @@ public class MyPageSettingActivity extends AppCompatActivity {
         mypageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MyPageSettingActivity.this, MyPageMainActivity.class);
+                Intent intent = new Intent(Dd.this, MyPageMainActivity.class);
                 startActivity(intent);
             }
         });
@@ -66,7 +66,7 @@ public class MyPageSettingActivity extends AppCompatActivity {
                 prefs.edit().remove("userEmail").apply();
 
                 // 로그인 페이지로 이동
-                Intent intent = new Intent(MyPageSettingActivity.this, LoginPageActivity.class);
+                Intent intent = new Intent(Dd.this, LoginPageActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // 백스택 제거
                 startActivity(intent);
                 finish();

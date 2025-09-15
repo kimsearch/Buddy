@@ -42,7 +42,7 @@ public class SampleLayoutActivity extends AppCompatActivity {
         // 하단 네비게이션 버튼
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
-        navProgress = findViewById(R.id.nav_progress);
+        navProgress = findViewById(R.id.nav_search);
         navAlarm = findViewById(R.id.nav_alarm);
         navMypage = findViewById(R.id.nav_mypage);
 

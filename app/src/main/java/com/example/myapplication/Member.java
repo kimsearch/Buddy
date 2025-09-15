@@ -7,7 +7,6 @@ public class Member {
     private String password;
     private String birthday;
 
-    // ✅ 생성자 추가
     public Member(String nickname, String email, String password, String birthday) {
         this.nickname = nickname;
         this.email = email;
@@ -15,10 +14,8 @@ public class Member {
         this.birthday = birthday;
     }
 
-    // 기본 생성자
     public Member() {}
 
-    // Getter 및 Setter
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

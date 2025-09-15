@@ -26,8 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="알림 내용"
-            android:textColor="#2A3D45"
-            android:textSize="16sp"
+            android:textColor="#202124"
+            android:textSize="14sp"
             android:fontFamily="@font/bmjua" />
 
         <LinearLayout

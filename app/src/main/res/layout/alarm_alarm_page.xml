@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F4"
+    android:background="#f9f9f9"
     tools:context=".AlarmPageActivity">
 
     <LinearLayout
@@ -21,17 +21,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/alarm_page_title"
-            android:textSize="24sp"
-            android:textColor="#2A3D45"
-            android:textStyle="bold" />
+            android:textSize="22sp"
+            android:textColor="#2A3D45"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/roll_button_1"
             android:layout_width="48dp"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:src="@drawable/ic_roll"
             android:background="@null"
-            android:tint="#2A3D45" />
+            android:tint="#202124"
+            android:contentDescription="요청"/>
     </LinearLayout>
 
     <ScrollView
@@ -76,8 +76,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/alarmcontent_1"
-                        android:textColor="#2A3D45"
-                        android:textSize="16sp"
+                        android:textColor="#202124"
+                        android:textSize="14sp"
                         android:fontFamily="@font/bmjua" />
                 </LinearLayout>
             </LinearLayout>
@@ -110,8 +110,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/alarmcontent_2"
-                        android:textColor="#2A3D45"
-                        android:textSize="16sp"
+                        android:textColor="#202124"
+                        android:textSize="14sp"
                         android:fontFamily="@font/bmjua" />
 
                     <LinearLayout
@@ -127,7 +127,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/btn_accept"
                             android:fontFamily="@font/bmjua"
-                            android:textColor="#2A3D45"
+                            android:textColor="#202124"
                             android:backgroundTint="#d1e4f9"
                             android:layout_marginEnd="8dp" />
 
@@ -137,7 +137,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/btn_decline"
                             android:fontFamily="@font/bmjua"
-                            android:textColor="#2A3D45"
+                            android:textColor="#202124"
                             android:backgroundTint="#f9d7d7"
                             android:layout_marginEnd="8dp"/>
                     </LinearLayout>
@@ -171,8 +171,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/alarmcontent_3"
-                        android:textColor="#2A3D45"
-                        android:textSize="16sp"
+                        android:textColor="#202124"
+                        android:textSize="14sp"
                         android:fontFamily="@font/bmjua" />
                 </LinearLayout>
             </LinearLayout>
@@ -204,8 +204,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/alarmcontent_3"
-                        android:textColor="#2A3D45"
-                        android:textSize="16sp"
+                        android:textColor="#202124"
+                        android:textSize="14sp"
                         android:fontFamily="@font/bmjua" />
                 </LinearLayout>
             </LinearLayout>
@@ -219,7 +219,7 @@
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:background="#DBDBDB"
+        android:background="#e8e8e8"
         android:padding="8dp"
         android:layout_alignParentBottom="true">
 
@@ -230,7 +230,7 @@
             android:layout_weight="1"
             android:src="@drawable/ic_home"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:contentDescription="홈으로 이동"
             android:scaleType="center"
             android:padding="12dp"/>
@@ -242,7 +242,7 @@
             android:layout_weight="1"
             android:src="@drawable/ic_group"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:contentDescription="그룹 페이지로 이동"
             android:scaleType="center"
             android:padding="12dp" />
@@ -252,9 +252,9 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_search"
+            android:src="@drawable/ic_nav_search"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:contentDescription="그룹 검색 페이지로 이동"
             android:scaleType="center"
             android:padding="12dp" />
@@ -266,7 +266,7 @@
             android:layout_weight="1"
             android:src="@drawable/ic_paw"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:contentDescription="펫 키우기 페이지로 이동"
             android:scaleType="fitCenter"
             android:padding="12dp" />
@@ -278,7 +278,7 @@
             android:layout_weight="1"
             android:src="@drawable/ic_mypage"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:contentDescription="마이페이지로 이동"
             android:scaleType="center"
             android:padding="12dp" />

@@ -44,7 +44,6 @@ public class GroupSearchPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_search_page);
 
-        // 하단 네비게이션
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
         navMyPage = findViewById(R.id.nav_mypage);
@@ -90,7 +89,6 @@ public class GroupSearchPageActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        // 하단 네비게이션 클릭 이벤트
         navHome.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
         navGroup.setOnClickListener(v -> startActivity(new Intent(this, GroupPageActivity.class)));
         navSearch.setOnClickListener(v -> startActivity(new Intent(this, GroupSearchPageActivity.class)));
@@ -110,6 +108,8 @@ public class GroupSearchPageActivity extends AppCompatActivity {
         // 카테고리 선택 팝업
         findViewById(R.id.category_btn_1).setOnClickListener(v -> showCategoryPopup());
         findViewById(R.id.category_btn_2).setOnClickListener(v -> showFinanceSubCategoryPopup());
+        findViewById(R.id.category_btn_3).setOnClickListener(v -> showStudySubCategoryPopup());
+        findViewById(R.id.category_btn_4).setOnClickListener(v -> showReadingSubCategoryPopup());
     }
 
     private Long getMyMemberId() {
@@ -147,7 +147,7 @@ public class GroupSearchPageActivity extends AppCompatActivity {
 
     private void showCategoryPopup() {
         String[] subCategories = {"만보기", "섭취 칼로리", "운동 칼로리", "식단"};
-        String categoryMain = "다이어트"; // 고정
+        String categoryMain = "다이어트";
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("다이어트 - 카테고리 선택");
@@ -156,10 +156,8 @@ public class GroupSearchPageActivity extends AppCompatActivity {
             selectedMainCategory = categoryMain;
             selectedSubCategory = subCategories[which];
 
-            // 선택된 카테고리 표시
             categoryTextView.setText("선택된 카테고리: " + selectedMainCategory + " - " + selectedSubCategory);
 
-            // 🔥 선택 즉시 검색 수행
             String query = searchGroupInput.getText().toString().trim();
             searchGroups(query, selectedMainCategory, selectedSubCategory);
         });
@@ -173,6 +171,46 @@ public class GroupSearchPageActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("재테크 - 카테고리 선택");
+
+        builder.setItems(subCategories, (dialog, which) -> {
+            selectedMainCategory = categoryMain;
+            selectedSubCategory = subCategories[which];
+
+            categoryTextView.setText("선택된 카테고리: " + selectedMainCategory + " - " + selectedSubCategory);
+
+            String query = searchGroupInput.getText().toString().trim();
+            searchGroups(query, selectedMainCategory, selectedSubCategory);
+        });
+
+        builder.show();
+    }
+
+    private void showStudySubCategoryPopup() {
+        String[] subCategories = {"학습 시간", "문제 풀이 수", "복습 체크", "목표 점수"};
+        String categoryMain = "공부"; //
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("공부 - 카테고리 선택");
+
+        builder.setItems(subCategories, (dialog, which) -> {
+            selectedMainCategory = categoryMain;
+            selectedSubCategory = subCategories[which];
+
+            categoryTextView.setText("선택된 카테고리: " + selectedMainCategory + " - " + selectedSubCategory);
+
+            String query = searchGroupInput.getText().toString().trim();
+            searchGroups(query, selectedMainCategory, selectedSubCategory);
+        });
+
+        builder.show();
+    }
+
+    private void showReadingSubCategoryPopup() {
+        String[] subCategories = {"목표 권수", "목표 시간", "읽은 시간"};
+        String categoryMain = "독서";
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("독서 - 카테고리 선택");
 
         builder.setItems(subCategories, (dialog, which) -> {
             selectedMainCategory = categoryMain;

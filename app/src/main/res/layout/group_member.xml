@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F4">
+    android:background="#f9f9f9">
 
-    <!-- 헤더 -->
     <LinearLayout
         android:id="@+id/header_container"
         android:layout_width="match_parent"
@@ -37,8 +36,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/group_mamber_title"
-                android:textSize="24sp"
-                android:textColor="#2A3D45"
+                android:textSize="22sp"
+                android:textColor="#202124"
                 android:layout_weight="1"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"/>
@@ -65,27 +64,27 @@
         android:layout_above="@id/bottom_nav"
         android:padding="12dp"
         android:clipToPadding="false"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:contentDescription="멤버"/>
 
-    <!-- 하단 네비게이션 바 -->
     <LinearLayout
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:background="#DBDBDB"
+        android:background="#e8e8e8"
         android:padding="8dp"
         android:layout_alignParentBottom="true">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_home"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_home"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:importantForAccessibility="no"
             android:contentDescription="홈으로 이동"
             android:scaleType="center"
@@ -93,12 +92,12 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_group"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_group"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:importantForAccessibility="no"
             android:contentDescription="그룹 페이지로 이동"
             android:scaleType="center"
@@ -106,12 +105,12 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_search"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_search"
+            android:src="@drawable/ic_nav_search"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:importantForAccessibility="no"
             android:contentDescription="그룹 검색 페이지로 이동"
             android:scaleType="center"
@@ -119,12 +118,12 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_pet"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_paw"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:importantForAccessibility="no"
             android:contentDescription="펫 키우기 페이지로 이동"
             android:scaleType="fitCenter"
@@ -132,12 +131,12 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/nav_mypage"
-            android:layout_width="48dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:src="@drawable/ic_mypage"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:importantForAccessibility="no"
             android:contentDescription="마이페이지로 이동"
             android:scaleType="center"

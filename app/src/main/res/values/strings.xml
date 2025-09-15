@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- 로그인 -->
-    <string name="subtitle">즐겁게 경쟁하고, 같이 성장하는 미션 라이프!</string>
-    <string name="login_login_button">로그인 하기</string>
+    <string name="subtitle">즐겁게 경쟁하고 같이 성장하는 미션 라이프!</string>
+    <string name="login_login_button">로그인</string>
     <string name="find_nickname_button">이메일 찾기</string>
     <string name="signup_button">회원가입</string>
     <string name="find_email_button">비밀번호 찾기</string>
@@ -29,16 +29,22 @@
     <string name="personal_goal_1">물 1L 마시기</string>
     <string name="personal_goal_2">열심히 운동</string>
     <string name="add_personal_goals">개인 목표 추가하기</string>
+
     <!-- Navigation bar -->
     <string name="nav_home">홈 페이지</string>
     <string name="nav_group">그룹 페이지</string>
     <string name="nav_search">돋보기 페이지</string>
     <string name="nav_pet">펫 키우기 페이지</string>
     <string name="nav_mypage">마이페이지</string>
+    <string name="desc_nav_home">홈</string>
+    <string name="desc_nav_group">그룹</string>
+    <string name="desc_nav_search">검색</string>
+    <string name="desc_nav_pet">펫</string>
+    <string name="desc_nav_mypage">마이페이지</string>
 
     <!-- 개인 목표 -->
     <string name="edittext_personal_name">자유롭게 입력하세요</string>
-    <string name="edittext_personal_description">목표에 대한 상세 설명을 입력하세요</string>
+    <string name="edittext_personal_description">상세 설명을 입력하세요 (100자 이내)</string>
     <string name="button_create_personal">개인 목표 추가하기</string>
 
     <!-- 그룹 페이지 -->
@@ -59,6 +65,8 @@
     <string name="goal_input_edittext">숫자를 입력하세요</string>
     <string name="goal_input_button">입력</string>
     <string name="section_history">이전 기록</string>
+    <string name="rankingRecyclerView">누적 랭킹</string>
+    <string name="desc_ranking_list">그룹 누적 랭킹 목록</string>
 
     <!-- 그룹 만들기 -->
     <string name="group_make_page">그룹 만들기</string>
@@ -75,7 +83,6 @@
     <string name="group_introduction">그룹 소개</string>
     <string name="edittext_group_description">그룹 설명을 입력하세요 (100자 이내)</string>
 
-
     <!-- 그룹 멤버 페이지 -->
     <string name="group_mamber_title">그룹 멤버</string>
     <string name="profile_image">그룹 멤버 프로필</string>
@@ -89,7 +96,6 @@
     <string name="post_input_contentn">내용 입력</string>
     <string name="add_photo_button">사진 추가하기</string>
     <string name="post_submit_button">게시하기</string>
-
 
     <!-- 그룹 나가기/삭제하기 -->
     <string name="group_exit_title">그룹 나가기</string>
@@ -109,7 +115,6 @@
     <string name="group_introduction_1">그룹장이 적은 그룹 설명</string>
     <string name="group_rfp">그룹 참가 요청</string>
     <string name="button_join_group">그룹 참여하기</string>
-
 
     <!-- 알림 페이지 (alarm_page.xml): 추가됨 -->
     <string name="alarmcontent_1">설정한 목표 잊으신 거 아니죠?</string>
@@ -136,7 +141,7 @@
 
     <!-- 설정 페이지 -->
     <string name="setting_title">설정</string>
-    <string name="login_information">정보</string>
+    <string name="account_management">계정 설정</string>
     <string name="email_button">이메일 찾기</string>
     <string name="mission_alarm_setting">미션 알림</string>
     <string name="group_alarm_setting">그룹 알림</string>
@@ -150,7 +155,7 @@
     <string name="like_alarm_text">커뮤니티 좋아요 알림</string>
     <string name="account_information">로그인</string>
     <string name="logout_button">로그아웃</string>
-    <string name="delete_id_button">회원탈퇴</string>
+    <string name="delete_id_button">회원 탈퇴</string>
 
     <!-- 이메일 찾기 -->
     <string name="email_find_title">이메일 찾기</string>
@@ -166,4 +171,6 @@
     <string name="delete_account_warning">회원 탈퇴 시 모든 데이터가 삭제됩니다.</string>
     <string name="confirm_delete_button">탈퇴하기</string>
 
+    <!-- 설정 -->
+    <string name="email_btn">이메일 찾기</string>
 </resources>

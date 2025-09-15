@@ -14,18 +14,16 @@
         android:orientation="vertical"
         android:padding="12dp">
 
-        <!-- 점 3개 버튼 -->
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_gravity="end"
             android:src="@drawable/ic_more_horiz"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="더보기"
             android:tint="#2A3D45" />
 
-        <!-- 게시글 이미지 -->
         <ImageView
             android:id="@+id/post_image"
             android:layout_width="match_parent"
@@ -34,18 +32,15 @@
             android:background="@color/black"
             tools:src="@drawable/sample_image" />
 
-        <!-- 제목 -->
         <TextView
             android:id="@+id/post_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="제목"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="#2A3D45" />
+            android:textSize="16sp"
+            android:textColor="#202124" />
 
-        <!-- 내용 -->
         <TextView
             android:id="@+id/post_content"
             android:layout_width="match_parent"
@@ -55,7 +50,6 @@
             android:textColor="#555555"
             android:layout_marginTop="4dp" />
 
-        <!-- 좋아요 및 댓글 버튼 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,8 +59,8 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_like"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:src="@drawable/ic_heart"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="#FF4B4B"
@@ -78,17 +72,17 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:text="0"
-            android:textColor="#2A3D45"
+            android:textColor="#202124"
             android:textSize="14sp"
             android:layout_gravity="center_vertical" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_comment"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:src="@drawable/ic_speech_bubble"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="#2A3D45"
+            android:tint="#202124"
             android:layout_marginStart="8dp"
             android:contentDescription="댓글 보기" />
 
@@ -103,7 +97,6 @@
             android:layout_gravity="center_vertical" />
     </LinearLayout>
 
-        <!-- 댓글 입력 필드 -->
         <LinearLayout
             android:id="@+id/comment_input_container"
             android:layout_width="match_parent"
@@ -125,7 +118,7 @@
                 android:background="@drawable/edit_text_background"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:textColorHint="#888888"
                 android:textSize="14sp" />
 
@@ -134,7 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:text="등록"
-                android:textColor="#2A3D45"
+                android:textColor="#202124"
                 android:background="@drawable/rounded_yellow_button"
                 android:paddingStart="24dp"
                 android:paddingEnd="24dp"
@@ -142,7 +135,6 @@
                 android:gravity="center_vertical" />
         </LinearLayout>
 
-        <!-- 댓글 목록 -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_comments"
             android:layout_width="match_parent"

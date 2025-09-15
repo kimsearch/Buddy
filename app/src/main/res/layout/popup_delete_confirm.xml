@@ -10,9 +10,9 @@
         android:id="@+id/popup_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="탈퇴하시겠습니까?"
-        android:textSize="18sp"
-        android:textColor="#2A3D45"
+        android:text="탈퇴 하시겠습니까?"
+        android:textSize="14sp"
+        android:textColor="#202124"
         android:gravity="center"
         android:fontFamily="@font/bmjua"
         android:layout_marginBottom="24dp" />
@@ -31,7 +31,7 @@
             android:text="취소"
             android:fontFamily="@font/bmjua"
             android:backgroundTint="#DDDDDD"
-            android:textColor="#2A3D45"
+            android:textColor="#202124"
             android:layout_marginEnd="8dp" />
 
         <Button
@@ -42,7 +42,7 @@
             android:text="확인"
             android:fontFamily="@font/bmjua"
             android:backgroundTint="#f1a6a6"
-            android:textColor="#2A3D45"
+            android:textColor="#202124"
             android:layout_marginStart="8dp" />
     </LinearLayout>
 </LinearLayout>
