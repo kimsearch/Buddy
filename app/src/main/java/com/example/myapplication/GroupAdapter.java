@@ -72,6 +72,12 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
                 intent = new Intent(context, GroupMainStepActivity.class);
             } else if("재테크".equals(group.getCategory()) && "부수입".equals(group.getGoalType())) {
                 intent = new Intent(context, GroupMainSideHustleActivity.class);
+            } else if("재테크".equals(group.getCategory()) && "가계부".equals(group.getGoalType())) {
+                intent = new Intent(context, GroupMainBudgetBookActivity.class);
+            } else if("공부".equals(group.getCategory()) && "복습 체크".equals(group.getGoalType())) {
+                intent = new Intent(context, GroupMainReviewCheckActivity.class);
+            } else if("독서".equals(group.getCategory()) && "목표 권수".equals(group.getGoalType())) {
+                intent = new Intent(context, GroupMainGoalBooksActivity.class);
             } else {
                 intent = new Intent(context, GroupMainActivity.class);
             }

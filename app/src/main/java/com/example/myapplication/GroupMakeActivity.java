@@ -191,8 +191,16 @@ public class GroupMakeActivity extends AppCompatActivity {
                         Toast.makeText(GroupMakeActivity.this, "그룹 생성 완료!", Toast.LENGTH_SHORT).show();
 
                         Intent intent;
-                        if ("만보기".equals(selectedSubCategory) || "다이어트".equals(selectedSubCategory)) {
+                        if ("다이어트".equals(selectedMainCategory) && "만보기".equals(selectedSubCategory)) {
                             intent = new Intent(GroupMakeActivity.this, GroupMainStepActivity.class);
+                        } else if ("재테크".equals(selectedMainCategory) && "부수입".equals(selectedSubCategory)) {
+                            intent = new Intent(GroupMakeActivity.this, GroupMainSideHustleActivity.class);
+                        } else if ("재테크".equals(selectedMainCategory) && "가계부".equals(selectedSubCategory)) {
+                            intent = new Intent(GroupMakeActivity.this, GroupMainBudgetBookActivity.class);
+                        }else if ("공부".equals(selectedMainCategory) && "복습 체크".equals(selectedSubCategory)) {
+                            intent = new Intent(GroupMakeActivity.this, GroupMainReviewCheckActivity.class);
+                        }else if ("독서".equals(selectedMainCategory) && "목표 권수".equals(selectedSubCategory)) {
+                            intent = new Intent(GroupMakeActivity.this, GroupMainGoalBooksActivity.class);
                         } else {
                             intent = new Intent(GroupMakeActivity.this, GroupMainActivity.class);
                         }
@@ -314,8 +322,8 @@ public class GroupMakeActivity extends AppCompatActivity {
                 editTextGoalValue.setVisibility(View.VISIBLE);
                 editTextGoalValue.setHint("예: 30,000");
             } else if ("가계부".equals(selectedSubCategory)) {
-                goalValueLabel.setVisibility(View.VISIBLE);
-                editTextGoalValue.setVisibility(View.VISIBLE);
+                goalValueLabel.setVisibility(View.GONE);
+                editTextGoalValue.setVisibility(View.GONE);
             } else if ("부수입".equals(selectedSubCategory)) {
                 goalValueLabel.setVisibility(View.VISIBLE);
                 editTextGoalValue.setVisibility(View.VISIBLE);
@@ -374,8 +382,9 @@ public class GroupMakeActivity extends AppCompatActivity {
             selectedCategory.setText("카테고리: " + selectedMainCategory + " / 목표: " + selectedSubCategory);
 
             if ("목표 권수".equals(selectedSubCategory)) {
-                goalValueLabel.setVisibility(View.VISIBLE);
+                goalValueLabel.setVisibility(View.GONE);
                 editTextGoalValue.setVisibility(View.VISIBLE);
+                editTextGoalValue.setHint("예: 3권");
             } else if ("목표 시간".equals(selectedSubCategory)) {
                 goalValueLabel.setVisibility(View.VISIBLE);
                 editTextGoalValue.setVisibility(View.VISIBLE);
