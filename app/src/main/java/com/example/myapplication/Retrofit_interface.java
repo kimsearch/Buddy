@@ -163,4 +163,16 @@ public interface Retrofit_interface {
     @GET("/api/group-goal-log/record-history")
    Call<List<StepHistoryItem>> getWeeklyRecordHistory(@Query("groupId") Long groupId, @Query("memberId") Long memberId);
 
+    @GET("/api/group-goal-log/{groupId}/goal-logs/current")
+    Call<GoalLogDto> getCurrentLog(
+            @Path("groupId") Long groupId,
+            @Query("memberId") Long memberId,
+            @Query("date") String dateISO
+    );
+
+    @POST("/api/group-goal-log/{groupId}/goal-logs/upsert")
+    Call<GoalLogDto> upsertLog(
+            @Path("groupId") Long groupId,
+            @Body SaveGoalResultRequest body
+    );
 }

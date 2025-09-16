@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     List<Group> groupList = response.body();
                     HomeGroupAdapter adapter = new HomeGroupAdapter(MainActivity.this, groupList, myMemberId);
                     recyclerView.setAdapter(adapter);
+                    fetchAndBindProgressPerGroup(groupList, adapter, myMemberId);
                 } else {
                     Toast.makeText(MainActivity.this, "그룹 데이터를 불러오지 못했습니다.", Toast.LENGTH_SHORT).show();
                 }
@@ -137,4 +138,30 @@ public class MainActivity extends AppCompatActivity {
             return false; // 클릭 이벤트도 함께 동작하게 하기 위해 false
         });
     }
+    private void fetchAndBindProgressPerGroup(List<Group> groups, HomeGroupAdapter adapter, long myMemberId) {
+        Retrofit_interface api = Retrofit_client.getInstance().create(Retrofit_interface.class);
+
+        for (int i = 0; i < groups.size(); i++) {
+            final int pos = i;
+            final Group g = groups.get(i);
+
+            api.getGoalProgress(g.getId(), myMemberId).enqueue(new Callback<GoalProgressResponse>() {
+                @Override
+                public void onResponse(Call<GoalProgressResponse> call, Response<GoalProgressResponse> res) {
+                    if (!res.isSuccessful() || res.body() == null) return;
+
+                    int goal   = res.body().getGoalValue();
+                    int record = res.body().getRecordValue();
+
+                    // 부수입: record/goal*100, 가계부/목표권수 등 성공/실패형: 백엔드가 goal=1, record=0/1로 내려줌
+                    float percent = (goal <= 0) ? 0f : Math.min(100f, (record * 100f) / (float) goal);
+
+                    g.setProgressPercent(percent);
+                    adapter.notifyItemChanged(pos); // ✅ 해당 카드만 갱신 → 아이콘 자동 변경
+                }
+                @Override public void onFailure(Call<GoalProgressResponse> call, Throwable t) { /* no-op */ }
+            });
+        }
+    }
+
 }
