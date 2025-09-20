@@ -149,7 +149,6 @@ public interface Retrofit_interface {
     //랭킹 차트 API
     @GET("/api/group-goal-log/ranking/{groupId}")
     Call<List<RankingItem>> getRanking(@Path("groupId") Long groupId);
-
     @GET("/api/group-goal-log/history")
     Call<List<StepHistoryItem>> getWeeklyStepHistory(@Query("groupId") Long groupId, @Query("memberId") Long memberId);
     //펫 먹이
