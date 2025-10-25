@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#f9f9f9"
+    tools:context=".JoinPageActivity">
+
+    <TextView
+        android:id="@+id/login_signup_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="70dp"
+        android:text="@string/login_signup_title"
+        android:fontFamily="@font/bmjua"
+        android:textColor="#202124"
+        android:textSize="22sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edittext_id_input"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="2"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_white_rounded"
+            android:hint="닉네임"
+            android:fontFamily="@font/bmjua"
+            android:textSize="14sp"
+            android:paddingVertical="6dp"
+            android:paddingHorizontal="12dp"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:id="@+id/id_check_button"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:backgroundTint="#D0F4DE"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="@string/id_check_button"
+            android:fontFamily="@font/bmjua"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edittext_birth_input"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_white_rounded"
+        android:hint="생년월일(yyyy-mm-dd)"
+        android:fontFamily="@font/bmjua"
+        android:textSize="14sp"
+        android:paddingVertical="6dp"
+        android:paddingHorizontal="12dp"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edittext_email_input"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="2"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_white_rounded"
+            android:hint="이메일"
+            android:fontFamily="@font/bmjua"
+            android:textSize="14sp"
+            android:inputType="textEmailAddress"
+            android:paddingVertical="6dp"
+            android:paddingHorizontal="12dp"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:id="@+id/email_auth_button"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:backgroundTint="#D0F4DE"
+            android:textSize="14sp"
+            android:padding="12dp"
+            android:text="인증번호 전송"
+            android:fontFamily="@font/bmjua"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edittext_verification_code"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="2"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_white_rounded"
+            android:hint="인증번호 입력"
+            android:fontFamily="@font/bmjua"
+            android:textSize="14sp"
+            android:paddingVertical="6dp"
+            android:paddingHorizontal="12dp"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:id="@+id/email_verify_button"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:backgroundTint="#D0F4DE"
+            android:textSize="14sp"
+            android:padding="12dp"
+            android:text="확인"
+            android:fontFamily="@font/bmjua"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edittext_password_input"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_white_rounded"
+        android:hint="비밀번호"
+        android:fontFamily="@font/bmjua"
+        android:textSize="14sp"
+        android:inputType="textPassword"
+        android:paddingVertical="6dp"
+        android:paddingHorizontal="12dp"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edittext_password_check_input"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="2"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_white_rounded"
+            android:hint="비밀번호 재입력"
+            android:fontFamily="@font/bmjua"
+            android:textSize="14sp"
+            android:inputType="textPassword"
+            android:paddingVertical="6dp"
+            android:paddingHorizontal="12dp"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:id="@+id/password_check_button"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:backgroundTint="#D0F4DE"
+            android:textSize="14sp"
+            android:padding="12dp"
+            android:text="@string/password_check_button"
+            android:fontFamily="@font/bmjua"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/login_login_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/login_login_button"
+        android:fontFamily="@font/bmjua"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#FBF5DA"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:padding="12dp"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>

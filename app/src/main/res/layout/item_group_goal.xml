@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:gravity="center_vertical"
+    android:layout_marginBottom="4dp">
+
+    <TextView
+        android:id="@+id/goal_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="목표 제목"
+        android:textSize="16sp"
+        android:textColor="#202124"
+        android:fontFamily="@font/bmjua"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp" />
+
+    <ImageView
+        android:id="@+id/goal_progress_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_progress_none"
+        android:contentDescription="진행률 아이콘" />
+</LinearLayout>

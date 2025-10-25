@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 로그인 -->
+    <string name="subtitle">즐겁게 경쟁하고 같이 성장하는 미션 라이프!</string>
+    <string name="login_login_button">로그인</string>
+    <string name="find_nickname_button">이메일 찾기</string>
+    <string name="signup_button">회원가입</string>
+    <string name="find_email_button">비밀번호 찾기</string>
+
+    <!-- 회원가입 -->
+    <string name="login_signup_title">회원가입</string>
+    <string name="id_check_button">중복 확인</string>
+    <string name="email_check_button">중복 확인</string>
+    <string name="password_check_button">확인</string>
+
+    <!-- 메인 페이지 -->
+    <string name="app_name">BuddyQuest</string>
+    <string name="my_goal_status">나의 목표 현황</string>
+    <string name="group_calendar_title">달력</string>
+    <string name="group_goals">그룹 목표</string>
+    <string name="edit_group_goals_button">그룹 목표 수정</string>
+    <string name="btnWalkTracker">하루 만보 걷기 챌린지</string>
+    <string name="btnDiet">같이 다이어트 해요</string>
+    <string name="group_goal_button_1">하루 만보 걷기 챌린지</string>
+    <string name="group_goal_button_2">같이 다이어트 해요</string>
+    <string name="personal_goals">개인 목표</string>
+    <string name="edit_delete">수정/삭제</string>
+    <string name="edit_personal_goals_button">개인 목표 수정</string>
+    <string name="personal_goal_1">물 1L 마시기</string>
+    <string name="personal_goal_2">열심히 운동</string>
+    <string name="add_personal_goals">개인 목표 추가하기</string>
+
+    <!-- Navigation bar -->
+    <string name="nav_home">홈 페이지</string>
+    <string name="nav_group">그룹 페이지</string>
+    <string name="nav_search">돋보기 페이지</string>
+    <string name="nav_pet">펫 키우기 페이지</string>
+    <string name="nav_mypage">마이페이지</string>
+    <string name="desc_nav_home">홈</string>
+    <string name="desc_nav_group">그룹</string>
+    <string name="desc_nav_search">검색</string>
+    <string name="desc_nav_pet">펫</string>
+    <string name="desc_nav_mypage">마이페이지</string>
+
+    <!-- 개인 목표 -->
+    <string name="edittext_personal_name">자유롭게 입력하세요</string>
+    <string name="edittext_personal_description">상세 설명을 입력하세요 (100자 이내)</string>
+    <string name="button_create_personal">개인 목표 추가하기</string>
+
+    <!-- 그룹 페이지 -->
+    <string name="group_page_title">그룹</string>
+    <string name="group_crown_button">음</string>
+    <string name="delete_group_goals_button">음</string>
+    <string name="group_like_button_1">음</string>
+    <string name="group_like_button_2">음</string>
+    <string name="edit_group_goals_button_1">음</string>
+    <string name="edit_group_goals_button_2">음</string>
+    <string name="group_goal_3">버디퀘스트 화이팅</string>
+    <string name="create_room">그룹 만들기</string>
+
+    <!-- 그룹 메인 -->
+    <string name="group_main_title">냠냠냠</string>
+    <string name="section_total_ranking">누적 랭킹 </string>
+    <string name="section_personal_goal">만보기</string>
+    <string name="goal_input_edittext">숫자를 입력하세요</string>
+    <string name="goal_input_button">입력</string>
+    <string name="section_history">이전 기록</string>
+    <string name="rankingRecyclerView">누적 랭킹</string>
+    <string name="desc_ranking_list">그룹 누적 랭킹 목록</string>
+
+    <!-- 그룹 만들기 -->
+    <string name="group_make_page">그룹 만들기</string>
+    <string name="edittext_group_name">그룹 이름 입력</string>
+    <string name="group_name_hint">그룹 이름을 입력하지 않으면 방을 생성할 수 없어요</string>
+    <string name="button_group_name_checke">확인</string>
+    <string name="category">카테고리</string>
+    <string name="category_btn_1">다이어트</string>
+    <string name="category_btn_2">재테크</string>
+    <string name="category_btn_3">공부</string>
+    <string name="category_btn_4">취미</string>
+    <string name="start_goal">시작 날짜</string>
+    <string name="goal_routine">목표 실행 주기</string>
+    <string name="group_introduction">그룹 소개</string>
+    <string name="edittext_group_description">그룹 설명을 입력하세요 (100자 이내)</string>
+
+    <!-- 그룹 멤버 페이지 -->
+    <string name="group_mamber_title">그룹 멤버</string>
+    <string name="profile_image">그룹 멤버 프로필</string>
+
+    <!-- 그룹 커뮤니티 -->
+    <string name="group_community_title">커뮤니티</string>
+    <string name="post_content">오늘의 목표 달성 완료! 🎉</string>
+    <string name="write_post_button">글 작성하기</string>
+    <string name="post_title">글 작성하기</string>
+    <string name="post_input_title">제목 입력</string>
+    <string name="post_input_contentn">내용 입력</string>
+    <string name="add_photo_button">사진 추가하기</string>
+    <string name="post_submit_button">게시하기</string>
+
+    <!-- 그룹 나가기/삭제하기 -->
+    <string name="group_exit_title">그룹 나가기</string>
+    <string name="cancel_exit_button">취소</string>
+    <string name="group_exit_warning">그룹을 나가면 그동안의 기록이 사라집니다.</string>
+    <string name="group_delete_title">그룹 삭제하기</string>
+    <string name="group_exit_ather_warning">그룹을 삭제하면 다시 복구할 수 없습니다.</string>
+
+    <!-- 그룹 찾기 페이지 -->
+    <string name="group_search_title">그룹 찾기</string>
+    <string name="search_group_input_1"> </string>
+    <string name="search_group_input_1_description">그룹 이름 입력 칸</string>
+    <string name="group_search_button_description">그룹 검색 버튼</string>
+    <string name="search_group_input_button_description">그룹 검색 버튼</string>
+    <string name="search_group_name_1">하루 만보 걷기 챌린지</string>
+    <string name="search_group_party_1">인원수</string>
+    <string name="group_introduction_1">그룹장이 적은 그룹 설명</string>
+    <string name="group_rfp">그룹 참가 요청</string>
+    <string name="button_join_group">그룹 참여하기</string>
+
+    <!-- 알림 페이지 (alarm_page.xml): 추가됨 -->
+    <string name="alarmcontent_1">설정한 목표 잊으신 거 아니죠?</string>
+    <string name="alarmcontent_2">~님이 그룹 참가를 요청했어요</string>
+    <string name="alarmcontent_3">그룹 참가 요청이 수락됐어요</string>
+    <string name="alarmcontent_4">알림</string>
+    <string name="btn_accept">수락</string>
+    <string name="btn_decline">거절</string>
+    <string name="empty_message">알림이 없습니다</string>
+    <string name="roll_button_description">롤 버튼</string>
+    <string name="notification_description">알림 확인</string>
+    <string name="alarm_text">아직 성공하지 않은 목표가 있어요!</string>
+    <string name="alarm_text_1">알림이 도착했어요!</string>
+    <string name="alarm_page_title">알림</string>
+
+    <!-- 마이 페이지 -->
+    <string name="mypage_main_title">마이 페이지</string>
+    <string name="settings_title">설정</string>
+    <string name="nickname_text">사용자 닉네임</string>
+    <string name="record">나의 기록</string>
+    <string name="view_history">이룬 목표</string>
+    <string name="history_delete_1">기록 삭제</string>
+    <string name="history_delete_2">기록 삭제</string>
+
+    <!-- 설정 페이지 -->
+    <string name="setting_title">설정</string>
+    <string name="account_management">계정 설정</string>
+    <string name="email_button">이메일 찾기</string>
+    <string name="mission_alarm_setting">미션 알림</string>
+    <string name="group_alarm_setting">그룹 알림</string>
+    <string name="community_alarm_setting">커뮤니티 알림</string>
+    <string name="mission_reminder_text">미션 리마인더</string>
+    <string name="alarm_request_text">그룹 참가 요청 알림</string>
+    <string name="accept_alarm_text">그룹 참가 수락 알림</string>
+    <string name="reject_alarm_text">그룹 참가 거절 알림</string>
+    <string name="post_text">커뮤니티 글 알림</string>
+    <string name="comment_alarm_text">커뮤니티 댓글 알림</string>
+    <string name="like_alarm_text">커뮤니티 좋아요 알림</string>
+    <string name="account_information">로그인</string>
+    <string name="logout_button">로그아웃</string>
+    <string name="delete_id_button">회원 탈퇴</string>
+
+    <!-- 이메일 찾기 -->
+    <string name="email_find_title">이메일 찾기</string>
+    <string name="nickname_okay_button">확인</string>
+    <string name="birthday_okay_button">확인</string>
+    <string name="email_search_button">이메일 찾기</string>
+    <string name="password_search_button">비밀번호 재설정</string>
+    <string name="password_find_title_1">비밀번호 재설정</string>
+    <string name="re_email_setting_1">완료</string>
+
+    <!-- 회원 탈퇴: 추가됨 -->
+    <string name="delete_account">회원 탈퇴</string>
+    <string name="delete_account_warning">회원 탈퇴 시 모든 데이터가 삭제됩니다.</string>
+    <string name="confirm_delete_button">탈퇴하기</string>
+
+    <!-- 설정 -->
+    <string name="email_btn">이메일 찾기</string>
+</resources>
