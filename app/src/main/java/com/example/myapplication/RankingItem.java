@@ -46,4 +46,8 @@ public class RankingItem {
     public void setProgress(int progress) {
         this.progress = progress;
     }
+
+    public double getValue() {
+        return 0;
+    }
 }

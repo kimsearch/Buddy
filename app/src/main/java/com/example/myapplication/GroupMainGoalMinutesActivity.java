@@ -22,7 +22,10 @@ public class GroupMainGoalMinutesActivity extends AppCompatActivity {
     private ImageButton backButton;
 
     private RecyclerView rankingRecyclerView;
-    private BarChart barChart;
+
+    public GroupMainGoalMinutesActivity(TextView groupGoalTextView) {
+        this.groupGoalTextView = groupGoalTextView;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,7 @@ public class GroupMainGoalMinutesActivity extends AppCompatActivity {
         rankingRecyclerView = findViewById(R.id.rankingRecyclerView);
         rankingRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        barChart = findViewById(R.id.barChart);
+        BarChart barChart = findViewById(R.id.barChart);
 
         navHome   = findViewById(R.id.nav_home);
         navGroup  = findViewById(R.id.nav_group);

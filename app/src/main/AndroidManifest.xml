@@ -55,7 +55,8 @@
         <activity android:name=".GroupMainReviewCheckActivity" />
         <activity android:name=".GroupMainGoalScoreActivity" />
         <activity android:name=".GroupMainGoalBooksActivity" />
-        <activity android:name=".GroupMainGoalMinutesActivity" />
+        <activity android:name=".GroupMainGoalMinutesActivity"
+            tools:ignore="Instantiatable" />
         <activity android:name=".GroupMainTimeLogActivity" />
         <activity android:name=".GroupExitActivity" />
         <activity android:name=".GroupMakeActivity" />

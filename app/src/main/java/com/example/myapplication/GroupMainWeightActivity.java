@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
@@ -49,14 +50,20 @@ public class GroupMainWeightActivity extends AppCompatActivity {
     private final List<RankingItem> rankingList = new ArrayList<>();
     private RankingAdapter rankingAdapter;
 
-    private Long memberId = 1L; // TODO: 로그인한 사용자 ID로 교체해야 함
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_main_weight);
 
-        // 뷰 연결
+        // ✅ 로그인 정보 확인
+        SharedPreferences prefs = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        long memberId = prefs.getLong("memberId", -1L);
+        if (memberId == -1L) {
+            Toast.makeText(this, "로그인이 필요합니다", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // ✅ 뷰 연결
         groupMainTitle = findViewById(R.id.group_main_title);
         groupGoalView = findViewById(R.id.group_goal_view);
         goalInputEditText = findViewById(R.id.goal_input_edittext);
@@ -71,17 +78,17 @@ public class GroupMainWeightActivity extends AppCompatActivity {
         navPet = findViewById(R.id.nav_pet);
         navMyPage = findViewById(R.id.nav_mypage);
 
-        // RecyclerView 세팅
+        // ✅ RecyclerView 세팅
         rankingAdapter = new RankingAdapter(this, rankingList);
         rankingRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         rankingRecyclerView.setAdapter(rankingAdapter);
 
-        // Pie 차트 초기화
+        // ✅ 초기 차트 세팅
         updatePieChart(0f);
         dailyWeightMap.put(getTodayDate(), 0f);
         updateBarChart();
 
-        // 몸무게 입력 버튼
+        // ✅ 몸무게 입력 버튼 클릭 이벤트
         goalInputButton.setOnClickListener(v -> {
             String inputText = goalInputEditText.getText().toString().trim();
             if (inputText.isEmpty()) {
@@ -91,29 +98,36 @@ public class GroupMainWeightActivity extends AppCompatActivity {
 
             try {
                 float newWeight = Float.parseFloat(inputText);
-                String today = getTodayDate();
+                String today = getTodayDate(); // "yyyy-MM-dd"
 
-                // ✅ 1. 로컬에 저장 및 그래프 업데이트
+                // ✅ 1. 로컬 업데이트
                 dailyWeightMap.put(today, newWeight);
-                updatePieChart(100f); // 입력 시 항상 100% 달성
+                updatePieChart(100f);
                 updateBarChart();
 
                 // ✅ 2. 서버 전송 (Retrofit)
                 WeightRecordModel record = new WeightRecordModel(memberId, newWeight, today);
                 Retrofit_interface api = Retrofit_client.getInstance().create(Retrofit_interface.class);
+
                 api.saveWeight(record).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(GroupMainWeightActivity.this, "몸무게 기록 완료: " + newWeight + "kg", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GroupMainWeightActivity.this,
+                                    "몸무게 기록 완료: " + newWeight + "kg",
+                                    Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(GroupMainWeightActivity.this, "서버 응답 오류 (" + response.code() + ")", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GroupMainWeightActivity.this,
+                                    "서버 응답 오류 (" + response.code() + ")",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(GroupMainWeightActivity.this, "서버 연결 실패: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GroupMainWeightActivity.this,
+                                "서버 연결 실패: " + t.getMessage(),
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -124,15 +138,15 @@ public class GroupMainWeightActivity extends AppCompatActivity {
             }
         });
 
-        // 네비게이션 버튼
+        // ✅ 네비게이션 버튼들
         navHome.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
         navGroup.setOnClickListener(v -> startActivity(new Intent(this, GroupPageActivity.class)));
-        navMyPage.setOnClickListener(v -> startActivity(new Intent(this, MyPageMainActivity.class)));
         navSearch.setOnClickListener(v -> startActivity(new Intent(this, GroupSearchPageActivity.class)));
         navPet.setOnClickListener(v -> startActivity(new Intent(this, PetActivity.class)));
+        navMyPage.setOnClickListener(v -> startActivity(new Intent(this, MyPageMainActivity.class)));
     }
 
-    // ✅ 파이 차트 (항상 100% 채움)
+    // ✅ 파이 차트 업데이트
     private void updatePieChart(float value) {
         List<PieEntry> entries = new ArrayList<>();
         entries.add(new PieEntry(value, "달성"));
@@ -141,7 +155,7 @@ public class GroupMainWeightActivity extends AppCompatActivity {
         PieDataSet dataSet = new PieDataSet(entries, "");
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);
-        dataSet.setColors(Color.rgb(76, 175, 80), Color.LTGRAY); // 초록색 + 회색
+        dataSet.setColors(Color.rgb(76, 175, 80), Color.LTGRAY);
 
         PieData pieData = new PieData(dataSet);
         pieData.setValueTextSize(14f);
@@ -155,7 +169,7 @@ public class GroupMainWeightActivity extends AppCompatActivity {
         pieChart.invalidate();
     }
 
-    // ✅ 바 차트 (몸무게 기록)
+    // ✅ 바 차트 업데이트
     private void updateBarChart() {
         List<BarEntry> entries = new ArrayList<>();
         List<String> labels = new ArrayList<>();
@@ -189,7 +203,8 @@ public class GroupMainWeightActivity extends AppCompatActivity {
         barChart.invalidate();
     }
 
+    // ✅ 날짜 포맷 ("yyyy-MM-dd")
     private String getTodayDate() {
-        return new SimpleDateFormat("MM/dd", Locale.getDefault()).format(new Date());
+        return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
     }
 }

@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import com.example.myapplication.model.SaveSpendRequest;
+import com.example.myapplication.model.SaveStudyRequest;
 import com.example.myapplication.model.WeightRecordModel;
 
 import java.util.List;
@@ -177,11 +179,29 @@ public interface Retrofit_interface {
             @Path("groupId") Long groupId,
             @Body SaveGoalResultRequest body
     );
-
+    //몸무게
     @POST("/api/weight/save")
     Call<ResponseBody> saveWeight(@Body WeightRecordModel record);
-
+//몸무게
     @GET("/api/weight/{userId}")
     Call<List<WeightRecordModel>> getWeights(@Path("userId") Long userId);
+    //소비
+    @POST("/api/spend/save")
+    Call<ResponseBody> saveSpend(@Body SaveSpendRequest body);
+//소비
+    @GET("/api/spend/ranking/{groupId}")
+    Call<List<RankingItem>> getSpendRanking(
+            @Path("groupId") Long groupId,
+            @Query("start") String startISO,  // "yyyy-MM-dd"
+            @Query("end") String endISO,      // "yyyy-MM-dd"
+            @Query("memberId") Long memberId  // 혼자라도 뜨게
+    );;
+    //학습시간
+    @POST("/api/study/save")
+    Call<ResponseBody>
+    saveStudy(@Body SaveStudyRequest request);
+
+    @GET("/api/study/ranking/{groupId}")
+    Call<List<RankingItem>> getStudyRanking(@Path("groupId") Long groupId, long memberId);
 
 }

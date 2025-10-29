@@ -4,14 +4,14 @@ public class WeightRecordModel {
 
     private Long memberId;   // 회원 ID
     private float weight;    // 몸무게
-    private String recordData;     // 기록 날짜
+    private String recordDate;  // ✅ 변수명도 Date로 통일
 
     public WeightRecordModel() {}
 
-    public WeightRecordModel(Long memberId, float weight, String date) {
+    public WeightRecordModel(Long memberId, float weight, String recordDate) {
         this.memberId = memberId;
         this.weight = weight;
-        this.recordData = recordData;
+        this.recordDate = recordDate; // ✅ 수정됨
     }
 
     public Long getMemberId() {
@@ -30,12 +30,12 @@ public class WeightRecordModel {
         this.weight = weight;
     }
 
-    public String getDate() {
-        return recordData;
+    public String getRecordDate() {
+        return recordDate;
     }
 
-    public void setDate(String recordData) {
-        this.recordData = recordData;
+    public void setRecordDate(String recordDate) {
+        this.recordDate = recordDate;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class WeightRecordModel {
         return "WeightRecordModel{" +
                 "memberId=" + memberId +
                 ", weight=" + weight +
-                ", date='" + recordData + '\'' +
+                ", recordDate='" + recordDate + '\'' +
                 '}';
     }
 }

@@ -208,7 +208,7 @@ public class GroupMainActivity extends AppCompatActivity implements SensorEventL
     }
 
     private String getTodayDate() {
-        return new SimpleDateFormat("MM/dd", Locale.getDefault()).format(new Date());
+        return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
     }
 
     @Override
