@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import com.example.myapplication.Group;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,17 +17,17 @@ import java.util.Objects;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHolder> {
 
-    private List<Group> groupList;
-    private Long myMemberId;
-    private Context context;
+    private final List<Group> groupList;
+    private final Long myMemberId;
+    private final Context context;
 
     public interface OnDeleteClickListener {
         void onDelete(Group group);
     }
 
-    private OnDeleteClickListener deleteClickListener;
+    private final OnDeleteClickListener deleteClickListener;
 
-    // 기존: listener 있는 생성자
+    // listener 포함 생성자
     public GroupAdapter(Context context, List<Group> groupList, Long myMemberId, OnDeleteClickListener listener) {
         this.context = context;
         this.groupList = groupList;
@@ -36,11 +35,10 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
         this.deleteClickListener = listener;
     }
 
-    // ✅ 추가: listener 없는 생성자
+    // listener 없이 기본 생성자
     public GroupAdapter(Context context, List<Group> groupList, Long myMemberId) {
-        this(context, groupList, myMemberId, null); // listener 없이 호출
+        this(context, groupList, myMemberId, null);
     }
-
 
     @NonNull
     @Override
@@ -53,52 +51,133 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
         Group group = groupList.get(position);
 
-        // 그룹 이름 설정
+        // 그룹 이름 표시
         holder.groupNameButton.setText(group.getName());
 
-        // 그룹장 여부에 따라 아이콘 변경
+        // 그룹장 여부 표시 (왕관/하트)
         if (Objects.equals(group.getLeaderId(), myMemberId)) {
             holder.roleIconButton.setImageResource(R.drawable.ic_crown);
         } else {
             holder.roleIconButton.setImageResource(R.drawable.ic_heart);
         }
-        Log.d("GroupAdapter", "group: " + group.getName() +
-                ", leaderId: " + group.getLeaderId() + ", myId: " + myMemberId);
 
+        Log.d("GroupAdapter", "group: " + group.getName() +
+                ", category: " + group.getCategory() +
+                ", goalType: " + group.getGoalType());
+
+        // ✅ 그룹 이름 버튼 클릭 → 각 카테고리별 메인화면 분기
         holder.groupNameButton.setOnClickListener(v -> {
             Intent intent;
 
-            if ("다이어트".equals(group.getCategory()) && "만보기".equals(group.getGoalType())) {
-                intent = new Intent(context, GroupMainStepActivity.class);
-            } else if("다이어트".equals(group.getCategory()) && "몸무게".equals(group.getGoalType())) {
-                intent = new Intent(context, GroupMainWeightActivity.class);
-            } else if("재테크".equals(group.getCategory()) && "부수입".equals(group.getGoalType())) {
-                intent = new Intent(context, GroupMainSideHustleActivity.class);
-            } else if("재테크".equals(group.getCategory()) && "가계부".equals(group.getGoalType())) {
-                intent = new Intent(context, GroupMainBudgetBookActivity.class);
-            } else if("공부".equals(group.getCategory()) && "복습 체크".equals(group.getGoalType())) {
-                intent = new Intent(context, GroupMainReviewCheckActivity.class);
-            } else if("독서".equals(group.getCategory()) && "목표 권수".equals(group.getGoalType())) {
-                intent = new Intent(context, GroupMainGoalBooksActivity.class);
-            } else {
-                intent = new Intent(context, GroupMainActivity.class);
+            switch (group.getCategory()) {
+                // ------------------------- 다이어트 -------------------------
+                case "다이어트":
+                    switch (group.getGoalType()) {
+                        case "만보기":
+                            intent = new Intent(context, GroupMainStepActivity.class);
+                            break;
+                        case "섭취 칼로리":
+                            intent = new Intent(context, GroupMainIntakeActivity.class);
+                            break;
+                        case "운동 칼로리":
+                            intent = new Intent(context, GroupMainBurnedActivity.class);
+                            break;
+                        case "몸무게":
+                            intent = new Intent(context, GroupMainWeightActivity.class);
+                            break;
+                        default:
+                            intent = new Intent(context, GroupMainActivity.class);
+                            break;
+                    }
+                    break;
+
+                // ------------------------- 재테크 -------------------------
+                case "재테크":
+                    switch (group.getGoalType()) {
+                        case "부수입":
+                            intent = new Intent(context, GroupMainSideHustleActivity.class);
+                            break;
+                        case "가계부":
+                            intent = new Intent(context, GroupMainBudgetBookActivity.class);
+                            break;
+                        case "소비":
+                            intent = new Intent(context, GroupMainSpendActivity.class);
+                            break;
+                        case "저축":
+                            intent = new Intent(context, GroupMainSavingsActivity.class);
+                            break;
+                        default:
+                            intent = new Intent(context, GroupMainActivity.class);
+                            break;
+                    }
+                    break;
+
+                // ------------------------- 공부 -------------------------
+                case "공부":
+                    switch (group.getGoalType()) {
+                        case "학습 시간":
+                            intent = new Intent(context, GroupMainStudyTimeActivity.class);
+                            break;
+                        case "문제 풀이 수":
+                            intent = new Intent(context, GroupMainStudyProgressActivity.class);
+                            break;
+                        case "복습 체크":
+                            intent = new Intent(context, GroupMainReviewCheckActivity.class);
+                            break;
+                        case "목표 점수":
+                            intent = new Intent(context, GroupMainGoalScoreActivity.class);
+                            break;
+                        default:
+                            intent = new Intent(context, GroupMainActivity.class);
+                            break;
+                    }
+                    break;
+
+                // ------------------------- 독서 -------------------------
+                case "독서":
+                    switch (group.getGoalType()) {
+                        case "목표 권수":
+                            intent = new Intent(context, GroupMainGoalBooksActivity.class);
+                            break;
+                        case "목표 시간":
+                            intent = new Intent(context, GroupMainGoalMinutesActivity.class);
+                            break;
+                        case "읽은 시간":
+                            intent = new Intent(context, GroupMainTimeLogActivity.class);
+                            break;
+                        default:
+                            intent = new Intent(context, GroupMainActivity.class);
+                            break;
+                    }
+                    break;
+
+                // ------------------------- 기타 기본 -------------------------
+                default:
+                    intent = new Intent(context, GroupMainActivity.class);
+                    break;
             }
 
-            // 그룹 정보 전달 (필요한 만큼)
+            // ✅ 인텐트에 그룹 정보 전달
             intent.putExtra("groupId", group.getId());
             intent.putExtra("groupName", group.getName());
+            intent.putExtra("groupGoal", group.getGoalType());
+            intent.putExtra("memberId", myMemberId);
             intent.putExtra("leaderId", group.getLeaderId());
-            intent.putExtra("myMemberId", myMemberId);
 
             context.startActivity(intent);
         });
 
-        // 삭제 버튼 클릭 시
+        // ✅ 삭제 버튼 클릭 시
         holder.deleteButton.setOnClickListener(v -> {
-            Intent intent = new Intent(context, GroupExitActivity.class);
-            intent.putExtra("groupId", group.getId());
-            intent.putExtra("groupName", group.getName());
-            context.startActivity(intent);
+            if (deleteClickListener != null) {
+                deleteClickListener.onDelete(group);
+            } else {
+                // 기본 삭제 로직: GroupExitActivity 이동
+                Intent intent = new Intent(context, GroupExitActivity.class);
+                intent.putExtra("groupId", group.getId());
+                intent.putExtra("groupName", group.getName());
+                context.startActivity(intent);
+            }
         });
     }
 
@@ -114,7 +193,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
 
         public GroupViewHolder(@NonNull View itemView) {
             super(itemView);
-            roleIconButton = itemView.findViewById(R.id.group_crown_button); // 혹은 group_icon_button
+            roleIconButton = itemView.findViewById(R.id.group_crown_button);
             groupNameButton = itemView.findViewById(R.id.group_goal_button_1);
             deleteButton = itemView.findViewById(R.id.delete_group_goals_button);
         }

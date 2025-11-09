@@ -51,19 +51,60 @@ public class HomeGroupAdapter extends RecyclerView.Adapter<HomeGroupAdapter.View
         holder.groupNameBtn.setOnClickListener(v -> {
             // 조건 분기: 다이어트 && 만보기 → GroupMainStepActivity로 이동
             Intent intent;
-            if ("다이어트".equals(group.getCategory()) && "만보기".equals(group.getGoalType())) {
-                intent = new Intent(context, GroupMainStepActivity.class);
-            } else if ("재테크".equals(group.getCategory()) && "부수입".equals(group.getGoalType())) {
-                intent = new Intent(context, GroupMainSideHustleActivity.class);
-            } else if ("재테크".equals(group.getCategory()) && "가계부".equals(group.getGoalType())) {
-                intent = new Intent(context, GroupMainBudgetBookActivity.class);
-            } else if ("공부".equals(group.getCategory()) && "복습 체크".equals(group.getGoalType())) {
-                intent = new Intent(context, GroupMainReviewCheckActivity.class);
-            } else if ("독서".equals(group.getCategory()) && "목표 권수".equals(group.getGoalType())) {
-                intent = new Intent(context, GroupMainGoalBooksActivity.class);
+            if ("다이어트".equals(group.getCategory())) {
+                if ("만보기".equals(group.getGoalType())) {
+                    intent = new Intent(context, GroupMainStepActivity.class);
+                } else if ("섭취 칼로리".equals(group.getGoalType())) {
+                    intent = new Intent(context, GroupMainIntakeActivity.class);
+                } else if ("운동 칼로리".equals(group.getGoalType())) {
+                    intent = new Intent(context, GroupMainBurnedActivity.class);
+                } else if ("몸무게".equals(group.getGoalType())) {
+                    intent = new Intent(context, GroupMainWeightActivity.class);
+                } else {
+                    intent = new Intent(context, GroupMainActivity.class);
+                }
+
+            } else if ("재테크".equals(group.getCategory())) {
+                if ("부수입".equals(group.getGoalType())) {
+                    intent = new Intent(context, GroupMainSideHustleActivity.class);
+                } else if ("가계부".equals(group.getGoalType())) {
+                    intent = new Intent(context, GroupMainBudgetBookActivity.class);
+                } else if ("소비".equals(group.getGoalType())) {
+                    intent = new Intent(context, GroupMainSpendActivity.class);
+                } else if ("저축".equals(group.getGoalType())) {
+                    intent = new Intent(context, GroupMainSavingsActivity.class);
+                } else {
+                    intent = new Intent(context, GroupMainActivity.class);
+                }
+
+            } else if ("공부".equals(group.getCategory())) {
+                if ("학습 시간".equals(group.getGoalType())) {
+                    intent = new Intent(context, GroupMainStudyTimeActivity.class);
+                } else if ("문제 풀이 수".equals(group.getGoalType())) {
+                    intent = new Intent(context, GroupMainStudyProgressActivity.class);
+                } else if ("복습 체크".equals(group.getGoalType())) {
+                    intent = new Intent(context, GroupMainReviewCheckActivity.class);
+                } else if ("목표 점수".equals(group.getGoalType())) {
+                    intent = new Intent(context, GroupMainGoalScoreActivity.class);
+                } else {
+                    intent = new Intent(context, GroupMainActivity.class);
+                }
+
+            } else if ("독서".equals(group.getCategory())) {
+                if ("목표 권수".equals(group.getGoalType())) {
+                    intent = new Intent(context, GroupMainGoalBooksActivity.class);
+                } else if ("목표 시간".equals(group.getGoalType())) {
+                    intent = new Intent(context, GroupMainGoalMinutesActivity.class);
+                } else if ("읽은 시간".equals(group.getGoalType())) {
+                    intent = new Intent(context, GroupMainTimeLogActivity.class);
+                } else {
+                    intent = new Intent(context, GroupMainActivity.class);
+                }
+
             } else {
                 intent = new Intent(context, GroupMainActivity.class);
             }
+
 
             // groupId SharedPreferences 저장
             context.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)

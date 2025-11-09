@@ -97,7 +97,7 @@
                 android:id="@+id/group_goal_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="그룹 목표는 여기에 표시됩니다."
+                android:text="50kg"
                 android:textSize="12sp"
                 android:textColor="#202124"
                 android:layout_marginBottom="16dp"/>

@@ -4,32 +4,22 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.os.Handler;
+import android.util.Log;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.myapplication.model.SaveSpendRequest;
-import com.example.myapplication.RankingItem;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.data.*;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-
 import java.text.SimpleDateFormat;
 import java.util.*;
-
+import java.util.Locale;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,7 +30,9 @@ public class GroupMainSpendActivity extends AppCompatActivity {
     private TextView groupMainTitle, groupGoalView;
     private EditText goalInputEditText;
     private Button goalInputButton;
+    private ImageButton backButton;
     private AppCompatImageButton navHome, navGroup, navSearch, navPet, navMyPage;
+    private AppCompatImageButton notificationButton1, notificationButton2, notificationButton3;
     private PieChart pieChart;
     private BarChart barChart;
     private RecyclerView rankingRecyclerView;
@@ -49,28 +41,34 @@ public class GroupMainSpendActivity extends AppCompatActivity {
     private final List<RankingItem> rankingList = new ArrayList<>();
     private RankingAdapter rankingAdapter;
 
-    private long groupId = 1L; // TODO: 실제 그룹 ID로 교체 필요
-    private String cycleType = "DAILY"; // 기본값: 매일 / WEEKLY, MONTHLY 도 가능
+    private long groupId = 1L;
+    private String cycleType = "DAILY";
+    private float todaySpend = 0f;
+    private String todayDate;
+    private long memberId;
+
+    private final Handler midnightHandler = new Handler();
+    private final Runnable midnightResetRunnable = this::resetAtMidnight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_main_spend);
 
-        // 🔹 1️⃣ Intent 데이터 받기
+        // 🧩 Intent 데이터 받기
         Intent intent = getIntent();
         String groupName = intent.getStringExtra("groupName");
         String groupGoal = intent.getStringExtra("groupGoal");
-        cycleType = intent.getStringExtra("cycleType"); // "DAILY", "WEEKLY", "MONTHLY"
+        cycleType = intent.getStringExtra("cycleType");
 
         SharedPreferences prefs = getSharedPreferences("loginPrefs", MODE_PRIVATE);
-        long memberId = prefs.getLong("memberId", -1L);
+        memberId = prefs.getLong("memberId", -1L);
         if (memberId == -1L) {
             Toast.makeText(this, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // 🔹 2️⃣ 뷰 연결
+        // 🧩 View 연결
         groupMainTitle = findViewById(R.id.group_main_title);
         groupGoalView = findViewById(R.id.group_goal_view);
         goalInputEditText = findViewById(R.id.goal_input_edittext);
@@ -78,27 +76,36 @@ public class GroupMainSpendActivity extends AppCompatActivity {
         pieChart = findViewById(R.id.pieChart);
         barChart = findViewById(R.id.barChart);
         rankingRecyclerView = findViewById(R.id.rankingRecyclerView);
+        backButton = findViewById(R.id.back_button);
 
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
         navSearch = findViewById(R.id.nav_search);
         navPet = findViewById(R.id.nav_pet);
         navMyPage = findViewById(R.id.nav_mypage);
+        notificationButton1 = findViewById(R.id.notification_button_1);
+        notificationButton2 = findViewById(R.id.notification_button_2);
+        notificationButton3 = findViewById(R.id.notification_button_3);
 
-        // 🔹 3️⃣ TextView에 데이터 표시
+        // 🧩 제목 표시
         if (groupName != null) groupMainTitle.setText(groupName);
         if (groupGoal != null) groupGoalView.setText(groupGoal);
 
-        // 🔹 4️⃣ RecyclerView 세팅
+        // 🧩 RecyclerView 세팅
         rankingAdapter = new RankingAdapter(this, rankingList);
         rankingRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         rankingRecyclerView.setAdapter(rankingAdapter);
 
-        updatePieChart(0f);
-        dailySpendMap.put(getTodayDate(), 0f);
+        todayDate = getTodayDate();
+
+        // 🧩 저장된 기록 불러오기
+        loadSavedSpend();
+
+        updatePieChart(todaySpend);
+        dailySpendMap.put(todayDate, todaySpend);
         updateBarChart();
 
-        // 🔹 5️⃣ 금액 입력 버튼 동작
+        // 🧩 입력 버튼 동작
         goalInputButton.setOnClickListener(v -> {
             String inputText = goalInputEditText.getText().toString().trim();
             if (inputText.isEmpty()) {
@@ -108,39 +115,33 @@ public class GroupMainSpendActivity extends AppCompatActivity {
 
             try {
                 long amount = Long.parseLong(inputText);
-                String today = getTodayDate();
-
-                // ✅ 차트 갱신
-                dailySpendMap.put(today, (float) amount);
+                todaySpend += amount; // ✅ 누적
+                dailySpendMap.put(todayDate, todaySpend);
+                saveSpendToPrefs(todaySpend); // ✅ 로컬 저장
                 updatePieChart(100f);
                 updateBarChart();
 
-                // ✅ 서버 전송
                 SaveSpendRequest request = new SaveSpendRequest();
                 request.setGroupId(groupId);
                 request.setMemberId(memberId);
                 request.setAmount(amount);
-                request.setRecordDate(today);
+                request.setRecordDate(todayDate);
 
                 Retrofit_interface api = Retrofit_client.getInstance().create(Retrofit_interface.class);
                 api.saveSpend(request).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(GroupMainSpendActivity.this,
-                                    amount + "원 기록 완료!", Toast.LENGTH_SHORT).show();
-                            // 🔹 랭킹 새로 불러오기
+                            Toast.makeText(GroupMainSpendActivity.this, amount + "원 기록 완료!", Toast.LENGTH_SHORT).show();
                             loadRanking(api, memberId);
                         } else {
-                            Toast.makeText(GroupMainSpendActivity.this,
-                                    "서버 응답 오류 (" + response.code() + ")", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GroupMainSpendActivity.this, "서버 오류 (" + response.code() + ")", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(GroupMainSpendActivity.this,
-                                "서버 연결 실패: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GroupMainSpendActivity.this, "서버 연결 실패: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -151,21 +152,85 @@ public class GroupMainSpendActivity extends AppCompatActivity {
             }
         });
 
-        // 🔹 네비게이션 버튼
+        // 🧩 상단 버튼 연결
+        notificationButton1.setOnClickListener(v -> {
+            Intent i = new Intent(this, GroupMemberActivity.class);
+            i.putExtra("groupId", groupId);
+            startActivity(i);
+        });
+        notificationButton2.setOnClickListener(v -> startActivity(new Intent(this, GroupCommunityActivity.class)));
+        notificationButton3.setOnClickListener(v -> startActivity(new Intent(this, AlarmPageActivity.class)));
+
+        // 🧩 하단 네비게이션 연결
         navHome.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
         navGroup.setOnClickListener(v -> startActivity(new Intent(this, GroupPageActivity.class)));
-        navMyPage.setOnClickListener(v -> startActivity(new Intent(this, MyPageMainActivity.class)));
         navSearch.setOnClickListener(v -> startActivity(new Intent(this, GroupSearchPageActivity.class)));
         navPet.setOnClickListener(v -> startActivity(new Intent(this, PetActivity.class)));
+        navMyPage.setOnClickListener(v -> startActivity(new Intent(this, MyPageMainActivity.class)));
 
-        // 🔹 첫 로딩 시 랭킹 가져오기
+        // 🧩 뒤로가기 버튼 → 메인 이동
+        backButton.setOnClickListener(v -> {
+            Intent intentBack = new Intent(GroupMainSpendActivity.this, MainActivity.class);
+            intentBack.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intentBack);
+            finish();
+        });
+
+        // 🧩 첫 랭킹 불러오기
         Retrofit_interface api = Retrofit_client.getInstance().create(Retrofit_interface.class);
         loadRanking(api, memberId);
+
+        // 🕛 00시에 자동 리셋 예약
+        scheduleMidnightReset();
     }
 
-    // ✅ 랭킹 불러오기 (주기별로)
+    // ✅ SharedPreferences에 소비 기록 저장
+    private void saveSpendToPrefs(float value) {
+        SharedPreferences prefs = getSharedPreferences("spendPrefs", MODE_PRIVATE);
+        prefs.edit()
+                .putFloat("todaySpend", value)
+                .putString("savedDate", todayDate)
+                .apply();
+    }
+
+    // ✅ 저장된 기록 불러오기
+    private void loadSavedSpend() {
+        SharedPreferences prefs = getSharedPreferences("spendPrefs", MODE_PRIVATE);
+        String savedDate = prefs.getString("savedDate", "");
+        if (savedDate.equals(todayDate)) {
+            todaySpend = prefs.getFloat("todaySpend", 0f);
+        } else {
+            todaySpend = 0f; // 날짜가 바뀌었으면 리셋
+            prefs.edit().clear().apply();
+        }
+    }
+
+    // ✅ 00시 자동 초기화 스케줄
+    private void scheduleMidnightReset() {
+        Calendar now = Calendar.getInstance();
+        Calendar midnight = Calendar.getInstance();
+        midnight.set(Calendar.HOUR_OF_DAY, 0);
+        midnight.set(Calendar.MINUTE, 0);
+        midnight.set(Calendar.SECOND, 0);
+        midnight.add(Calendar.DAY_OF_MONTH, 1);
+
+        long delay = midnight.getTimeInMillis() - now.getTimeInMillis();
+        midnightHandler.postDelayed(midnightResetRunnable, delay);
+    }
+
+    private void resetAtMidnight() {
+        todaySpend = 0f;
+        dailySpendMap.clear();
+        dailySpendMap.put(getTodayDate(), 0f);
+        updatePieChart(0f);
+        updateBarChart();
+        saveSpendToPrefs(0f);
+        Toast.makeText(this, "자정이 되어 기록이 초기화되었습니다!", Toast.LENGTH_SHORT).show();
+        scheduleMidnightReset();
+    }
+
+    // ✅ 랭킹 불러오기
     private void loadRanking(Retrofit_interface api, long memberId) {
-        // 🔸 날짜 범위 계산 (매일/매주/매월)
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         String end = sdf.format(cal.getTime());
@@ -188,24 +253,21 @@ public class GroupMainSpendActivity extends AppCompatActivity {
             public void onResponse(Call<List<RankingItem>> call, Response<List<RankingItem>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<RankingItem> data = response.body();
-                    // 🔸 적게 쓴 순으로 정렬
-                    data.sort(Comparator.comparingDouble(RankingItem::getValue));
-
+                    data.sort(Comparator.comparingDouble(RankingItem::getValue)); // 적게 쓴 순
                     rankingList.clear();
                     rankingList.addAll(data);
                     rankingAdapter.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(GroupMainSpendActivity.this, "랭킹 불러오기 실패", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<RankingItem>> call, Throwable t) {
-                Toast.makeText(GroupMainSpendActivity.this, "서버 연결 실패: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("SpendRanking", "불러오기 실패", t);
             }
         });
     }
 
+    // ✅ 차트 관련 메소드들
     private void updatePieChart(float value) {
         List<PieEntry> entries = new ArrayList<>();
         entries.add(new PieEntry(value, "소비 완료"));
@@ -263,5 +325,11 @@ public class GroupMainSpendActivity extends AppCompatActivity {
 
     private String getTodayDate() {
         return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        midnightHandler.removeCallbacks(midnightResetRunnable);
     }
 }

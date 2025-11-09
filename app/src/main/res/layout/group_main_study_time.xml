@@ -243,6 +243,17 @@
                             android:background="#E0E0E0" />
                     </LinearLayout>
 
+                    <TextView
+                        android:id="@+id/tv_study_duration"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="오늘 공부한 시간 : 0분"
+                        android:textSize="16sp"
+                        android:textColor="#202124"
+                        android:gravity="center"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/bmjua" />
+
                     <Button
                         android:id="@+id/btn_save_study"
                         android:layout_width="300dp"

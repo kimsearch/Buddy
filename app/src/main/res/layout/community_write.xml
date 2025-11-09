@@ -8,6 +8,15 @@
     android:background="#f9f9f9"
     android:padding="16dp">
 
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_arrow_back"
+        android:contentDescription="뒤로가기" />
+
     <TextView
         android:id="@+id/post_title"
         android:layout_width="wrap_content"

@@ -35,29 +35,44 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.RankingV
     public void onBindViewHolder(@NonNull RankingViewHolder holder, int position) {
         RankingItem item = rankingList.get(position);
 
-        holder.rankText.setText((position + 1) + "위");
-        holder.userName.setText(item.getNickname());
-        holder.progressBar.setProgress(item.getSuccessCount()); // 성공 횟수 기반 진행률이라면
-        holder.profileImage.setImageResource(R.drawable.ic_profile); // 일단 기본 이미지로
-
-
+        // ✅ 순위 텍스트 + 메달
         switch (position) {
             case 0:
-                holder.rankText.setTextColor(Color.parseColor("#FFD700")); break;
+                holder.rankText.setText("🥇 1위");
+                holder.rankText.setTextColor(Color.parseColor("#FFD700")); // 금색
+                break;
             case 1:
-                holder.rankText.setTextColor(Color.parseColor("#C0C0C0")); break;
+                holder.rankText.setText("🥈 2위");
+                holder.rankText.setTextColor(Color.parseColor("#C0C0C0")); // 은색
+                break;
             case 2:
-                holder.rankText.setTextColor(Color.parseColor("#CD7F32")); break;
+                holder.rankText.setText("🥉 3위");
+                holder.rankText.setTextColor(Color.parseColor("#CD7F32")); // 동색
+                break;
             default:
-                holder.rankText.setTextColor(Color.parseColor("#2A3D45")); break;
+                holder.rankText.setText((position + 1) + "위");
+                holder.rankText.setTextColor(Color.parseColor("#2A3D45"));
+                break;
         }
+
+        // ✅ 닉네임
+        holder.userName.setText(item.getNickname() != null ? item.getNickname() : "익명");
+
+        // ✅ 진행률 (성공 횟수 기준)
+        int progress = Math.max(0, Math.min(item.getSuccessCount(), 100));
+        holder.progressBar.setProgress(progress);
+
+        // ✅ 프로필 이미지 (기본 이미지)
+        holder.profileImage.setImageResource(R.drawable.ic_profile);
     }
 
     @Override
     public int getItemCount() {
-        return rankingList.size();
+        // ✅ 최대 3명까지만 표시
+        return Math.min(rankingList.size(), 3);
     }
 
+    // ✅ ViewHolder 내부 클래스
     public static class RankingViewHolder extends RecyclerView.ViewHolder {
         TextView rankText, userName;
         ProgressBar progressBar;

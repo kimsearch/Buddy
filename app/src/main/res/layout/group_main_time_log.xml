@@ -173,7 +173,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="00:00"
+                                android:text="00:00 터치 후 시작"
                                 android:textSize="18sp"
                                 android:textColor="#202124"
                                 android:fontFamily="@font/bmjua"
@@ -207,7 +207,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="00:00"
+                                android:text="00:00 터치 후 종료"
                                 android:textSize="18sp"
                                 android:textColor="#202124"
                                 android:fontFamily="@font/bmjua"
@@ -242,6 +242,17 @@
                             android:layout_weight="1.2"
                             android:background="#E0E0E0" />
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/study_result_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="오늘 읽은 시간 : 0분"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:textColor="#202124"
+                        android:layout_marginBottom="20dp" />
 
                     <Button
                         android:id="@+id/btn_save_study"

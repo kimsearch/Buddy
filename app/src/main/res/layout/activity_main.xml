@@ -117,8 +117,8 @@
                         android:id="@+id/recycler_view_home_personal_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:nestedScrollingEnabled="false"
                         android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
                         tools:listitem="@layout/item_home_group_row" />
                 </LinearLayout>
 

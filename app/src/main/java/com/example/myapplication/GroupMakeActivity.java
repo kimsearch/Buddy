@@ -225,39 +225,26 @@ public class GroupMakeActivity extends AppCompatActivity {
                                 intent = new Intent(GroupMakeActivity.this, GroupMainActivity.class);
                             }
 
-                        } else if ("독서".equals(selectedMainCategory) && "목표 권수".equals(selectedSubCategory)) {
-                            intent = new Intent(GroupMakeActivity.this, GroupMainGoalBooksActivity.class);
+                        } else if ("독서".equals(selectedMainCategory)) {
+                            if ("목표 권수".equals(selectedSubCategory)) {
+                                intent = new Intent(GroupMakeActivity.this, GroupMainGoalBooksActivity.class);
+                            } else if ("목표 시간".equals(selectedSubCategory)) {
+                                intent = new Intent(GroupMakeActivity.this, GroupMainGoalMinutesActivity.class);
+                            } else if ("읽은 시간".equals(selectedSubCategory)) {
+                                intent = new Intent(GroupMakeActivity.this, GroupMainTimeLogActivity.class);
+                            } else {
+                                intent = new Intent(GroupMakeActivity.this, GroupMainActivity.class);
+                            }
 
                         } else {
                             intent = new Intent(GroupMakeActivity.this, GroupMainActivity.class);
-                        }
-
-                        // 목표 문구 — 카테고리/세부카테고리별 단위
-                        String goalText;
-                        if ("공부".equals(selectedMainCategory) && "학습 시간".equals(selectedSubCategory)) {
-                            goalText = finalGoalValue + "분 목표";
-                        } else if ("재테크".equals(selectedMainCategory) && "소비".equals(selectedSubCategory)) {
-                            goalText = finalGoalValue + "원 절약 목표";
-                        } else if ("재테크".equals(selectedMainCategory) && "저축".equals(selectedSubCategory)) {
-                            goalText = finalGoalValue + "원 저축 목표";
-                        } else if ("다이어트".equals(selectedMainCategory) && "만보기".equals(selectedSubCategory)) {
-                            goalText = finalGoalValue + "보 목표";
-                        } else if ("다이어트".equals(selectedMainCategory) && "섭취 칼로리".equals(selectedSubCategory)) {
-                            goalText = finalGoalValue + "kcal 목표";
-                        } else if ("다이어트".equals(selectedMainCategory) && "운동 칼로리".equals(selectedSubCategory)) {
-                            goalText = finalGoalValue + "kcal 소모 목표";
-                        } else if ("다이어트".equals(selectedMainCategory) && "몸무게".equals(selectedSubCategory)) {
-                            goalText = finalGoalValue + "kg 목표";
-                        } else if ("독서".equals(selectedMainCategory) && "목표 권수".equals(selectedSubCategory)) {
-                            goalText = finalGoalValue + "권 목표";
-                        } else {
-                            goalText = String.valueOf(finalGoalValue);
                         }
 
                         // 다음 액티비티로 전달할 공통 데이터들
                         intent.putExtra("groupId", created.getId());           // ✅ 서버에서 받은 그룹 ID
                         intent.putExtra("memberId", memberId);                 // ✅ 로그인한 멤버 ID
                         intent.putExtra("groupName", groupName);
+                        boolean goalText = false;
                         intent.putExtra("groupGoal", goalText);
                         intent.putExtra("startDate", selectedStartDate);
                         intent.putExtra("alarmSetting", selectedAlarmSetting);

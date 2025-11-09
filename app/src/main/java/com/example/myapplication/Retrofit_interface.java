@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
+import com.example.myapplication.model.GoalTimeRecordDTO;
 import com.example.myapplication.model.SaveSpendRequest;
 import com.example.myapplication.model.SaveStudyRequest;
+import com.example.myapplication.model.TimeLogRecordDTO;
 import com.example.myapplication.model.WeightRecordModel;
 
 import java.util.List;
@@ -12,6 +14,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -113,6 +116,8 @@ public interface Retrofit_interface {
     @GET("/api/likes/count")
     Call<Long> countLikes(@Query("postId") Long postId);
 
+
+
     // 좋아요 토글
     @POST("/api/likes")
     Call<LikeResponse> toggleLike(@Query("postId") Long postId, @Query("memberId") Long memberId);
@@ -165,7 +170,7 @@ public interface Retrofit_interface {
 
     //일주일 간 기록 보여주는 API
     @GET("/api/group-goal-log/record-history")
-   Call<List<StepHistoryItem>> getWeeklyRecordHistory(@Query("groupId") Long groupId, @Query("memberId") Long memberId);
+    Call<List<StepHistoryItem>> getWeeklyRecordHistory(@Query("groupId") Long groupId, @Query("memberId") Long memberId);
 
     @GET("/api/group-goal-log/{groupId}/goal-logs/current")
     Call<GoalLogDto> getCurrentLog(
@@ -182,26 +187,47 @@ public interface Retrofit_interface {
     //몸무게
     @POST("/api/weight/save")
     Call<ResponseBody> saveWeight(@Body WeightRecordModel record);
-//몸무게
+    //몸무게
     @GET("/api/weight/{userId}")
     Call<List<WeightRecordModel>> getWeights(@Path("userId") Long userId);
     //소비
     @POST("/api/spend/save")
     Call<ResponseBody> saveSpend(@Body SaveSpendRequest body);
-//소비
+    //소비
     @GET("/api/spend/ranking/{groupId}")
     Call<List<RankingItem>> getSpendRanking(
             @Path("groupId") Long groupId,
             @Query("start") String startISO,  // "yyyy-MM-dd"
             @Query("end") String endISO,      // "yyyy-MM-dd"
             @Query("memberId") Long memberId  // 혼자라도 뜨게
-    );;
+    );
     //학습시간
     @POST("/api/study/save")
     Call<ResponseBody>
     saveStudy(@Body SaveStudyRequest request);
 
     @GET("/api/study/ranking/{groupId}")
-    Call<List<RankingItem>> getStudyRanking(@Path("groupId") Long groupId, long memberId);
+    Call<List<RankingItem>> getStudyRanking(@Path("groupId") Long groupId, @Query("memberId") long memberId);
 
+    @POST("/api/time-log/save")
+    Call<TimeLogRecordDTO> saveTimeLog(@Body TimeLogRecordDTO dto);
+
+    @GET("/api/time-log/user/{userId}")
+    Call<List<TimeLogRecordDTO>> getUserTimeLogs(@Path("userId") Long userId);
+
+    @POST("/api/goal-time/save") // 목표시간저장/갱신/조회
+    Call<ResponseBody> saveGoalTime(@Body GoalTimeRecordDTO dto);
+
+    @PUT("/api/goal-time/update")
+    Call<ResponseBody> updateGoalTime(@Body GoalTimeRecordDTO dto);
+
+    @GET("/api/goal-time/{userId}/{groupId}")
+    Call<Integer> getGoalTime(@Path("userId") Long userId, @Path("groupId") Long groupId);
+
+    @GET("/api/weight/ranking/{groupId}")
+    Call<List<RankingItem>> getWeightRanking(@Path("groupId") long groupId);
+
+    @GET("/api/time-log/group/{groupId}")
+    Call<List<TimeLogRecordDTO>> getGroupTimeLogs(@Path("groupId") long groupId);
 }
+

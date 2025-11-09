@@ -4,10 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +28,6 @@ public class GroupSearchPageActivity extends AppCompatActivity {
     private String selectedMainCategory = "";
     private String selectedSubCategory = "";
 
-
     private ImageButton navHome, navGroup, navSearch, navPet, navMyPage;
 
     private RecyclerView recyclerView;
@@ -44,37 +40,57 @@ public class GroupSearchPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_search_page);
 
+        // 하단 네비게이션
         navHome = findViewById(R.id.nav_home);
         navGroup = findViewById(R.id.nav_group);
-        navMyPage = findViewById(R.id.nav_mypage);
-        navPet = findViewById(R.id.nav_pet);
         navSearch = findViewById(R.id.nav_search);
+        navPet = findViewById(R.id.nav_pet);
+        navMyPage = findViewById(R.id.nav_mypage);
 
-        // UI 연결
+        // 기본 UI 연결
         searchGroupInput = findViewById(R.id.search_group_input_1);
-        TextView groupSearchTitle = findViewById(R.id.group_search_title);
         searchButton = findViewById(R.id.search_group_input_button);
         categoryTextView = findViewById(R.id.category);
 
-        // RecyclerView 초기화
         recyclerView = findViewById(R.id.group_search_recycler);
         adapter = new GroupSearchAdapter(groupList, group -> {
+            // 클릭 시 이동 분기
             if (group.isJoined()) {
-                // ✅ 이미 참여한 그룹이면 카테고리에 따라 분기
                 String category = group.getCategory();
                 Intent intent;
+
                 if ("만보기".equals(category)) {
-                    intent = new Intent(GroupSearchPageActivity.this, GroupMainStepActivity.class); // group_main_step.xml
+                    intent = new Intent(this, GroupMainStepActivity.class);
+                } else if ("섭취 칼로리".equals(category)) {
+                    intent = new Intent(this, GroupMainIntakeActivity.class);
+                } else if ("운동 칼로리".equals(category)) {
+                    intent = new Intent(this, GroupMainBurnedActivity.class);
+                } else if ("몸무게".equals(category)) {
+                    intent = new Intent(this, GroupMainWeightActivity.class);
+                } else if ("학습 시간".equals(category)) {
+                    intent = new Intent(this, GroupMainStudyTimeActivity.class);
+                } else if ("문제 풀이 수".equals(category)) {
+                    intent = new Intent(this, GroupMainStudyProgressActivity.class);
+                } else if ("복습 체크".equals(category)) {
+                    intent = new Intent(this, GroupMainReviewCheckActivity.class);
+                } else if ("목표 점수".equals(category)) {
+                    intent = new Intent(this, GroupMainGoalScoreActivity.class);
+                } else if ("목표 권수".equals(category)) {
+                    intent = new Intent(this, GroupMainGoalBooksActivity.class);
+                } else if ("목표 시간".equals(category)) {
+                    intent = new Intent(this, GroupMainGoalMinutesActivity.class);
+                } else if ("읽은 시간".equals(category)) {
+                    intent = new Intent(this, GroupMainTimeLogActivity.class);
                 } else {
-                    intent = new Intent(GroupSearchPageActivity.this, GroupMainActivity.class); // group_main.xml
+                    intent = new Intent(this, GroupMainActivity.class);
                 }
+
                 intent.putExtra("groupId", group.getId());
                 intent.putExtra("groupName", group.getName());
-                intent.putExtra("category", category);
+                intent.putExtra("category", group.getCategory());
                 startActivity(intent);
             } else {
-                // ❗ 참여하지 않은 그룹이면 참가 요청 화면으로 이동
-                Intent intent = new Intent(GroupSearchPageActivity.this, SearchJoinActivity.class);
+                Intent intent = new Intent(this, SearchJoinActivity.class);
                 intent.putExtra("groupId", group.getId());
                 intent.putExtra("groupName", group.getName());
                 intent.putExtra("category", group.getCategory());
@@ -89,6 +105,7 @@ public class GroupSearchPageActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
+        // 하단 네비게이션 연결
         navHome.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
         navGroup.setOnClickListener(v -> startActivity(new Intent(this, GroupPageActivity.class)));
         navSearch.setOnClickListener(v -> startActivity(new Intent(this, GroupSearchPageActivity.class)));
@@ -105,17 +122,62 @@ public class GroupSearchPageActivity extends AppCompatActivity {
             }
         });
 
-        // 카테고리 선택 팝업
-        findViewById(R.id.category_btn_1).setOnClickListener(v -> showCategoryPopup());
+        // ✅ 각 메인 카테고리 버튼 연결
+        findViewById(R.id.category_btn_1).setOnClickListener(v -> showDietSubCategoryPopup());
         findViewById(R.id.category_btn_2).setOnClickListener(v -> showFinanceSubCategoryPopup());
         findViewById(R.id.category_btn_3).setOnClickListener(v -> showStudySubCategoryPopup());
         findViewById(R.id.category_btn_4).setOnClickListener(v -> showReadingSubCategoryPopup());
+    }
+
+    // ✅ 다이어트 카테고리
+    private void showDietSubCategoryPopup() {
+        String[] subCategories = {"만보기", "섭취 칼로리", "운동 칼로리", "몸무게"};
+        selectedMainCategory = "다이어트";
+        showSubCategoryDialog("다이어트 - 세부 카테고리 선택", subCategories);
+    }
+
+    // ✅ 재테크 카테고리
+    private void showFinanceSubCategoryPopup() {
+        String[] subCategories = {"저축", "소비", "가계부", "부수입"};
+        selectedMainCategory = "재테크";
+        showSubCategoryDialog("재테크 - 세부 카테고리 선택", subCategories);
+    }
+
+    // ✅ 공부 카테고리
+    private void showStudySubCategoryPopup() {
+        String[] subCategories = {"학습 시간", "문제 풀이 수", "복습 체크", "목표 점수"};
+        selectedMainCategory = "공부";
+        showSubCategoryDialog("공부 - 세부 카테고리 선택", subCategories);
+    }
+
+    // ✅ 독서 카테고리
+    private void showReadingSubCategoryPopup() {
+        String[] subCategories = {"목표 권수", "목표 시간", "읽은 시간"};
+        selectedMainCategory = "독서";
+        showSubCategoryDialog("독서 - 세부 카테고리 선택", subCategories);
+    }
+
+    // ✅ 공통 카테고리 팝업
+    private void showSubCategoryDialog(String title, String[] subCategories) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title);
+
+        builder.setItems(subCategories, (dialog, which) -> {
+            selectedSubCategory = subCategories[which];
+            categoryTextView.setText("선택된 카테고리: " + selectedMainCategory + " - " + selectedSubCategory);
+
+            String query = searchGroupInput.getText().toString().trim();
+            searchGroups(query, selectedMainCategory, selectedSubCategory);
+        });
+
+        builder.show();
     }
 
     private Long getMyMemberId() {
         return getSharedPreferences("loginPrefs", MODE_PRIVATE).getLong("memberId", -1L);
     }
 
+    // ✅ 그룹 검색 API
     private void searchGroups(String query, String categoryMain, String categorySub) {
         Long memberId = getMyMemberId();
         Retrofit_interface api = Retrofit_client.getInstance().create(Retrofit_interface.class);
@@ -127,103 +189,18 @@ public class GroupSearchPageActivity extends AppCompatActivity {
                         if (response.isSuccessful() && response.body() != null) {
                             groupList.clear();
                             groupList.addAll(response.body());
-
-                            for (GroupSearchResponse group : response.body()) {
-                                Log.d("GROUP", "받은 그룹: " + group.getName() + " → isJoined: " + group.isJoined());
-                            }
-
                             adapter.notifyDataSetChanged();
+
+                            Log.d("GroupSearch", "검색 결과 개수: " + groupList.size());
                         } else {
-                            Toast.makeText(GroupSearchPageActivity.this, "검색 결과가 없습니다", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GroupSearchPageActivity.this, "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<List<GroupSearchResponse>> call, Throwable t) {
-                        Toast.makeText(GroupSearchPageActivity.this, "서버 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GroupSearchPageActivity.this, "서버 연결 실패: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
-
-    private void showCategoryPopup() {
-        String[] subCategories = {"만보기", "섭취 칼로리", "운동 칼로리", "식단"};
-        String categoryMain = "다이어트";
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("다이어트 - 카테고리 선택");
-
-        builder.setItems(subCategories, (dialog, which) -> {
-            selectedMainCategory = categoryMain;
-            selectedSubCategory = subCategories[which];
-
-            categoryTextView.setText("선택된 카테고리: " + selectedMainCategory + " - " + selectedSubCategory);
-
-            String query = searchGroupInput.getText().toString().trim();
-            searchGroups(query, selectedMainCategory, selectedSubCategory);
-        });
-
-        builder.show();
-    }
-
-    private void showFinanceSubCategoryPopup() {
-        String[] subCategories = {"저축", "소비", "가계부", "부수입"};
-        String categoryMain = "재테크"; //
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("재테크 - 카테고리 선택");
-
-        builder.setItems(subCategories, (dialog, which) -> {
-            selectedMainCategory = categoryMain;
-            selectedSubCategory = subCategories[which];
-
-            categoryTextView.setText("선택된 카테고리: " + selectedMainCategory + " - " + selectedSubCategory);
-
-            String query = searchGroupInput.getText().toString().trim();
-            searchGroups(query, selectedMainCategory, selectedSubCategory);
-        });
-
-        builder.show();
-    }
-
-    private void showStudySubCategoryPopup() {
-        String[] subCategories = {"학습 시간", "문제 풀이 수", "복습 체크", "목표 점수"};
-        String categoryMain = "공부"; //
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("공부 - 카테고리 선택");
-
-        builder.setItems(subCategories, (dialog, which) -> {
-            selectedMainCategory = categoryMain;
-            selectedSubCategory = subCategories[which];
-
-            categoryTextView.setText("선택된 카테고리: " + selectedMainCategory + " - " + selectedSubCategory);
-
-            String query = searchGroupInput.getText().toString().trim();
-            searchGroups(query, selectedMainCategory, selectedSubCategory);
-        });
-
-        builder.show();
-    }
-
-    private void showReadingSubCategoryPopup() {
-        String[] subCategories = {"목표 권수", "목표 시간", "읽은 시간"};
-        String categoryMain = "독서";
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("독서 - 카테고리 선택");
-
-        builder.setItems(subCategories, (dialog, which) -> {
-            selectedMainCategory = categoryMain;
-            selectedSubCategory = subCategories[which];
-
-            categoryTextView.setText("선택된 카테고리: " + selectedMainCategory + " - " + selectedSubCategory);
-
-            String query = searchGroupInput.getText().toString().trim();
-            searchGroups(query, selectedMainCategory, selectedSubCategory);
-        });
-
-        builder.show();
-    }
 }
-
-
