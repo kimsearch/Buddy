@@ -157,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
                     float percent = (goal <= 0) ? 0f : Math.min(100f, (record * 100f) / (float) goal);
 
                     g.setProgressPercent(percent);
-                    adapter.notifyItemChanged(pos); // ✅ 해당 카드만 갱신 → 아이콘 자동 변경
                 }
                 @Override public void onFailure(Call<GoalProgressResponse> call, Throwable t) { /* no-op */ }
             });

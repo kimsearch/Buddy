@@ -36,7 +36,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
         this.deleteClickListener = listener;
     }
 
-    // ✅ 추가: listener 없는 생성자
     public GroupAdapter(Context context, List<Group> groupList, Long myMemberId) {
         this(context, groupList, myMemberId, null); // listener 없이 호출
     }

@@ -30,16 +30,12 @@ import java.util.*;
 public class GroupMainSavingsActivity extends AppCompatActivity {
 
     private TextView groupMainTitle;
-    private TextView groupGoalView;
-    private EditText goalInputEditText;
-    private Button goalInputButton;
 
     private AppCompatImageButton navHome, navGroup, navSearch, navPet, navMyPage;
     private PieChart pieChart;
     private BarChart barChart;
     private RecyclerView rankingRecyclerView;
 
-    private final Map<String, Float> dailyProgressMap = new LinkedHashMap<>();
     private final List<RankingItem> rankingList = new ArrayList<>();
     private RankingAdapter rankingAdapter;
 
@@ -63,39 +59,18 @@ public class GroupMainSavingsActivity extends AppCompatActivity {
         navPet = findViewById(R.id.nav_pet);
 
         Intent intent = getIntent();
-        String groupName = intent.getStringExtra("groupName");
-        String groupGoal = intent.getStringExtra("groupGoal");
-        if (groupName != null) groupMainTitle.setText(groupName);
-        if (groupGoal != null) groupGoalView.setText(groupGoal);
 
         rankingAdapter = new RankingAdapter(this, rankingList);
         rankingRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         rankingRecyclerView.setAdapter(rankingAdapter);
 
-        updatePieChart(0f);
         if (dailyProgressMap.isEmpty()) {
-            dailyProgressMap.put(getTodayDate(), 0f);
         }
-        updateBarChart();
 
         goalInputButton.setOnClickListener(v -> {
-            String inputText = goalInputEditText.getText().toString().trim();
-            if (!inputText.isEmpty()) {
                 try {
-                    float value = Float.parseFloat(inputText);
-                    float percentage = Math.min(100f, (value / 10000f) * 100f);
-                    updatePieChart(percentage);
-                    String today = getTodayDate();
-                    dailyProgressMap.put(today, percentage);
 
-                    updateBarChart();
-                    Toast.makeText(this, "기록 완료: " + value + "보", Toast.LENGTH_SHORT).show();
                     goalInputEditText.setText("");
-                } catch (NumberFormatException e) {
-                    Toast.makeText(this, "숫자를 정확히 입력해주세요.", Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                Toast.makeText(this, "목표를 입력하세요.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -113,7 +88,6 @@ public class GroupMainSavingsActivity extends AppCompatActivity {
         PieDataSet dataSet = new PieDataSet(entries, "");
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);
-        dataSet.setColors(value >= 80 ? Color.rgb(76, 175, 80) : value >= 50 ? Color.rgb(255, 193, 7) : Color.rgb(244, 67, 54), Color.LTGRAY);
 
         PieData pieData = new PieData(dataSet);
         pieData.setValueTextSize(14f);
