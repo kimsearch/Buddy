@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:gravity="center_vertical"
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:id="@+id/rankText"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="1위"
+        android:textSize="16sp"
+        android:textColor="#202124"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="12dp">
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="홍길동"
+            android:textSize="16sp"
+            android:textColor="#202124" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:max="100"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:src="@drawable/ic_profile"
+        android:scaleType="centerCrop"
+        android:background="@drawable/circle_bg"
+        android:contentDescription="프로필 이미지"/>
+</LinearLayout>

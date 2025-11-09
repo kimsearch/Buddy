@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f9f9f9">
+
+    <LinearLayout
+        android:id="@+id/header_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:paddingBottom="22dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <ImageButton
+                android:id="@+id/back_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_vertical"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_arrow_back"
+                android:contentDescription="뒤로가기" />
+
+            <TextView
+                android:id="@+id/group_main_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="그룹 이름"
+                android:textSize="22sp"
+                android:textColor="#202124"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/notification_button_1"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_group"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/notification_description"
+                android:tint="#2A3D45"
+                android:scaleType="center"
+                android:padding="12dp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/notification_button_2"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_speech_bubble"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/notification_description"
+                android:tint="#2A3D45"
+                android:scaleType="center"
+                android:padding="12dp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/notification_button_3"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_alarm"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/notification_description"
+                android:tint="#2A3D45"
+                android:scaleType="center"
+                android:padding="12dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scroll_area"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header_container"
+        android:background="@android:color/transparent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/group_goal_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="그룹 목표는 여기에 표시됩니다."
+                android:textSize="12sp"
+                android:textColor="#202124"
+                android:layout_marginBottom="16dp"/>
+
+            <LinearLayout
+                android:id="@+id/section_total_ranking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="누적 랭킹"
+                    android:textSize="18sp"
+                    android:textColor="#202124"
+                    android:fontFamily="@font/bmjua"
+                    android:layout_marginBottom="12dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rankingRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="#EDEDED"
+                    android:padding="12dp"
+                    android:clipToPadding="false"
+                    android:contentDescription="목표 입력"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/section_personal_goal_step"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="24dp">
+
+                <TextView
+                    android:id="@+id/step_count_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="걸음 수: 0"
+                    android:textSize="18sp"
+                    android:textColor="#202124"
+                    android:gravity="center"
+                    android:layout_marginBottom="16dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/section_personal_goal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="내 목표 달성"
+                    android:textSize="18sp"
+                    android:textColor="#202124"
+                    android:fontFamily="@font/bmjua"
+                    android:layout_marginBottom="12dp"/>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="157dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_graph_background" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/section_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="70dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이전 기록"
+                    android:textSize="18sp"
+                    android:textColor="#202124"
+                    android:fontFamily="@font/bmjua"
+                    android:layout_marginBottom="12dp"/>
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_graph_background" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#e8e8e8"
+        android:padding="8dp"
+        android:layout_alignParentBottom="true">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_home"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#202124"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_group"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_group"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#202124"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_search"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_nav_search"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#202124"
+            android:importantForAccessibility="no"
+            android:contentDescription="그룹 검색 페이지로 이동"
+            android:scaleType="center"
+            android:padding="12dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_pet"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_paw"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#202124"
+            android:importantForAccessibility="no"
+            android:contentDescription="펫 키우기 페이지로 이동"
+            android:scaleType="fitCenter"
+            android:padding="12dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_mypage"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_mypage"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#202124"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
+    </LinearLayout>
+</RelativeLayout>

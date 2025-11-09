@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="top|center_horizontal"
+    android:background="#D0F4DE"
+    tools:context=".LoginPageActivity">
+
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_width="200dp"
+        android:layout_height="195dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/buddyquest" />
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:text="@string/subtitle"
+        android:textColor="#202124"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edittext_email_login"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="이메일"
+            android:fontFamily="@font/bmjua"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edittext_password_input"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="비밀번호"
+        android:fontFamily="@font/bmjua"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:background="@drawable/rounded_edittext"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:layout_marginBottom="24dp" />
+
+
+    <Button
+        android:id="@+id/login_login_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#FBF5DA"
+        android:fontFamily="@font/bmjua"
+        android:padding="12dp"
+        android:text="@string/login_login_button"
+        android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="8dp"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/find_email_button"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="@string/find_nickname_button"
+            android:fontFamily="@font/bmjua"
+            android:textSize="14sp"
+            android:backgroundTint="#80FFFFFF"
+            android:textColor="#202124"
+            android:padding="8dp"
+            android:minHeight="40dp"
+            android:layout_marginStart="0dp"
+            android:singleLine="true"
+            android:ellipsize="end" />
+
+        <Button
+            android:id="@+id/find_password_button"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="@string/find_email_button"
+            android:fontFamily="@font/bmjua"
+            android:textSize="14sp"
+            android:backgroundTint="#80FFFFFF"
+            android:textColor="#202124"
+            android:padding="8dp"
+            android:minHeight="40dp"
+            android:layout_marginStart="0dp"
+            android:singleLine="true"
+            android:ellipsize="end" />
+
+        <Button
+            android:id="@+id/signup_button"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="@string/signup_button"
+            android:fontFamily="@font/bmjua"
+            android:textSize="14sp"
+            android:backgroundTint="#80FFFFFF"
+            android:textColor="#202124"
+            android:padding="8dp"
+            android:minHeight="40dp"
+            android:layout_marginStart="0dp"
+            android:singleLine="true"
+            android:ellipsize="end" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fcf2f2"
+    tools:context=".PetActivity">
+
+    <LinearLayout
+        android:id="@+id/header_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:id="@+id/header_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="18dp"
+            android:paddingBottom="22dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <TextView
+                android:id="@+id/pet_tutorial"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="버몽이가 자랄 수 있게 먹이를 주세요!\n\n- 먹이는 목표를 달성할 때마다 자동으로 지급됩니다.\n- 하루 최대 10개 지급. 5일 연속 목표 달성 시 추가 보너스!"
+                android:textSize="12sp"
+                android:textColor="#2A3D45"
+                android:visibility="invisible"
+                android:padding="8dp"
+                android:background="#eeeeaa"
+                android:fontFamily="@font/bmjua"
+                android:layout_marginEnd="8dp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/pet_info"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_info"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="버몽이 도움말"
+                android:tint="#878787"
+                android:scaleType="center"
+                android:padding="12dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_nav"
+        android:layout_below="@id/header_container"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/pet_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="버몽이"
+                android:textSize="24sp"
+                android:textColor="#202124"
+                android:layout_marginBottom="16dp" />
+
+            <ImageView
+                android:id="@+id/pet_gif"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginBottom="25dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="펫 이미지" />
+
+            <TextView
+                android:id="@+id/pet_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="레벨 1"
+                android:textSize="20sp"
+                android:textColor="#202124"
+                android:layout_marginBottom="20dp" />
+
+            <ProgressBar
+                android:id="@+id/pet_progress_bar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="300dp"
+                android:layout_height="18dp"
+                android:progress="25"
+                android:max="100"
+                android:progressDrawable="@drawable/progressbar"
+                android:layout_marginBottom="40dp" />
+
+            <LinearLayout
+                android:id="@+id/heart_button_container"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/pet_drawable"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/heart_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_heart_filled" />
+
+                <TextView
+                    android:id="@+id/heart_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="207"
+                    android:textSize="18sp"
+                    android:textColor="#202124" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#e8e8e8"
+        android:padding="8dp"
+        android:layout_alignParentBottom="true">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_home"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#202124"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_group"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_group"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#202124"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_search"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_nav_search"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#202124"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_pet"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_paw"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#202124"
+            android:importantForAccessibility="no"
+            android:scaleType="fitCenter"
+            android:padding="12dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/nav_mypage"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_mypage"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="#202124"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            android:padding="12dp" />
+    </LinearLayout>
+</RelativeLayout>
